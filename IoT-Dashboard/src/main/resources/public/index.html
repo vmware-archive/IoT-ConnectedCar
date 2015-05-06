@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-app="iotDashboard" ng-controller="MainController">
+    <nav class="main-nav">
+      <div class="pivotal-logo"></div>
+        <select id="selectedVin" ng-model="selectedVin" ng-options="item.vin as item.vin for item in vins" ng-change="updateVin()">
+        </select>
+        <ul class="panel-links">
+        <li id="status-link" class="panel-link" ng-click="currentPanel = 'status'" ng-class="{'current-link' :currentPanel==='status'}">
+          <span class="alt-text">Status &amp; Maintenance</span>
+        </li>
+        <li id="journey-link" class="panel-link" ng-click="currentPanel = 'journey'" ng-class="{'current-link' :currentPanel==='journey'}">
+          <span class="alt-text">Journey</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div ng-controller="MapController">
+      <google-map class="main-map"
+        center="mapCenter" zoom="mapZoom"
+        pan="true">
+
+        <markers ng-if="currentPanel === 'journey'"
+          models="boundsMarkers"
+          fit=true coords="'self'" options="'options'">
+        </markers>
+        <marker coords="carLocation" idKey='123' options="carIconOptions"></marker>
+        <journey-marker ng-repeat="journey in journeys[selectedVin]"
+          journey="journey"
+          is-current-journey="journey === getCurrentJourney()"
+          set-current-journey-callback="setCurrentJourney">
+        </journey-marker>
+      </google-map>
+    </div>
+
+    <div ng-controller="StatusController" id="status-panel" class="control-panel" ng-show="currentPanel === 'status'">
+      <div class="control-panel-title">Status &amp; Maintenance</div>
+      <radial-meter id="speedometer" value="car.vehicleSpeed" label="Speed" max=100 min=0 size=175 stroke-width=15></radial-meter>
+      <radial-meter id="tachometer" value="car.engineRpm" label="RPM" max=10000 min=0 size=175 stroke-width=15></radial-meter>
+      <fill-meter id="coolant-temp" min=-40 max=215 value="car.coolantTemp" suffix="'&deg;'" label="Coolant Temp" size=175 stroke-width=15 inner-radius=67></fill-meter>
+      <fill-meter id="fuel" min=0 max=100 value="car.fuel" suffix="'%'" label="Fuel" size=175 stroke-width=15 inner-radius=67></fill-meter>
+    </div>
+
+    <div ng-controller="JourneyController" id="journey-panel" class="control-panel" ng-show="currentPanel === 'journey'">
+      <div class="control-panel-title">Journey Prediction</div>
+      <div id="mpg-metric" class="journey-metric">
+        <div class="journey-metric-label">Miles per Gallon</div>
+        <div class="journey-metric-value">{{ car.mpg | number: 0 }}</div>
+      </div>
+      <div id="predicted-range-metric" class="journey-metric">
+        <div class="journey-metric-label">Predicted Range</div>
+        <div class="journey-metric-value">{{ car.range | number: 0 }}mi</div>
+      </div>
+      <a href='javascript:' class="journey-link"
+        ng-repeat="journey in journeys[selectedVin]"
+        ng-click="setCurrentJourney(journey)"
+        ng-class="(getCurrentJourney() == journey) ? 'current-journey' : ''">
+
+        <div class="journey-icon" style="opacity: {{journey.probability | probabilityOpacity}}">{{journey.id}}</div>
+        <div class="journey-name">{{journey.name}}</div>
+        <div>
+          <span class="journey-attribute-label">Probability</span>
+          <span class="journey-attribute-value journey-probability">{{journey.probability | number:2 | percentage}}</span>
+        </div>
+        <div>
+          <span class="journey-attribute-label">Latitude</span>
+          <span class="journey-attribute-value">{{journey.latitude | number:4}}</span>
+        </div>
+        <div>
+          <span class="journey-attribute-label">Longitude</span>
+          <span class="journey-attribute-value">{{journey.longitude | number:4}}</span>
+        </div>
+      </a>
+    </div>
+
+
+    <script src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/scripts.js"></script>
+</body>
+</html>

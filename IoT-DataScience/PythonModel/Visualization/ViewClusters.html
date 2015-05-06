@@ -1,0 +1,4421 @@
+<!DOCTYPE html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+   <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+
+   <script src="https://wrobstory.github.io/leaflet-dvf/leaflet-dvf.markers.min.js"></script>
+   
+   
+   
+
+
+   <style>
+
+      #map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+      }
+
+   </style>
+</head>
+
+<body>
+
+   <div class="folium-map" id="folium_e313d77ed4174dbfba96cdc2ff1631c0" style="width: 960px; height: 500px"></div>
+
+   <script>
+
+      
+
+      var map = L.map('folium_e313d77ed4174dbfba96cdc2ff1631c0').setView([52.52, 13.398], 11);
+
+      L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: 'OpenStreetMap Black&White'
+      }).addTo(map);
+
+      
+      var polygon_1 = new L.RegularPolygonMarker(new L.LatLng(32.9852281523, -96.7094230034), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 1,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 10
+});
+      polygon_1.bindPopup("Cluster 0 Start");
+      map.addLayer(polygon_1)
+      
+      var polygon_2 = new L.RegularPolygonMarker(new L.LatLng(32.9528261727, -96.8197236348), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 1,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 10
+});
+      polygon_2.bindPopup("Cluster 0 End");
+      map.addLayer(polygon_2)
+      
+      var polygon_3 = new L.RegularPolygonMarker(new L.LatLng(32.9852364931, -96.7094153819), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_3.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(1)_Simulated.csv Start");
+      map.addLayer(polygon_3)
+      
+      var polygon_4 = new L.RegularPolygonMarker(new L.LatLng(32.9528870598, -96.8194709348), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_4.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(1)_Simulated.csv Start");
+      map.addLayer(polygon_4)
+      
+      var polygon_5 = new L.RegularPolygonMarker(new L.LatLng(32.98536476, -96.7093446385), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_5.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(10)_Simulated.csv Start");
+      map.addLayer(polygon_5)
+      
+      var polygon_6 = new L.RegularPolygonMarker(new L.LatLng(32.952747976, -96.8196874693), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_6.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(10)_Simulated.csv Start");
+      map.addLayer(polygon_6)
+      
+      var polygon_7 = new L.RegularPolygonMarker(new L.LatLng(32.9853878398, -96.7092746692), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_7.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(11)_Simulated.csv Start");
+      map.addLayer(polygon_7)
+      
+      var polygon_8 = new L.RegularPolygonMarker(new L.LatLng(32.9528242205, -96.8197174684), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_8.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(11)_Simulated.csv Start");
+      map.addLayer(polygon_8)
+      
+      var polygon_9 = new L.RegularPolygonMarker(new L.LatLng(32.9852261645, -96.7094803873), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_9.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(12)_Simulated.csv Start");
+      map.addLayer(polygon_9)
+      
+      var polygon_10 = new L.RegularPolygonMarker(new L.LatLng(32.9527896542, -96.8195808332), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_10.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(12)_Simulated.csv Start");
+      map.addLayer(polygon_10)
+      
+      var polygon_11 = new L.RegularPolygonMarker(new L.LatLng(32.985292361, -96.7094999514), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_11.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(13)_Simulated.csv Start");
+      map.addLayer(polygon_11)
+      
+      var polygon_12 = new L.RegularPolygonMarker(new L.LatLng(32.9527875496, -96.8196093374), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_12.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(13)_Simulated.csv Start");
+      map.addLayer(polygon_12)
+      
+      var polygon_13 = new L.RegularPolygonMarker(new L.LatLng(32.9851814873, -96.7096480198), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_13.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(14)_Simulated.csv Start");
+      map.addLayer(polygon_13)
+      
+      var polygon_14 = new L.RegularPolygonMarker(new L.LatLng(32.9530863248, -96.8198341648), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_14.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(14)_Simulated.csv Start");
+      map.addLayer(polygon_14)
+      
+      var polygon_15 = new L.RegularPolygonMarker(new L.LatLng(32.9852623196, -96.7093375282), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_15.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(15)_Simulated.csv Start");
+      map.addLayer(polygon_15)
+      
+      var polygon_16 = new L.RegularPolygonMarker(new L.LatLng(32.9527033712, -96.8198956543), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_16.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(15)_Simulated.csv Start");
+      map.addLayer(polygon_16)
+      
+      var polygon_17 = new L.RegularPolygonMarker(new L.LatLng(32.9852299769, -96.7095413559), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_17.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(16)_Simulated.csv Start");
+      map.addLayer(polygon_17)
+      
+      var polygon_18 = new L.RegularPolygonMarker(new L.LatLng(32.9528758366, -96.8196314476), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_18.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(16)_Simulated.csv Start");
+      map.addLayer(polygon_18)
+      
+      var polygon_19 = new L.RegularPolygonMarker(new L.LatLng(32.9852426404, -96.7094737935), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_19.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(17)_Simulated.csv Start");
+      map.addLayer(polygon_19)
+      
+      var polygon_20 = new L.RegularPolygonMarker(new L.LatLng(32.9528861957, -96.8197565392), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_20.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(17)_Simulated.csv Start");
+      map.addLayer(polygon_20)
+      
+      var polygon_21 = new L.RegularPolygonMarker(new L.LatLng(32.9851651169, -96.7093765834), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_21.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(18)_Simulated.csv Start");
+      map.addLayer(polygon_21)
+      
+      var polygon_22 = new L.RegularPolygonMarker(new L.LatLng(32.9527501751, -96.8198379285), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_22.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(18)_Simulated.csv Start");
+      map.addLayer(polygon_22)
+      
+      var polygon_23 = new L.RegularPolygonMarker(new L.LatLng(32.985243646, -96.7094908972), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_23.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(19)_Simulated.csv Start");
+      map.addLayer(polygon_23)
+      
+      var polygon_24 = new L.RegularPolygonMarker(new L.LatLng(32.952736954, -96.8197200483), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_24.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(19)_Simulated.csv Start");
+      map.addLayer(polygon_24)
+      
+      var polygon_25 = new L.RegularPolygonMarker(new L.LatLng(32.9851443353, -96.7093808127), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_25.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(2)_Simulated.csv Start");
+      map.addLayer(polygon_25)
+      
+      var polygon_26 = new L.RegularPolygonMarker(new L.LatLng(32.9529113678, -96.8196149576), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_26.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(2)_Simulated.csv Start");
+      map.addLayer(polygon_26)
+      
+      var polygon_27 = new L.RegularPolygonMarker(new L.LatLng(32.9852568663, -96.7094380821), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_27.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(20)_Simulated.csv Start");
+      map.addLayer(polygon_27)
+      
+      var polygon_28 = new L.RegularPolygonMarker(new L.LatLng(32.9529228723, -96.8196960125), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_28.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(20)_Simulated.csv Start");
+      map.addLayer(polygon_28)
+      
+      var polygon_29 = new L.RegularPolygonMarker(new L.LatLng(32.9851646332, -96.7093824935), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_29.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(3)_Simulated.csv Start");
+      map.addLayer(polygon_29)
+      
+      var polygon_30 = new L.RegularPolygonMarker(new L.LatLng(32.9529011921, -96.8195823972), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_30.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(3)_Simulated.csv Start");
+      map.addLayer(polygon_30)
+      
+      var polygon_31 = new L.RegularPolygonMarker(new L.LatLng(32.9851895607, -96.7093543786), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_31.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(4)_Simulated.csv Start");
+      map.addLayer(polygon_31)
+      
+      var polygon_32 = new L.RegularPolygonMarker(new L.LatLng(32.952719162, -96.8198046381), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_32.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(4)_Simulated.csv Start");
+      map.addLayer(polygon_32)
+      
+      var polygon_33 = new L.RegularPolygonMarker(new L.LatLng(32.9852184886, -96.7094194095), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_33.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(5)_Simulated.csv Start");
+      map.addLayer(polygon_33)
+      
+      var polygon_34 = new L.RegularPolygonMarker(new L.LatLng(32.9527697273, -96.8197365425), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_34.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(5)_Simulated.csv Start");
+      map.addLayer(polygon_34)
+      
+      var polygon_35 = new L.RegularPolygonMarker(new L.LatLng(32.9852126836, -96.7094654617), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_35.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(6)_Simulated.csv Start");
+      map.addLayer(polygon_35)
+      
+      var polygon_36 = new L.RegularPolygonMarker(new L.LatLng(32.9526507006, -96.8200385842), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_36.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(6)_Simulated.csv Start");
+      map.addLayer(polygon_36)
+      
+      var polygon_37 = new L.RegularPolygonMarker(new L.LatLng(32.9850721397, -96.7093052017), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_37.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(7)_Simulated.csv Start");
+      map.addLayer(polygon_37)
+      
+      var polygon_38 = new L.RegularPolygonMarker(new L.LatLng(32.9529939411, -96.8197672414), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_38.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(7)_Simulated.csv Start");
+      map.addLayer(polygon_38)
+      
+      var polygon_39 = new L.RegularPolygonMarker(new L.LatLng(32.9852586874, -96.7095148293), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_39.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(8)_Simulated.csv Start");
+      map.addLayer(polygon_39)
+      
+      var polygon_40 = new L.RegularPolygonMarker(new L.LatLng(32.952742157, -96.8196629946), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_40.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(8)_Simulated.csv Start");
+      map.addLayer(polygon_40)
+      
+      var polygon_41 = new L.RegularPolygonMarker(new L.LatLng(32.9852128456, -96.7093161923), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_41.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(9)_Simulated.csv Start");
+      map.addLayer(polygon_41)
+      
+      var polygon_42 = new L.RegularPolygonMarker(new L.LatLng(32.952837017, -96.8198275021), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#A6CEE3',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_42.bindPopup("../Data/Dallas/Simulated/Ren-Fly-BeltlineRoute(9)_Simulated.csv Start");
+      map.addLayer(polygon_42)
+      
+      var polygon_43 = new L.RegularPolygonMarker(new L.LatLng(32.9850335572, -96.7095263632), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 1,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 10
+});
+      polygon_43.bindPopup("Cluster 1 Start");
+      map.addLayer(polygon_43)
+      
+      var polygon_44 = new L.RegularPolygonMarker(new L.LatLng(32.7759467127, -96.8045549524), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 1,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 10
+});
+      polygon_44.bindPopup("Cluster 1 End");
+      map.addLayer(polygon_44)
+      
+      var polygon_45 = new L.RegularPolygonMarker(new L.LatLng(32.984680647, -96.7097099177), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_45.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(1)_Simulated.csv Start");
+      map.addLayer(polygon_45)
+      
+      var polygon_46 = new L.RegularPolygonMarker(new L.LatLng(32.7747535893, -96.8044837932), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_46.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(1)_Simulated.csv Start");
+      map.addLayer(polygon_46)
+      
+      var polygon_47 = new L.RegularPolygonMarker(new L.LatLng(32.9855469018, -96.7092692667), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_47.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(10)_Simulated.csv Start");
+      map.addLayer(polygon_47)
+      
+      var polygon_48 = new L.RegularPolygonMarker(new L.LatLng(32.7767803834, -96.8046097795), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_48.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(10)_Simulated.csv Start");
+      map.addLayer(polygon_48)
+      
+      var polygon_49 = new L.RegularPolygonMarker(new L.LatLng(32.9847660175, -96.7097171808), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_49.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(11)_Simulated.csv Start");
+      map.addLayer(polygon_49)
+      
+      var polygon_50 = new L.RegularPolygonMarker(new L.LatLng(32.7765334304, -96.8044875906), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_50.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(11)_Simulated.csv Start");
+      map.addLayer(polygon_50)
+      
+      var polygon_51 = new L.RegularPolygonMarker(new L.LatLng(32.9851416064, -96.7093280341), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_51.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(12)_Simulated.csv Start");
+      map.addLayer(polygon_51)
+      
+      var polygon_52 = new L.RegularPolygonMarker(new L.LatLng(32.7772623343, -96.8045299799), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_52.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(12)_Simulated.csv Start");
+      map.addLayer(polygon_52)
+      
+      var polygon_53 = new L.RegularPolygonMarker(new L.LatLng(32.9852697518, -96.7097739858), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_53.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(13)_Simulated.csv Start");
+      map.addLayer(polygon_53)
+      
+      var polygon_54 = new L.RegularPolygonMarker(new L.LatLng(32.7748814831, -96.8042543229), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_54.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(13)_Simulated.csv Start");
+      map.addLayer(polygon_54)
+      
+      var polygon_55 = new L.RegularPolygonMarker(new L.LatLng(32.9849110436, -96.7099343952), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_55.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(14)_Simulated.csv Start");
+      map.addLayer(polygon_55)
+      
+      var polygon_56 = new L.RegularPolygonMarker(new L.LatLng(32.7756174761, -96.8041523095), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_56.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(14)_Simulated.csv Start");
+      map.addLayer(polygon_56)
+      
+      var polygon_57 = new L.RegularPolygonMarker(new L.LatLng(32.9845138634, -96.7090410721), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_57.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(15)_Simulated.csv Start");
+      map.addLayer(polygon_57)
+      
+      var polygon_58 = new L.RegularPolygonMarker(new L.LatLng(32.7761044939, -96.8049334485), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_58.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(15)_Simulated.csv Start");
+      map.addLayer(polygon_58)
+      
+      var polygon_59 = new L.RegularPolygonMarker(new L.LatLng(32.9848834982, -96.7097680136), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_59.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(16)_Simulated.csv Start");
+      map.addLayer(polygon_59)
+      
+      var polygon_60 = new L.RegularPolygonMarker(new L.LatLng(32.7755826338, -96.8046041742), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_60.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(16)_Simulated.csv Start");
+      map.addLayer(polygon_60)
+      
+      var polygon_61 = new L.RegularPolygonMarker(new L.LatLng(32.9856956657, -96.7094639782), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_61.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(17)_Simulated.csv Start");
+      map.addLayer(polygon_61)
+      
+      var polygon_62 = new L.RegularPolygonMarker(new L.LatLng(32.7759207109, -96.8048499094), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_62.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(17)_Simulated.csv Start");
+      map.addLayer(polygon_62)
+      
+      var polygon_63 = new L.RegularPolygonMarker(new L.LatLng(32.9850697745, -96.7096295012), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_63.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(18)_Simulated.csv Start");
+      map.addLayer(polygon_63)
+      
+      var polygon_64 = new L.RegularPolygonMarker(new L.LatLng(32.7754307269, -96.8050044887), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_64.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(18)_Simulated.csv Start");
+      map.addLayer(polygon_64)
+      
+      var polygon_65 = new L.RegularPolygonMarker(new L.LatLng(32.9851573217, -96.7097230376), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_65.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(19)_Simulated.csv Start");
+      map.addLayer(polygon_65)
+      
+      var polygon_66 = new L.RegularPolygonMarker(new L.LatLng(32.7756629441, -96.8044493674), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_66.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(19)_Simulated.csv Start");
+      map.addLayer(polygon_66)
+      
+      var polygon_67 = new L.RegularPolygonMarker(new L.LatLng(32.9841194216, -96.7091176206), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_67.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(2)_Simulated.csv Start");
+      map.addLayer(polygon_67)
+      
+      var polygon_68 = new L.RegularPolygonMarker(new L.LatLng(32.7755178561, -96.8044245049), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_68.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(2)_Simulated.csv Start");
+      map.addLayer(polygon_68)
+      
+      var polygon_69 = new L.RegularPolygonMarker(new L.LatLng(32.9845722771, -96.7093543328), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_69.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(20)_Simulated.csv Start");
+      map.addLayer(polygon_69)
+      
+      var polygon_70 = new L.RegularPolygonMarker(new L.LatLng(32.7755444229, -96.8047253174), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_70.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(20)_Simulated.csv Start");
+      map.addLayer(polygon_70)
+      
+      var polygon_71 = new L.RegularPolygonMarker(new L.LatLng(32.9857550995, -96.7093510948), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_71.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(3)_Simulated.csv Start");
+      map.addLayer(polygon_71)
+      
+      var polygon_72 = new L.RegularPolygonMarker(new L.LatLng(32.776249405, -96.8044941477), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_72.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(3)_Simulated.csv Start");
+      map.addLayer(polygon_72)
+      
+      var polygon_73 = new L.RegularPolygonMarker(new L.LatLng(32.9846951435, -96.7091499664), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_73.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(4)_Simulated.csv Start");
+      map.addLayer(polygon_73)
+      
+      var polygon_74 = new L.RegularPolygonMarker(new L.LatLng(32.7761797791, -96.8046097443), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_74.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(4)_Simulated.csv Start");
+      map.addLayer(polygon_74)
+      
+      var polygon_75 = new L.RegularPolygonMarker(new L.LatLng(32.9856002333, -96.7092057656), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_75.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(5)_Simulated.csv Start");
+      map.addLayer(polygon_75)
+      
+      var polygon_76 = new L.RegularPolygonMarker(new L.LatLng(32.7759106261, -96.8042190271), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_76.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(5)_Simulated.csv Start");
+      map.addLayer(polygon_76)
+      
+      var polygon_77 = new L.RegularPolygonMarker(new L.LatLng(32.9852564067, -96.7100390442), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_77.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(6)_Simulated.csv Start");
+      map.addLayer(polygon_77)
+      
+      var polygon_78 = new L.RegularPolygonMarker(new L.LatLng(32.7761465768, -96.8047154531), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_78.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(6)_Simulated.csv Start");
+      map.addLayer(polygon_78)
+      
+      var polygon_79 = new L.RegularPolygonMarker(new L.LatLng(32.9845421084, -96.7092411088), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_79.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(7)_Simulated.csv Start");
+      map.addLayer(polygon_79)
+      
+      var polygon_80 = new L.RegularPolygonMarker(new L.LatLng(32.7763533627, -96.8043141178), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_80.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(7)_Simulated.csv Start");
+      map.addLayer(polygon_80)
+      
+      var polygon_81 = new L.RegularPolygonMarker(new L.LatLng(32.9854872377, -96.7099691191), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_81.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(8)_Simulated.csv Start");
+      map.addLayer(polygon_81)
+      
+      var polygon_82 = new L.RegularPolygonMarker(new L.LatLng(32.7762389886, -96.8050271738), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_82.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(8)_Simulated.csv Start");
+      map.addLayer(polygon_82)
+      
+      var polygon_83 = new L.RegularPolygonMarker(new L.LatLng(32.9850071238, -96.7097408294), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_83.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(9)_Simulated.csv Start");
+      map.addLayer(polygon_83)
+      
+      var polygon_84 = new L.RegularPolygonMarker(new L.LatLng(32.7762630296, -96.8042103977), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#1F78B4',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_84.bindPopup("../Data/Dallas/Simulated/Ren-Omni-75(9)_Simulated.csv Start");
+      map.addLayer(polygon_84)
+      
+      var polygon_85 = new L.RegularPolygonMarker(new L.LatLng(32.7760731854, -96.8048322431), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 1,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 10
+});
+      polygon_85.bindPopup("Cluster 2 Start");
+      map.addLayer(polygon_85)
+      
+      var polygon_86 = new L.RegularPolygonMarker(new L.LatLng(32.9330707347, -96.8170104653), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 1,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 10
+});
+      polygon_86.bindPopup("Cluster 2 End");
+      map.addLayer(polygon_86)
+      
+      var polygon_87 = new L.RegularPolygonMarker(new L.LatLng(32.7763211971, -96.8047440598), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_87.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(1)_Simulated.csv Start");
+      map.addLayer(polygon_87)
+      
+      var polygon_88 = new L.RegularPolygonMarker(new L.LatLng(32.9330456363, -96.8170619597), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_88.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(1)_Simulated.csv Start");
+      map.addLayer(polygon_88)
+      
+      var polygon_89 = new L.RegularPolygonMarker(new L.LatLng(32.7764482682, -96.8048724626), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_89.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(10)_Simulated.csv Start");
+      map.addLayer(polygon_89)
+      
+      var polygon_90 = new L.RegularPolygonMarker(new L.LatLng(32.9330059319, -96.8168484361), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_90.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(10)_Simulated.csv Start");
+      map.addLayer(polygon_90)
+      
+      var polygon_91 = new L.RegularPolygonMarker(new L.LatLng(32.7759804944, -96.8046976983), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_91.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(11)_Simulated.csv Start");
+      map.addLayer(polygon_91)
+      
+      var polygon_92 = new L.RegularPolygonMarker(new L.LatLng(32.932957018, -96.8169853949), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_92.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(11)_Simulated.csv Start");
+      map.addLayer(polygon_92)
+      
+      var polygon_93 = new L.RegularPolygonMarker(new L.LatLng(32.7759310098, -96.8048801419), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_93.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(12)_Simulated.csv Start");
+      map.addLayer(polygon_93)
+      
+      var polygon_94 = new L.RegularPolygonMarker(new L.LatLng(32.9331159328, -96.8171377834), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_94.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(12)_Simulated.csv Start");
+      map.addLayer(polygon_94)
+      
+      var polygon_95 = new L.RegularPolygonMarker(new L.LatLng(32.7759292035, -96.8047930575), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_95.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(13)_Simulated.csv Start");
+      map.addLayer(polygon_95)
+      
+      var polygon_96 = new L.RegularPolygonMarker(new L.LatLng(32.933105324, -96.8169884906), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_96.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(13)_Simulated.csv Start");
+      map.addLayer(polygon_96)
+      
+      var polygon_97 = new L.RegularPolygonMarker(new L.LatLng(32.7763391099, -96.8047918435), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_97.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(14)_Simulated.csv Start");
+      map.addLayer(polygon_97)
+      
+      var polygon_98 = new L.RegularPolygonMarker(new L.LatLng(32.9327210651, -96.8170325144), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_98.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(14)_Simulated.csv Start");
+      map.addLayer(polygon_98)
+      
+      var polygon_99 = new L.RegularPolygonMarker(new L.LatLng(32.7760921979, -96.8048698698), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_99.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(15)_Simulated.csv Start");
+      map.addLayer(polygon_99)
+      
+      var polygon_100 = new L.RegularPolygonMarker(new L.LatLng(32.9333676252, -96.8170991214), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_100.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(15)_Simulated.csv Start");
+      map.addLayer(polygon_100)
+      
+      var polygon_101 = new L.RegularPolygonMarker(new L.LatLng(32.7756526924, -96.8048972172), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_101.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(16)_Simulated.csv Start");
+      map.addLayer(polygon_101)
+      
+      var polygon_102 = new L.RegularPolygonMarker(new L.LatLng(32.9335307211, -96.8170911881), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_102.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(16)_Simulated.csv Start");
+      map.addLayer(polygon_102)
+      
+      var polygon_103 = new L.RegularPolygonMarker(new L.LatLng(32.7758254206, -96.8048768942), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_103.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(17)_Simulated.csv Start");
+      map.addLayer(polygon_103)
+      
+      var polygon_104 = new L.RegularPolygonMarker(new L.LatLng(32.9332557705, -96.8170450371), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_104.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(17)_Simulated.csv Start");
+      map.addLayer(polygon_104)
+      
+      var polygon_105 = new L.RegularPolygonMarker(new L.LatLng(32.7761381782, -96.8049360771), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_105.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(18)_Simulated.csv Start");
+      map.addLayer(polygon_105)
+      
+      var polygon_106 = new L.RegularPolygonMarker(new L.LatLng(32.9329187286, -96.8169925357), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_106.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(18)_Simulated.csv Start");
+      map.addLayer(polygon_106)
+      
+      var polygon_107 = new L.RegularPolygonMarker(new L.LatLng(32.7760353788, -96.8048936145), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_107.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(19)_Simulated.csv Start");
+      map.addLayer(polygon_107)
+      
+      var polygon_108 = new L.RegularPolygonMarker(new L.LatLng(32.9329415149, -96.8170554729), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_108.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(19)_Simulated.csv Start");
+      map.addLayer(polygon_108)
+      
+      var polygon_109 = new L.RegularPolygonMarker(new L.LatLng(32.7758906477, -96.8048006307), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_109.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(2)_Simulated.csv Start");
+      map.addLayer(polygon_109)
+      
+      var polygon_110 = new L.RegularPolygonMarker(new L.LatLng(32.9332839699, -96.8169576294), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_110.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(2)_Simulated.csv Start");
+      map.addLayer(polygon_110)
+      
+      var polygon_111 = new L.RegularPolygonMarker(new L.LatLng(32.7761960145, -96.8046705038), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_111.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(20)_Simulated.csv Start");
+      map.addLayer(polygon_111)
+      
+      var polygon_112 = new L.RegularPolygonMarker(new L.LatLng(32.9328791836, -96.81709145), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_112.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(20)_Simulated.csv Start");
+      map.addLayer(polygon_112)
+      
+      var polygon_113 = new L.RegularPolygonMarker(new L.LatLng(32.7756645689, -96.8048556473), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_113.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(3)_Simulated.csv Start");
+      map.addLayer(polygon_113)
+      
+      var polygon_114 = new L.RegularPolygonMarker(new L.LatLng(32.9330820714, -96.8170323698), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_114.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(3)_Simulated.csv Start");
+      map.addLayer(polygon_114)
+      
+      var polygon_115 = new L.RegularPolygonMarker(new L.LatLng(32.7762777156, -96.8048454007), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_115.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(4)_Simulated.csv Start");
+      map.addLayer(polygon_115)
+      
+      var polygon_116 = new L.RegularPolygonMarker(new L.LatLng(32.9329386514, -96.8169873542), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_116.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(4)_Simulated.csv Start");
+      map.addLayer(polygon_116)
+      
+      var polygon_117 = new L.RegularPolygonMarker(new L.LatLng(32.7762536149, -96.8046406749), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_117.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(5)_Simulated.csv Start");
+      map.addLayer(polygon_117)
+      
+      var polygon_118 = new L.RegularPolygonMarker(new L.LatLng(32.9329823547, -96.8170036344), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_118.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(5)_Simulated.csv Start");
+      map.addLayer(polygon_118)
+      
+      var polygon_119 = new L.RegularPolygonMarker(new L.LatLng(32.7762389404, -96.8048838588), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_119.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(6)_Simulated.csv Start");
+      map.addLayer(polygon_119)
+      
+      var polygon_120 = new L.RegularPolygonMarker(new L.LatLng(32.9329991181, -96.816852212), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_120.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(6)_Simulated.csv Start");
+      map.addLayer(polygon_120)
+      
+      var polygon_121 = new L.RegularPolygonMarker(new L.LatLng(32.7761581394, -96.8048691543), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_121.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(7)_Simulated.csv Start");
+      map.addLayer(polygon_121)
+      
+      var polygon_122 = new L.RegularPolygonMarker(new L.LatLng(32.9331596033, -96.8170185747), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_122.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(7)_Simulated.csv Start");
+      map.addLayer(polygon_122)
+      
+      var polygon_123 = new L.RegularPolygonMarker(new L.LatLng(32.7761079949, -96.8049254117), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_123.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(8)_Simulated.csv Start");
+      map.addLayer(polygon_123)
+      
+      var polygon_124 = new L.RegularPolygonMarker(new L.LatLng(32.9329576216, -96.8169289849), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_124.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(8)_Simulated.csv Start");
+      map.addLayer(polygon_124)
+      
+      var polygon_125 = new L.RegularPolygonMarker(new L.LatLng(32.7759829219, -96.8049006427), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_125.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(9)_Simulated.csv Start");
+      map.addLayer(polygon_125)
+      
+      var polygon_126 = new L.RegularPolygonMarker(new L.LatLng(32.9331668516, -96.8169991616), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#B2DF8A',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_126.bindPopup("../Data/Dallas/Simulated/Omni-Mug-DallasNorthTollway(9)_Simulated.csv Start");
+      map.addLayer(polygon_126)
+      
+      var polygon_127 = new L.RegularPolygonMarker(new L.LatLng(32.9848927119, -96.7093763807), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 1,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 10
+});
+      polygon_127.bindPopup("Cluster 3 Start");
+      map.addLayer(polygon_127)
+      
+      var polygon_128 = new L.RegularPolygonMarker(new L.LatLng(32.9438896828, -96.6487629259), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 1,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 10
+});
+      polygon_128.bindPopup("Cluster 3 End");
+      map.addLayer(polygon_128)
+      
+      var polygon_129 = new L.RegularPolygonMarker(new L.LatLng(32.9847273774, -96.7092056725), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_129.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(1)_Simulated.csv Start");
+      map.addLayer(polygon_129)
+      
+      var polygon_130 = new L.RegularPolygonMarker(new L.LatLng(32.9438105574, -96.6486778426), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_130.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(1)_Simulated.csv Start");
+      map.addLayer(polygon_130)
+      
+      var polygon_131 = new L.RegularPolygonMarker(new L.LatLng(32.9850522668, -96.7090959134), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_131.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(10)_Simulated.csv Start");
+      map.addLayer(polygon_131)
+      
+      var polygon_132 = new L.RegularPolygonMarker(new L.LatLng(32.9438348217, -96.6487070461), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_132.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(10)_Simulated.csv Start");
+      map.addLayer(polygon_132)
+      
+      var polygon_133 = new L.RegularPolygonMarker(new L.LatLng(32.9849457068, -96.7093048537), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_133.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(11)_Simulated.csv Start");
+      map.addLayer(polygon_133)
+      
+      var polygon_134 = new L.RegularPolygonMarker(new L.LatLng(32.9439118473, -96.6486486347), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_134.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(11)_Simulated.csv Start");
+      map.addLayer(polygon_134)
+      
+      var polygon_135 = new L.RegularPolygonMarker(new L.LatLng(32.9850685518, -96.709590145), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_135.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(12)_Simulated.csv Start");
+      map.addLayer(polygon_135)
+      
+      var polygon_136 = new L.RegularPolygonMarker(new L.LatLng(32.943789134, -96.648836728), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_136.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(12)_Simulated.csv Start");
+      map.addLayer(polygon_136)
+      
+      var polygon_137 = new L.RegularPolygonMarker(new L.LatLng(32.9850182711, -96.7095413984), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_137.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(13)_Simulated.csv Start");
+      map.addLayer(polygon_137)
+      
+      var polygon_138 = new L.RegularPolygonMarker(new L.LatLng(32.9438711547, -96.6488281282), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_138.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(13)_Simulated.csv Start");
+      map.addLayer(polygon_138)
+      
+      var polygon_139 = new L.RegularPolygonMarker(new L.LatLng(32.9847647471, -96.7093402592), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_139.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(14)_Simulated.csv Start");
+      map.addLayer(polygon_139)
+      
+      var polygon_140 = new L.RegularPolygonMarker(new L.LatLng(32.9439068737, -96.6489967364), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_140.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(14)_Simulated.csv Start");
+      map.addLayer(polygon_140)
+      
+      var polygon_141 = new L.RegularPolygonMarker(new L.LatLng(32.9849327688, -96.7094577668), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_141.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(15)_Simulated.csv Start");
+      map.addLayer(polygon_141)
+      
+      var polygon_142 = new L.RegularPolygonMarker(new L.LatLng(32.9438006985, -96.648789473), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_142.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(15)_Simulated.csv Start");
+      map.addLayer(polygon_142)
+      
+      var polygon_143 = new L.RegularPolygonMarker(new L.LatLng(32.9849100105, -96.709407795), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_143.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(16)_Simulated.csv Start");
+      map.addLayer(polygon_143)
+      
+      var polygon_144 = new L.RegularPolygonMarker(new L.LatLng(32.943946497, -96.6487883472), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_144.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(16)_Simulated.csv Start");
+      map.addLayer(polygon_144)
+      
+      var polygon_145 = new L.RegularPolygonMarker(new L.LatLng(32.9848224413, -96.709452382), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_145.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(17)_Simulated.csv Start");
+      map.addLayer(polygon_145)
+      
+      var polygon_146 = new L.RegularPolygonMarker(new L.LatLng(32.9440390178, -96.6489105426), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_146.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(17)_Simulated.csv Start");
+      map.addLayer(polygon_146)
+      
+      var polygon_147 = new L.RegularPolygonMarker(new L.LatLng(32.9851033643, -96.7093130347), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_147.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(18)_Simulated.csv Start");
+      map.addLayer(polygon_147)
+      
+      var polygon_148 = new L.RegularPolygonMarker(new L.LatLng(32.9439250621, -96.6486512257), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_148.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(18)_Simulated.csv Start");
+      map.addLayer(polygon_148)
+      
+      var polygon_149 = new L.RegularPolygonMarker(new L.LatLng(32.9849449057, -96.7094436536), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_149.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(19)_Simulated.csv Start");
+      map.addLayer(polygon_149)
+      
+      var polygon_150 = new L.RegularPolygonMarker(new L.LatLng(32.9439390172, -96.6487446349), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_150.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(19)_Simulated.csv Start");
+      map.addLayer(polygon_150)
+      
+      var polygon_151 = new L.RegularPolygonMarker(new L.LatLng(32.9847958034, -96.7093879441), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_151.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(2)_Simulated.csv Start");
+      map.addLayer(polygon_151)
+      
+      var polygon_152 = new L.RegularPolygonMarker(new L.LatLng(32.9439192351, -96.6486520122), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_152.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(2)_Simulated.csv Start");
+      map.addLayer(polygon_152)
+      
+      var polygon_153 = new L.RegularPolygonMarker(new L.LatLng(32.9848633426, -96.7093404235), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_153.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(20)_Simulated.csv Start");
+      map.addLayer(polygon_153)
+      
+      var polygon_154 = new L.RegularPolygonMarker(new L.LatLng(32.9438461757, -96.6488119087), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_154.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(20)_Simulated.csv Start");
+      map.addLayer(polygon_154)
+      
+      var polygon_155 = new L.RegularPolygonMarker(new L.LatLng(32.9847458228, -96.7092611464), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_155.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(3)_Simulated.csv Start");
+      map.addLayer(polygon_155)
+      
+      var polygon_156 = new L.RegularPolygonMarker(new L.LatLng(32.9440354085, -96.6486153978), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_156.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(3)_Simulated.csv Start");
+      map.addLayer(polygon_156)
+      
+      var polygon_157 = new L.RegularPolygonMarker(new L.LatLng(32.984832956, -96.7094485635), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_157.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(4)_Simulated.csv Start");
+      map.addLayer(polygon_157)
+      
+      var polygon_158 = new L.RegularPolygonMarker(new L.LatLng(32.9439416274, -96.6486259003), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_158.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(4)_Simulated.csv Start");
+      map.addLayer(polygon_158)
+      
+      var polygon_159 = new L.RegularPolygonMarker(new L.LatLng(32.9848056994, -96.7096907129), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_159.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(5)_Simulated.csv Start");
+      map.addLayer(polygon_159)
+      
+      var polygon_160 = new L.RegularPolygonMarker(new L.LatLng(32.9437618485, -96.6487336802), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_160.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(5)_Simulated.csv Start");
+      map.addLayer(polygon_160)
+      
+      var polygon_161 = new L.RegularPolygonMarker(new L.LatLng(32.9849832953, -96.7091988135), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_161.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(6)_Simulated.csv Start");
+      map.addLayer(polygon_161)
+      
+      var polygon_162 = new L.RegularPolygonMarker(new L.LatLng(32.9438567006, -96.6488879439), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_162.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(6)_Simulated.csv Start");
+      map.addLayer(polygon_162)
+      
+      var polygon_163 = new L.RegularPolygonMarker(new L.LatLng(32.984764473, -96.7094009531), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_163.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(7)_Simulated.csv Start");
+      map.addLayer(polygon_163)
+      
+      var polygon_164 = new L.RegularPolygonMarker(new L.LatLng(32.9438343154, -96.6488146533), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_164.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(7)_Simulated.csv Start");
+      map.addLayer(polygon_164)
+      
+      var polygon_165 = new L.RegularPolygonMarker(new L.LatLng(32.9848250809, -96.7092695419), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_165.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(8)_Simulated.csv Start");
+      map.addLayer(polygon_165)
+      
+      var polygon_166 = new L.RegularPolygonMarker(new L.LatLng(32.9439382001, -96.6487884595), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_166.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(8)_Simulated.csv Start");
+      map.addLayer(polygon_166)
+      
+      var polygon_167 = new L.RegularPolygonMarker(new L.LatLng(32.9849473525, -96.7093766406), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_167.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(9)_Simulated.csv Start");
+      map.addLayer(polygon_167)
+      
+      var polygon_168 = new L.RegularPolygonMarker(new L.LatLng(32.9438854639, -96.6487492221), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#33A02C',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_168.bindPopup("../Data/Dallas/Simulated/Ren-Babes-JupiterCampbellRoute(9)_Simulated.csv Start");
+      map.addLayer(polygon_168)
+      
+      var polygon_169 = new L.RegularPolygonMarker(new L.LatLng(32.9851702912, -96.7093513718), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 1,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 10
+});
+      polygon_169.bindPopup("Cluster 4 Start");
+      map.addLayer(polygon_169)
+      
+      var polygon_170 = new L.RegularPolygonMarker(new L.LatLng(32.9685794625, -96.9271407538), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 1,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 10
+});
+      polygon_170.bindPopup("Cluster 4 End");
+      map.addLayer(polygon_170)
+      
+      var polygon_171 = new L.RegularPolygonMarker(new L.LatLng(32.9851052896, -96.7090150477), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_171.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(1)_Simulated.csv Start");
+      map.addLayer(polygon_171)
+      
+      var polygon_172 = new L.RegularPolygonMarker(new L.LatLng(32.9683471313, -96.9272444093), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_172.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(1)_Simulated.csv Start");
+      map.addLayer(polygon_172)
+      
+      var polygon_173 = new L.RegularPolygonMarker(new L.LatLng(32.9852890607, -96.7091425738), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_173.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(10)_Simulated.csv Start");
+      map.addLayer(polygon_173)
+      
+      var polygon_174 = new L.RegularPolygonMarker(new L.LatLng(32.9687139108, -96.9270989481), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_174.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(10)_Simulated.csv Start");
+      map.addLayer(polygon_174)
+      
+      var polygon_175 = new L.RegularPolygonMarker(new L.LatLng(32.9848725478, -96.7096478855), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_175.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(11)_Simulated.csv Start");
+      map.addLayer(polygon_175)
+      
+      var polygon_176 = new L.RegularPolygonMarker(new L.LatLng(32.9687651787, -96.9272343325), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_176.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(11)_Simulated.csv Start");
+      map.addLayer(polygon_176)
+      
+      var polygon_177 = new L.RegularPolygonMarker(new L.LatLng(32.9848158679, -96.7094172652), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_177.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(12)_Simulated.csv Start");
+      map.addLayer(polygon_177)
+      
+      var polygon_178 = new L.RegularPolygonMarker(new L.LatLng(32.968443666, -96.9272209415), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_178.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(12)_Simulated.csv Start");
+      map.addLayer(polygon_178)
+      
+      var polygon_179 = new L.RegularPolygonMarker(new L.LatLng(32.9852511268, -96.7091001062), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_179.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(13)_Simulated.csv Start");
+      map.addLayer(polygon_179)
+      
+      var polygon_180 = new L.RegularPolygonMarker(new L.LatLng(32.9686531527, -96.9274504241), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_180.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(13)_Simulated.csv Start");
+      map.addLayer(polygon_180)
+      
+      var polygon_181 = new L.RegularPolygonMarker(new L.LatLng(32.9848251624, -96.7098518106), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_181.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(14)_Simulated.csv Start");
+      map.addLayer(polygon_181)
+      
+      var polygon_182 = new L.RegularPolygonMarker(new L.LatLng(32.9684230175, -96.9276195442), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_182.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(14)_Simulated.csv Start");
+      map.addLayer(polygon_182)
+      
+      var polygon_183 = new L.RegularPolygonMarker(new L.LatLng(32.9852604532, -96.7086413917), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_183.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(15)_Simulated.csv Start");
+      map.addLayer(polygon_183)
+      
+      var polygon_184 = new L.RegularPolygonMarker(new L.LatLng(32.9688066335, -96.9267046), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_184.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(15)_Simulated.csv Start");
+      map.addLayer(polygon_184)
+      
+      var polygon_185 = new L.RegularPolygonMarker(new L.LatLng(32.9850670211, -96.7089257233), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_185.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(16)_Simulated.csv Start");
+      map.addLayer(polygon_185)
+      
+      var polygon_186 = new L.RegularPolygonMarker(new L.LatLng(32.9685310177, -96.9271631112), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_186.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(16)_Simulated.csv Start");
+      map.addLayer(polygon_186)
+      
+      var polygon_187 = new L.RegularPolygonMarker(new L.LatLng(32.9855808118, -96.7099927892), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_187.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(17)_Simulated.csv Start");
+      map.addLayer(polygon_187)
+      
+      var polygon_188 = new L.RegularPolygonMarker(new L.LatLng(32.9683746758, -96.9274704564), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_188.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(17)_Simulated.csv Start");
+      map.addLayer(polygon_188)
+      
+      var polygon_189 = new L.RegularPolygonMarker(new L.LatLng(32.985290813, -96.7095055279), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_189.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(18)_Simulated.csv Start");
+      map.addLayer(polygon_189)
+      
+      var polygon_190 = new L.RegularPolygonMarker(new L.LatLng(32.9684208602, -96.9270269792), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_190.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(18)_Simulated.csv Start");
+      map.addLayer(polygon_190)
+      
+      var polygon_191 = new L.RegularPolygonMarker(new L.LatLng(32.985233426, -96.709539929), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_191.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(19)_Simulated.csv Start");
+      map.addLayer(polygon_191)
+      
+      var polygon_192 = new L.RegularPolygonMarker(new L.LatLng(32.9687344003, -96.9269075531), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_192.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(19)_Simulated.csv Start");
+      map.addLayer(polygon_192)
+      
+      var polygon_193 = new L.RegularPolygonMarker(new L.LatLng(32.9849861907, -96.708795491), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_193.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(2)_Simulated.csv Start");
+      map.addLayer(polygon_193)
+      
+      var polygon_194 = new L.RegularPolygonMarker(new L.LatLng(32.9686379944, -96.9271319787), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_194.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(2)_Simulated.csv Start");
+      map.addLayer(polygon_194)
+      
+      var polygon_195 = new L.RegularPolygonMarker(new L.LatLng(32.9850226807, -96.7097031668), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_195.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(20)_Simulated.csv Start");
+      map.addLayer(polygon_195)
+      
+      var polygon_196 = new L.RegularPolygonMarker(new L.LatLng(32.9686019072, -96.9270364752), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_196.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(20)_Simulated.csv Start");
+      map.addLayer(polygon_196)
+      
+      var polygon_197 = new L.RegularPolygonMarker(new L.LatLng(32.985266986, -96.7097637715), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_197.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(3)_Simulated.csv Start");
+      map.addLayer(polygon_197)
+      
+      var polygon_198 = new L.RegularPolygonMarker(new L.LatLng(32.9683711723, -96.9267790123), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_198.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(3)_Simulated.csv Start");
+      map.addLayer(polygon_198)
+      
+      var polygon_199 = new L.RegularPolygonMarker(new L.LatLng(32.9854366539, -96.7098046981), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_199.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(4)_Simulated.csv Start");
+      map.addLayer(polygon_199)
+      
+      var polygon_200 = new L.RegularPolygonMarker(new L.LatLng(32.9685584314, -96.9270791212), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_200.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(4)_Simulated.csv Start");
+      map.addLayer(polygon_200)
+      
+      var polygon_201 = new L.RegularPolygonMarker(new L.LatLng(32.9850556792, -96.7093022123), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_201.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(5)_Simulated.csv Start");
+      map.addLayer(polygon_201)
+      
+      var polygon_202 = new L.RegularPolygonMarker(new L.LatLng(32.9685363602, -96.9268587641), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_202.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(5)_Simulated.csv Start");
+      map.addLayer(polygon_202)
+      
+      var polygon_203 = new L.RegularPolygonMarker(new L.LatLng(32.9852262886, -96.709148708), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_203.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(6)_Simulated.csv Start");
+      map.addLayer(polygon_203)
+      
+      var polygon_204 = new L.RegularPolygonMarker(new L.LatLng(32.9685173579, -96.9274233204), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_204.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(6)_Simulated.csv Start");
+      map.addLayer(polygon_204)
+      
+      var polygon_205 = new L.RegularPolygonMarker(new L.LatLng(32.9853321889, -96.7094648338), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_205.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(7)_Simulated.csv Start");
+      map.addLayer(polygon_205)
+      
+      var polygon_206 = new L.RegularPolygonMarker(new L.LatLng(32.9684570359, -96.9272444158), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_206.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(7)_Simulated.csv Start");
+      map.addLayer(polygon_206)
+      
+      var polygon_207 = new L.RegularPolygonMarker(new L.LatLng(32.9851085273, -96.7095391009), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_207.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(8)_Simulated.csv Start");
+      map.addLayer(polygon_207)
+      
+      var polygon_208 = new L.RegularPolygonMarker(new L.LatLng(32.9691801941, -96.9273790074), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_208.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(8)_Simulated.csv Start");
+      map.addLayer(polygon_208)
+      
+      var polygon_209 = new L.RegularPolygonMarker(new L.LatLng(32.9853790475, -96.7087254028), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 3,
+    rotation: 0,
+    radius: 5
+});
+      polygon_209.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(9)_Simulated.csv Start");
+      map.addLayer(polygon_209)
+      
+      var polygon_210 = new L.RegularPolygonMarker(new L.LatLng(32.9685151513, -96.9267416815), {
+    color: 'black',
+    opacity: 1,
+    weight: 2,
+    fillColor: '#FB9A99',
+    fillOpacity: 0.5,
+    numberOfSides: 4,
+    rotation: 0,
+    radius: 5
+});
+      polygon_210.bindPopup("../Data/Dallas/Simulated/Ren-Sandy-GBTollwayRoute(9)_Simulated.csv Start");
+      map.addLayer(polygon_210)
+      
+
+      
+      var latLngs = [ [32.9852281523, -96.7094230034],  [32.9528261727, -96.8197236348], ];
+var line_1 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 5,
+
+});
+      map.addLayer(line_1);
+      
+      var latLngs = [ [32.9852364931, -96.7094153819],  [32.9852281523, -96.7094230034], ];
+var line_2 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_2);
+      
+      var latLngs = [ [32.9528870598, -96.8194709348],  [32.9528261727, -96.8197236348], ];
+var line_3 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_3);
+      
+      var latLngs = [ [32.98536476, -96.7093446385],  [32.9852281523, -96.7094230034], ];
+var line_4 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_4);
+      
+      var latLngs = [ [32.952747976, -96.8196874693],  [32.9528261727, -96.8197236348], ];
+var line_5 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_5);
+      
+      var latLngs = [ [32.9853878398, -96.7092746692],  [32.9852281523, -96.7094230034], ];
+var line_6 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_6);
+      
+      var latLngs = [ [32.9528242205, -96.8197174684],  [32.9528261727, -96.8197236348], ];
+var line_7 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_7);
+      
+      var latLngs = [ [32.9852261645, -96.7094803873],  [32.9852281523, -96.7094230034], ];
+var line_8 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_8);
+      
+      var latLngs = [ [32.9527896542, -96.8195808332],  [32.9528261727, -96.8197236348], ];
+var line_9 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_9);
+      
+      var latLngs = [ [32.985292361, -96.7094999514],  [32.9852281523, -96.7094230034], ];
+var line_10 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_10);
+      
+      var latLngs = [ [32.9527875496, -96.8196093374],  [32.9528261727, -96.8197236348], ];
+var line_11 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_11);
+      
+      var latLngs = [ [32.9851814873, -96.7096480198],  [32.9852281523, -96.7094230034], ];
+var line_12 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_12);
+      
+      var latLngs = [ [32.9530863248, -96.8198341648],  [32.9528261727, -96.8197236348], ];
+var line_13 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_13);
+      
+      var latLngs = [ [32.9852623196, -96.7093375282],  [32.9852281523, -96.7094230034], ];
+var line_14 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_14);
+      
+      var latLngs = [ [32.9527033712, -96.8198956543],  [32.9528261727, -96.8197236348], ];
+var line_15 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_15);
+      
+      var latLngs = [ [32.9852299769, -96.7095413559],  [32.9852281523, -96.7094230034], ];
+var line_16 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_16);
+      
+      var latLngs = [ [32.9528758366, -96.8196314476],  [32.9528261727, -96.8197236348], ];
+var line_17 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_17);
+      
+      var latLngs = [ [32.9852426404, -96.7094737935],  [32.9852281523, -96.7094230034], ];
+var line_18 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_18);
+      
+      var latLngs = [ [32.9528861957, -96.8197565392],  [32.9528261727, -96.8197236348], ];
+var line_19 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_19);
+      
+      var latLngs = [ [32.9851651169, -96.7093765834],  [32.9852281523, -96.7094230034], ];
+var line_20 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_20);
+      
+      var latLngs = [ [32.9527501751, -96.8198379285],  [32.9528261727, -96.8197236348], ];
+var line_21 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_21);
+      
+      var latLngs = [ [32.985243646, -96.7094908972],  [32.9852281523, -96.7094230034], ];
+var line_22 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_22);
+      
+      var latLngs = [ [32.952736954, -96.8197200483],  [32.9528261727, -96.8197236348], ];
+var line_23 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_23);
+      
+      var latLngs = [ [32.9851443353, -96.7093808127],  [32.9852281523, -96.7094230034], ];
+var line_24 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_24);
+      
+      var latLngs = [ [32.9529113678, -96.8196149576],  [32.9528261727, -96.8197236348], ];
+var line_25 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_25);
+      
+      var latLngs = [ [32.9852568663, -96.7094380821],  [32.9852281523, -96.7094230034], ];
+var line_26 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_26);
+      
+      var latLngs = [ [32.9529228723, -96.8196960125],  [32.9528261727, -96.8197236348], ];
+var line_27 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_27);
+      
+      var latLngs = [ [32.9851646332, -96.7093824935],  [32.9852281523, -96.7094230034], ];
+var line_28 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_28);
+      
+      var latLngs = [ [32.9529011921, -96.8195823972],  [32.9528261727, -96.8197236348], ];
+var line_29 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_29);
+      
+      var latLngs = [ [32.9851895607, -96.7093543786],  [32.9852281523, -96.7094230034], ];
+var line_30 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_30);
+      
+      var latLngs = [ [32.952719162, -96.8198046381],  [32.9528261727, -96.8197236348], ];
+var line_31 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_31);
+      
+      var latLngs = [ [32.9852184886, -96.7094194095],  [32.9852281523, -96.7094230034], ];
+var line_32 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_32);
+      
+      var latLngs = [ [32.9527697273, -96.8197365425],  [32.9528261727, -96.8197236348], ];
+var line_33 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_33);
+      
+      var latLngs = [ [32.9852126836, -96.7094654617],  [32.9852281523, -96.7094230034], ];
+var line_34 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_34);
+      
+      var latLngs = [ [32.9526507006, -96.8200385842],  [32.9528261727, -96.8197236348], ];
+var line_35 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_35);
+      
+      var latLngs = [ [32.9850721397, -96.7093052017],  [32.9852281523, -96.7094230034], ];
+var line_36 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_36);
+      
+      var latLngs = [ [32.9529939411, -96.8197672414],  [32.9528261727, -96.8197236348], ];
+var line_37 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_37);
+      
+      var latLngs = [ [32.9852586874, -96.7095148293],  [32.9852281523, -96.7094230034], ];
+var line_38 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_38);
+      
+      var latLngs = [ [32.952742157, -96.8196629946],  [32.9528261727, -96.8197236348], ];
+var line_39 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_39);
+      
+      var latLngs = [ [32.9852128456, -96.7093161923],  [32.9852281523, -96.7094230034], ];
+var line_40 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_40);
+      
+      var latLngs = [ [32.952837017, -96.8198275021],  [32.9528261727, -96.8197236348], ];
+var line_41 = L.polyline(latLngs,{
+color: '#A6CEE3',
+weight: 1,
+
+});
+      map.addLayer(line_41);
+      
+      var latLngs = [ [32.9850335572, -96.7095263632],  [32.7759467127, -96.8045549524], ];
+var line_42 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 5,
+
+});
+      map.addLayer(line_42);
+      
+      var latLngs = [ [32.984680647, -96.7097099177],  [32.9850335572, -96.7095263632], ];
+var line_43 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_43);
+      
+      var latLngs = [ [32.7747535893, -96.8044837932],  [32.7759467127, -96.8045549524], ];
+var line_44 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_44);
+      
+      var latLngs = [ [32.9855469018, -96.7092692667],  [32.9850335572, -96.7095263632], ];
+var line_45 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_45);
+      
+      var latLngs = [ [32.7767803834, -96.8046097795],  [32.7759467127, -96.8045549524], ];
+var line_46 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_46);
+      
+      var latLngs = [ [32.9847660175, -96.7097171808],  [32.9850335572, -96.7095263632], ];
+var line_47 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_47);
+      
+      var latLngs = [ [32.7765334304, -96.8044875906],  [32.7759467127, -96.8045549524], ];
+var line_48 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_48);
+      
+      var latLngs = [ [32.9851416064, -96.7093280341],  [32.9850335572, -96.7095263632], ];
+var line_49 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_49);
+      
+      var latLngs = [ [32.7772623343, -96.8045299799],  [32.7759467127, -96.8045549524], ];
+var line_50 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_50);
+      
+      var latLngs = [ [32.9852697518, -96.7097739858],  [32.9850335572, -96.7095263632], ];
+var line_51 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_51);
+      
+      var latLngs = [ [32.7748814831, -96.8042543229],  [32.7759467127, -96.8045549524], ];
+var line_52 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_52);
+      
+      var latLngs = [ [32.9849110436, -96.7099343952],  [32.9850335572, -96.7095263632], ];
+var line_53 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_53);
+      
+      var latLngs = [ [32.7756174761, -96.8041523095],  [32.7759467127, -96.8045549524], ];
+var line_54 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_54);
+      
+      var latLngs = [ [32.9845138634, -96.7090410721],  [32.9850335572, -96.7095263632], ];
+var line_55 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_55);
+      
+      var latLngs = [ [32.7761044939, -96.8049334485],  [32.7759467127, -96.8045549524], ];
+var line_56 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_56);
+      
+      var latLngs = [ [32.9848834982, -96.7097680136],  [32.9850335572, -96.7095263632], ];
+var line_57 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_57);
+      
+      var latLngs = [ [32.7755826338, -96.8046041742],  [32.7759467127, -96.8045549524], ];
+var line_58 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_58);
+      
+      var latLngs = [ [32.9856956657, -96.7094639782],  [32.9850335572, -96.7095263632], ];
+var line_59 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_59);
+      
+      var latLngs = [ [32.7759207109, -96.8048499094],  [32.7759467127, -96.8045549524], ];
+var line_60 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_60);
+      
+      var latLngs = [ [32.9850697745, -96.7096295012],  [32.9850335572, -96.7095263632], ];
+var line_61 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_61);
+      
+      var latLngs = [ [32.7754307269, -96.8050044887],  [32.7759467127, -96.8045549524], ];
+var line_62 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_62);
+      
+      var latLngs = [ [32.9851573217, -96.7097230376],  [32.9850335572, -96.7095263632], ];
+var line_63 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_63);
+      
+      var latLngs = [ [32.7756629441, -96.8044493674],  [32.7759467127, -96.8045549524], ];
+var line_64 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_64);
+      
+      var latLngs = [ [32.9841194216, -96.7091176206],  [32.9850335572, -96.7095263632], ];
+var line_65 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_65);
+      
+      var latLngs = [ [32.7755178561, -96.8044245049],  [32.7759467127, -96.8045549524], ];
+var line_66 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_66);
+      
+      var latLngs = [ [32.9845722771, -96.7093543328],  [32.9850335572, -96.7095263632], ];
+var line_67 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_67);
+      
+      var latLngs = [ [32.7755444229, -96.8047253174],  [32.7759467127, -96.8045549524], ];
+var line_68 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_68);
+      
+      var latLngs = [ [32.9857550995, -96.7093510948],  [32.9850335572, -96.7095263632], ];
+var line_69 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_69);
+      
+      var latLngs = [ [32.776249405, -96.8044941477],  [32.7759467127, -96.8045549524], ];
+var line_70 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_70);
+      
+      var latLngs = [ [32.9846951435, -96.7091499664],  [32.9850335572, -96.7095263632], ];
+var line_71 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_71);
+      
+      var latLngs = [ [32.7761797791, -96.8046097443],  [32.7759467127, -96.8045549524], ];
+var line_72 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_72);
+      
+      var latLngs = [ [32.9856002333, -96.7092057656],  [32.9850335572, -96.7095263632], ];
+var line_73 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_73);
+      
+      var latLngs = [ [32.7759106261, -96.8042190271],  [32.7759467127, -96.8045549524], ];
+var line_74 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_74);
+      
+      var latLngs = [ [32.9852564067, -96.7100390442],  [32.9850335572, -96.7095263632], ];
+var line_75 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_75);
+      
+      var latLngs = [ [32.7761465768, -96.8047154531],  [32.7759467127, -96.8045549524], ];
+var line_76 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_76);
+      
+      var latLngs = [ [32.9845421084, -96.7092411088],  [32.9850335572, -96.7095263632], ];
+var line_77 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_77);
+      
+      var latLngs = [ [32.7763533627, -96.8043141178],  [32.7759467127, -96.8045549524], ];
+var line_78 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_78);
+      
+      var latLngs = [ [32.9854872377, -96.7099691191],  [32.9850335572, -96.7095263632], ];
+var line_79 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_79);
+      
+      var latLngs = [ [32.7762389886, -96.8050271738],  [32.7759467127, -96.8045549524], ];
+var line_80 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_80);
+      
+      var latLngs = [ [32.9850071238, -96.7097408294],  [32.9850335572, -96.7095263632], ];
+var line_81 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_81);
+      
+      var latLngs = [ [32.7762630296, -96.8042103977],  [32.7759467127, -96.8045549524], ];
+var line_82 = L.polyline(latLngs,{
+color: '#1F78B4',
+weight: 1,
+
+});
+      map.addLayer(line_82);
+      
+      var latLngs = [ [32.7760731854, -96.8048322431],  [32.9330707347, -96.8170104653], ];
+var line_83 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 5,
+
+});
+      map.addLayer(line_83);
+      
+      var latLngs = [ [32.7763211971, -96.8047440598],  [32.7760731854, -96.8048322431], ];
+var line_84 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_84);
+      
+      var latLngs = [ [32.9330456363, -96.8170619597],  [32.9330707347, -96.8170104653], ];
+var line_85 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_85);
+      
+      var latLngs = [ [32.7764482682, -96.8048724626],  [32.7760731854, -96.8048322431], ];
+var line_86 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_86);
+      
+      var latLngs = [ [32.9330059319, -96.8168484361],  [32.9330707347, -96.8170104653], ];
+var line_87 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_87);
+      
+      var latLngs = [ [32.7759804944, -96.8046976983],  [32.7760731854, -96.8048322431], ];
+var line_88 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_88);
+      
+      var latLngs = [ [32.932957018, -96.8169853949],  [32.9330707347, -96.8170104653], ];
+var line_89 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_89);
+      
+      var latLngs = [ [32.7759310098, -96.8048801419],  [32.7760731854, -96.8048322431], ];
+var line_90 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_90);
+      
+      var latLngs = [ [32.9331159328, -96.8171377834],  [32.9330707347, -96.8170104653], ];
+var line_91 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_91);
+      
+      var latLngs = [ [32.7759292035, -96.8047930575],  [32.7760731854, -96.8048322431], ];
+var line_92 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_92);
+      
+      var latLngs = [ [32.933105324, -96.8169884906],  [32.9330707347, -96.8170104653], ];
+var line_93 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_93);
+      
+      var latLngs = [ [32.7763391099, -96.8047918435],  [32.7760731854, -96.8048322431], ];
+var line_94 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_94);
+      
+      var latLngs = [ [32.9327210651, -96.8170325144],  [32.9330707347, -96.8170104653], ];
+var line_95 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_95);
+      
+      var latLngs = [ [32.7760921979, -96.8048698698],  [32.7760731854, -96.8048322431], ];
+var line_96 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_96);
+      
+      var latLngs = [ [32.9333676252, -96.8170991214],  [32.9330707347, -96.8170104653], ];
+var line_97 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_97);
+      
+      var latLngs = [ [32.7756526924, -96.8048972172],  [32.7760731854, -96.8048322431], ];
+var line_98 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_98);
+      
+      var latLngs = [ [32.9335307211, -96.8170911881],  [32.9330707347, -96.8170104653], ];
+var line_99 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_99);
+      
+      var latLngs = [ [32.7758254206, -96.8048768942],  [32.7760731854, -96.8048322431], ];
+var line_100 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_100);
+      
+      var latLngs = [ [32.9332557705, -96.8170450371],  [32.9330707347, -96.8170104653], ];
+var line_101 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_101);
+      
+      var latLngs = [ [32.7761381782, -96.8049360771],  [32.7760731854, -96.8048322431], ];
+var line_102 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_102);
+      
+      var latLngs = [ [32.9329187286, -96.8169925357],  [32.9330707347, -96.8170104653], ];
+var line_103 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_103);
+      
+      var latLngs = [ [32.7760353788, -96.8048936145],  [32.7760731854, -96.8048322431], ];
+var line_104 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_104);
+      
+      var latLngs = [ [32.9329415149, -96.8170554729],  [32.9330707347, -96.8170104653], ];
+var line_105 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_105);
+      
+      var latLngs = [ [32.7758906477, -96.8048006307],  [32.7760731854, -96.8048322431], ];
+var line_106 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_106);
+      
+      var latLngs = [ [32.9332839699, -96.8169576294],  [32.9330707347, -96.8170104653], ];
+var line_107 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_107);
+      
+      var latLngs = [ [32.7761960145, -96.8046705038],  [32.7760731854, -96.8048322431], ];
+var line_108 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_108);
+      
+      var latLngs = [ [32.9328791836, -96.81709145],  [32.9330707347, -96.8170104653], ];
+var line_109 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_109);
+      
+      var latLngs = [ [32.7756645689, -96.8048556473],  [32.7760731854, -96.8048322431], ];
+var line_110 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_110);
+      
+      var latLngs = [ [32.9330820714, -96.8170323698],  [32.9330707347, -96.8170104653], ];
+var line_111 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_111);
+      
+      var latLngs = [ [32.7762777156, -96.8048454007],  [32.7760731854, -96.8048322431], ];
+var line_112 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_112);
+      
+      var latLngs = [ [32.9329386514, -96.8169873542],  [32.9330707347, -96.8170104653], ];
+var line_113 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_113);
+      
+      var latLngs = [ [32.7762536149, -96.8046406749],  [32.7760731854, -96.8048322431], ];
+var line_114 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_114);
+      
+      var latLngs = [ [32.9329823547, -96.8170036344],  [32.9330707347, -96.8170104653], ];
+var line_115 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_115);
+      
+      var latLngs = [ [32.7762389404, -96.8048838588],  [32.7760731854, -96.8048322431], ];
+var line_116 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_116);
+      
+      var latLngs = [ [32.9329991181, -96.816852212],  [32.9330707347, -96.8170104653], ];
+var line_117 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_117);
+      
+      var latLngs = [ [32.7761581394, -96.8048691543],  [32.7760731854, -96.8048322431], ];
+var line_118 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_118);
+      
+      var latLngs = [ [32.9331596033, -96.8170185747],  [32.9330707347, -96.8170104653], ];
+var line_119 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_119);
+      
+      var latLngs = [ [32.7761079949, -96.8049254117],  [32.7760731854, -96.8048322431], ];
+var line_120 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_120);
+      
+      var latLngs = [ [32.9329576216, -96.8169289849],  [32.9330707347, -96.8170104653], ];
+var line_121 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_121);
+      
+      var latLngs = [ [32.7759829219, -96.8049006427],  [32.7760731854, -96.8048322431], ];
+var line_122 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_122);
+      
+      var latLngs = [ [32.9331668516, -96.8169991616],  [32.9330707347, -96.8170104653], ];
+var line_123 = L.polyline(latLngs,{
+color: '#B2DF8A',
+weight: 1,
+
+});
+      map.addLayer(line_123);
+      
+      var latLngs = [ [32.9848927119, -96.7093763807],  [32.9438896828, -96.6487629259], ];
+var line_124 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 5,
+
+});
+      map.addLayer(line_124);
+      
+      var latLngs = [ [32.9847273774, -96.7092056725],  [32.9848927119, -96.7093763807], ];
+var line_125 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_125);
+      
+      var latLngs = [ [32.9438105574, -96.6486778426],  [32.9438896828, -96.6487629259], ];
+var line_126 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_126);
+      
+      var latLngs = [ [32.9850522668, -96.7090959134],  [32.9848927119, -96.7093763807], ];
+var line_127 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_127);
+      
+      var latLngs = [ [32.9438348217, -96.6487070461],  [32.9438896828, -96.6487629259], ];
+var line_128 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_128);
+      
+      var latLngs = [ [32.9849457068, -96.7093048537],  [32.9848927119, -96.7093763807], ];
+var line_129 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_129);
+      
+      var latLngs = [ [32.9439118473, -96.6486486347],  [32.9438896828, -96.6487629259], ];
+var line_130 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_130);
+      
+      var latLngs = [ [32.9850685518, -96.709590145],  [32.9848927119, -96.7093763807], ];
+var line_131 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_131);
+      
+      var latLngs = [ [32.943789134, -96.648836728],  [32.9438896828, -96.6487629259], ];
+var line_132 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_132);
+      
+      var latLngs = [ [32.9850182711, -96.7095413984],  [32.9848927119, -96.7093763807], ];
+var line_133 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_133);
+      
+      var latLngs = [ [32.9438711547, -96.6488281282],  [32.9438896828, -96.6487629259], ];
+var line_134 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_134);
+      
+      var latLngs = [ [32.9847647471, -96.7093402592],  [32.9848927119, -96.7093763807], ];
+var line_135 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_135);
+      
+      var latLngs = [ [32.9439068737, -96.6489967364],  [32.9438896828, -96.6487629259], ];
+var line_136 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_136);
+      
+      var latLngs = [ [32.9849327688, -96.7094577668],  [32.9848927119, -96.7093763807], ];
+var line_137 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_137);
+      
+      var latLngs = [ [32.9438006985, -96.648789473],  [32.9438896828, -96.6487629259], ];
+var line_138 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_138);
+      
+      var latLngs = [ [32.9849100105, -96.709407795],  [32.9848927119, -96.7093763807], ];
+var line_139 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_139);
+      
+      var latLngs = [ [32.943946497, -96.6487883472],  [32.9438896828, -96.6487629259], ];
+var line_140 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_140);
+      
+      var latLngs = [ [32.9848224413, -96.709452382],  [32.9848927119, -96.7093763807], ];
+var line_141 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_141);
+      
+      var latLngs = [ [32.9440390178, -96.6489105426],  [32.9438896828, -96.6487629259], ];
+var line_142 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_142);
+      
+      var latLngs = [ [32.9851033643, -96.7093130347],  [32.9848927119, -96.7093763807], ];
+var line_143 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_143);
+      
+      var latLngs = [ [32.9439250621, -96.6486512257],  [32.9438896828, -96.6487629259], ];
+var line_144 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_144);
+      
+      var latLngs = [ [32.9849449057, -96.7094436536],  [32.9848927119, -96.7093763807], ];
+var line_145 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_145);
+      
+      var latLngs = [ [32.9439390172, -96.6487446349],  [32.9438896828, -96.6487629259], ];
+var line_146 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_146);
+      
+      var latLngs = [ [32.9847958034, -96.7093879441],  [32.9848927119, -96.7093763807], ];
+var line_147 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_147);
+      
+      var latLngs = [ [32.9439192351, -96.6486520122],  [32.9438896828, -96.6487629259], ];
+var line_148 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_148);
+      
+      var latLngs = [ [32.9848633426, -96.7093404235],  [32.9848927119, -96.7093763807], ];
+var line_149 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_149);
+      
+      var latLngs = [ [32.9438461757, -96.6488119087],  [32.9438896828, -96.6487629259], ];
+var line_150 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_150);
+      
+      var latLngs = [ [32.9847458228, -96.7092611464],  [32.9848927119, -96.7093763807], ];
+var line_151 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_151);
+      
+      var latLngs = [ [32.9440354085, -96.6486153978],  [32.9438896828, -96.6487629259], ];
+var line_152 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_152);
+      
+      var latLngs = [ [32.984832956, -96.7094485635],  [32.9848927119, -96.7093763807], ];
+var line_153 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_153);
+      
+      var latLngs = [ [32.9439416274, -96.6486259003],  [32.9438896828, -96.6487629259], ];
+var line_154 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_154);
+      
+      var latLngs = [ [32.9848056994, -96.7096907129],  [32.9848927119, -96.7093763807], ];
+var line_155 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_155);
+      
+      var latLngs = [ [32.9437618485, -96.6487336802],  [32.9438896828, -96.6487629259], ];
+var line_156 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_156);
+      
+      var latLngs = [ [32.9849832953, -96.7091988135],  [32.9848927119, -96.7093763807], ];
+var line_157 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_157);
+      
+      var latLngs = [ [32.9438567006, -96.6488879439],  [32.9438896828, -96.6487629259], ];
+var line_158 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_158);
+      
+      var latLngs = [ [32.984764473, -96.7094009531],  [32.9848927119, -96.7093763807], ];
+var line_159 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_159);
+      
+      var latLngs = [ [32.9438343154, -96.6488146533],  [32.9438896828, -96.6487629259], ];
+var line_160 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_160);
+      
+      var latLngs = [ [32.9848250809, -96.7092695419],  [32.9848927119, -96.7093763807], ];
+var line_161 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_161);
+      
+      var latLngs = [ [32.9439382001, -96.6487884595],  [32.9438896828, -96.6487629259], ];
+var line_162 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_162);
+      
+      var latLngs = [ [32.9849473525, -96.7093766406],  [32.9848927119, -96.7093763807], ];
+var line_163 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_163);
+      
+      var latLngs = [ [32.9438854639, -96.6487492221],  [32.9438896828, -96.6487629259], ];
+var line_164 = L.polyline(latLngs,{
+color: '#33A02C',
+weight: 1,
+
+});
+      map.addLayer(line_164);
+      
+      var latLngs = [ [32.9851702912, -96.7093513718],  [32.9685794625, -96.9271407538], ];
+var line_165 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 5,
+
+});
+      map.addLayer(line_165);
+      
+      var latLngs = [ [32.9851052896, -96.7090150477],  [32.9851702912, -96.7093513718], ];
+var line_166 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_166);
+      
+      var latLngs = [ [32.9683471313, -96.9272444093],  [32.9685794625, -96.9271407538], ];
+var line_167 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_167);
+      
+      var latLngs = [ [32.9852890607, -96.7091425738],  [32.9851702912, -96.7093513718], ];
+var line_168 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_168);
+      
+      var latLngs = [ [32.9687139108, -96.9270989481],  [32.9685794625, -96.9271407538], ];
+var line_169 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_169);
+      
+      var latLngs = [ [32.9848725478, -96.7096478855],  [32.9851702912, -96.7093513718], ];
+var line_170 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_170);
+      
+      var latLngs = [ [32.9687651787, -96.9272343325],  [32.9685794625, -96.9271407538], ];
+var line_171 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_171);
+      
+      var latLngs = [ [32.9848158679, -96.7094172652],  [32.9851702912, -96.7093513718], ];
+var line_172 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_172);
+      
+      var latLngs = [ [32.968443666, -96.9272209415],  [32.9685794625, -96.9271407538], ];
+var line_173 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_173);
+      
+      var latLngs = [ [32.9852511268, -96.7091001062],  [32.9851702912, -96.7093513718], ];
+var line_174 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_174);
+      
+      var latLngs = [ [32.9686531527, -96.9274504241],  [32.9685794625, -96.9271407538], ];
+var line_175 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_175);
+      
+      var latLngs = [ [32.9848251624, -96.7098518106],  [32.9851702912, -96.7093513718], ];
+var line_176 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_176);
+      
+      var latLngs = [ [32.9684230175, -96.9276195442],  [32.9685794625, -96.9271407538], ];
+var line_177 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_177);
+      
+      var latLngs = [ [32.9852604532, -96.7086413917],  [32.9851702912, -96.7093513718], ];
+var line_178 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_178);
+      
+      var latLngs = [ [32.9688066335, -96.9267046],  [32.9685794625, -96.9271407538], ];
+var line_179 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_179);
+      
+      var latLngs = [ [32.9850670211, -96.7089257233],  [32.9851702912, -96.7093513718], ];
+var line_180 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_180);
+      
+      var latLngs = [ [32.9685310177, -96.9271631112],  [32.9685794625, -96.9271407538], ];
+var line_181 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_181);
+      
+      var latLngs = [ [32.9855808118, -96.7099927892],  [32.9851702912, -96.7093513718], ];
+var line_182 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_182);
+      
+      var latLngs = [ [32.9683746758, -96.9274704564],  [32.9685794625, -96.9271407538], ];
+var line_183 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_183);
+      
+      var latLngs = [ [32.985290813, -96.7095055279],  [32.9851702912, -96.7093513718], ];
+var line_184 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_184);
+      
+      var latLngs = [ [32.9684208602, -96.9270269792],  [32.9685794625, -96.9271407538], ];
+var line_185 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_185);
+      
+      var latLngs = [ [32.985233426, -96.709539929],  [32.9851702912, -96.7093513718], ];
+var line_186 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_186);
+      
+      var latLngs = [ [32.9687344003, -96.9269075531],  [32.9685794625, -96.9271407538], ];
+var line_187 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_187);
+      
+      var latLngs = [ [32.9849861907, -96.708795491],  [32.9851702912, -96.7093513718], ];
+var line_188 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_188);
+      
+      var latLngs = [ [32.9686379944, -96.9271319787],  [32.9685794625, -96.9271407538], ];
+var line_189 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_189);
+      
+      var latLngs = [ [32.9850226807, -96.7097031668],  [32.9851702912, -96.7093513718], ];
+var line_190 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_190);
+      
+      var latLngs = [ [32.9686019072, -96.9270364752],  [32.9685794625, -96.9271407538], ];
+var line_191 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_191);
+      
+      var latLngs = [ [32.985266986, -96.7097637715],  [32.9851702912, -96.7093513718], ];
+var line_192 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_192);
+      
+      var latLngs = [ [32.9683711723, -96.9267790123],  [32.9685794625, -96.9271407538], ];
+var line_193 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_193);
+      
+      var latLngs = [ [32.9854366539, -96.7098046981],  [32.9851702912, -96.7093513718], ];
+var line_194 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_194);
+      
+      var latLngs = [ [32.9685584314, -96.9270791212],  [32.9685794625, -96.9271407538], ];
+var line_195 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_195);
+      
+      var latLngs = [ [32.9850556792, -96.7093022123],  [32.9851702912, -96.7093513718], ];
+var line_196 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_196);
+      
+      var latLngs = [ [32.9685363602, -96.9268587641],  [32.9685794625, -96.9271407538], ];
+var line_197 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_197);
+      
+      var latLngs = [ [32.9852262886, -96.709148708],  [32.9851702912, -96.7093513718], ];
+var line_198 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_198);
+      
+      var latLngs = [ [32.9685173579, -96.9274233204],  [32.9685794625, -96.9271407538], ];
+var line_199 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_199);
+      
+      var latLngs = [ [32.9853321889, -96.7094648338],  [32.9851702912, -96.7093513718], ];
+var line_200 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_200);
+      
+      var latLngs = [ [32.9684570359, -96.9272444158],  [32.9685794625, -96.9271407538], ];
+var line_201 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_201);
+      
+      var latLngs = [ [32.9851085273, -96.7095391009],  [32.9851702912, -96.7093513718], ];
+var line_202 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_202);
+      
+      var latLngs = [ [32.9691801941, -96.9273790074],  [32.9685794625, -96.9271407538], ];
+var line_203 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_203);
+      
+      var latLngs = [ [32.9853790475, -96.7087254028],  [32.9851702912, -96.7093513718], ];
+var line_204 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_204);
+      
+      var latLngs = [ [32.9685151513, -96.9267416815],  [32.9685794625, -96.9271407538], ];
+var line_205 = L.polyline(latLngs,{
+color: '#FB9A99',
+weight: 1,
+
+});
+      map.addLayer(line_205);
+      
+
+      
+
+      
+
+   </script>
+
+</body>

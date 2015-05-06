@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+   <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+   <script src="https://wrobstory.github.io/leaflet-dvf/leaflet-dvf.markers.min.js"></script>
+   <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+   <script src="stomp.js"></script>
+   <style>
+
+      #map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+      }
+
+   </style>
+</head>
+
+<body>
+
+   <div class="folium-map" id="folium_22cc53a788df450390da32477c390de9" style="width: 960px; height: 500px"></div>
+
+   <script>
+      var map = L.map('folium_22cc53a788df450390da32477c390de9').setView([32.820, -96.73], 11);
+
+      L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'OpenStreetMap Black&White'
+      }).addTo(map);
+
+
+      /*var polygon_1 = new L.RegularPolygonMarker(new L.LatLng(52.4647577673, 13.306633369), {
+        color: 'black',
+        opacity: 1,
+        weight: 2,
+        fillColor: '#A6CEE3',
+        fillOpacity: 1,
+        numberOfSides: 3,
+        rotation: 0,
+        radius: 10
+      });*/
+
+      var ws = new SockJS('http://127.0.0.1:15674/stomp');
+      var client = Stomp.over(ws);
+
+      client.debug = function(str) {
+        return
+      };
+
+      function setMarkerPos(lat, lng) {
+        // Set the marker to be at the same point as one
+        // of the segments or the line.
+        polygon_1.setLatLng(L.latLng(lat,lng));
+        map.addLayer(polygon_1);
+      }
+
+      function createCarMarker(lat, lng) {
+        // create marker for the car
+        carmarkerLatLng = new L.LatLng(lat, lng);
+        carmarker = new L.RegularPolygonMarker(carmarkerLatLng, {
+          color: 'black',
+          opacity: 1,
+          weight: 2,
+          fillColor: '#A6CEE3',
+          fillOpacity: 1,
+          numberOfSides: 3,
+          rotation: 0,
+          radius: 10
+        });
+
+        map.addLayer(carmarker);
+      }
+
+      function createDestinationMarker(lat, lng, opacity, clusterID) {
+        destMarkerLatLng = new L.LatLng(lat, lng);
+        destMarker = new L.Marker(destMarkerLatLng, {
+          color: 'black',
+          opacity: opacity,
+          weight: 2,
+          fillColor: '#A6CEE3',
+          fillOpacity: 1,
+          numberOfSides: 3,
+          rotation: 0,
+          radius: 10
+        });
+
+        destMarker.bindPopup(clusterID);
+
+        map.addLayer(destMarker);
+
+        return destMarker;
+      }
+
+      firstConnect = true;
+
+      var on_connect = function() {
+        console.log('connected');
+        id = client.subscribe("/queue/emit", function(m) {
+          console.log("Message received.")
+          message = JSON.parse(m.body);
+
+          if (firstConnect) {
+            console.log("first connection happened.");
+            firstConnect = false;
+            createCarMarker(message['latitude'], message['longitude'])
+
+            // create marker for journey endpoints
+            destinationMarkers = {}
+            for (clusterID in Object.keys(message.Predictions.ClusterPredictions)) {
+              latlng = message.Predictions.ClusterPredictions[clusterID].EndLocation;
+              opacity = message.Predictions.ClusterPredictions[clusterID].Probability;
+              destinationMarkers[clusterID] = createDestinationMarker(latlng[0], latlng[1], 1, clusterID);
+            }
+
+            return;
+          }
+
+          carmarker.setLatLng(L.latLng(message['latitude'], message['longitude']));
+
+          for (clusterID in Object.keys(message.Predictions.ClusterPredictions)) {
+            latlng = message.Predictions.ClusterPredictions[clusterID].EndLocation;
+            Opacity = message.Predictions.ClusterPredictions[clusterID].Probability;
+            //destinationMarkers[clusterID].setOpacity(opacity);
+
+            console.log(clusterID + ", " + message.Predictions.ClusterPredictions[clusterID].EndLocation + ", " + message.Predictions.ClusterPredictions[clusterID].Probability)
+          }
+          console.log(message.Predictions.RemainingRange);
+          //console.log(message.Predictions.ClusterPredictions);
+          //console.log(message[' Latitude']);
+          //console.log(message[' Longitude']);
+          //setMarkerPos(message[' Latitude'], message[' Longitude']);
+        });
+      };
+
+      var on_error =  function(e) {
+          console.log(e)
+          console.log('error');
+      };
+
+      client.connect('guest', 'guest', on_connect, on_error, '/');
+
+   </script>
+</body>

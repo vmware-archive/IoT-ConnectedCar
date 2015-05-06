@@ -1,0 +1,22 @@
+<marker
+  coords="{ latitude: journey.latitude, longitude: journey.longitude }"
+  idKey="journey.name"
+  options="{ opacity: (0.33 + 0.66*journey.probability), icon: journeyMarkerIcon }">
+
+  <window
+    show="isCurrentJourney"
+    closeClick="closeWindowCallback()"
+    options="{ pixelOffset: {width:0, height:-40} }">
+
+    {{journey.name}}
+  </window>
+</marker>
+
+<marker
+  coords="{ latitude: journey.latitude, longitude: journey.longitude }"
+  idKey="journey.name + '-dirty'"
+  click="clickMarkerCallback()"
+  options="{ opacity: 0, zIndex: 999 }">
+
+  <marker-label content="id" anchor="20 35" class="map-marker-label"/>
+</marker>

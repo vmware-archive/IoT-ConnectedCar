@@ -1,0 +1,14 @@
+rootProject.name = 'IoT-ConnectedCar'
+
+include 'IoT-CarSimulator'
+include 'IoT-Dashboard'
+include 'IoT-GemFireCommons'
+include 'IoT-GemFireLoader'
+include 'IoT-Scripts'
+include 'IoT-EnrichmentTransformer'
+include 'IoT-OBD2Controller'
+include 'IoT-GemFireREST'
+include 'IoT-GemFireTransformer'
+include 'IoT-Data-Science'
+include 'IoT-DataFilter'
+

@@ -1,0 +1,378 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+description = 'IoT Connected Car'
+
+apply plugin: 'base'
+apply plugin: 'idea'
+
+buildscript {
+	repositories {
+        maven {
+            url 'http://repo.spring.io/plugins-release'
+            mavenLocal()
+        }
+    }
+	dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE'
+		classpath 'com.moowork.gradle:gradle-grunt-plugin:0.6'
+		classpath 'org.codehaus.groovy:groovy-backports-compat23:2.3.5'
+		classpath 'com.moowork.gradle:gradle-node-plugin:0.7'
+		classpath 'org.springframework.xd:spring-xd-module-plugin:1.1.0.RELEASE'
+	}
+}
+
+ext {
+	linkIssue            = 'https://github.com/Pivotal-Field-Engineering/IoT-ConnectedCar'
+	linkScmUrl           = 'https://github.com/Pivotal-Field-Engineering/IoT-ConnectedCar'
+	linkScmConnection    = 'git://github.com/Pivotal-Field-Engineering/IoT-ConnectedCar.git'
+	linkScmDevConnection = 'git@github.com:Pivotal-Field-Engineering/IoT-ConnectedCar.git'
+
+	bowerCommand = Os.isFamily(Os.FAMILY_WINDOWS) ? 'bower.cmd' : 'bower'
+
+	springXdVersion = '1.1.0.RELEASE'
+}
+
+allprojects {
+	group = 'com.gopivotal'
+
+    apply plugin: 'spring-boot'
+
+    bootRepackage {
+        enabled = false
+    }
+
+	repositories {
+        mavenCentral()
+		maven { url 'http://repo.spring.io/libs-milestone' }
+		maven { url 'http://repo.spring.io/plugins-release' }
+		maven { url "https://repo.spring.io/libs-snapshot" }
+	}
+
+	ext {
+        platformVersion = '1.1.1.RELEASE'
+
+        gemfireVersion = '7.0.1.RELEASE'
+        swaggerSpringMvcVersion = '0.6.5'
+	}
+
+    dependencies {
+        versionManagement "io.spring.platform:platform-versions:$platformVersion@properties"
+    }
+}
+
+subprojects { subproject ->
+
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+	apply plugin: 'jacoco'
+
+	jacoco { toolVersion = "0.7.0.201403182114" }
+
+	compileJava {
+		sourceCompatibility=1.8
+		targetCompatibility=1.8
+	}
+
+	eclipse {
+		project { natures += 'org.springframework.ide.eclipse.core.springnature' }
+	}
+
+	sourceSets {
+		test {
+			resources {
+				srcDirs = [
+					'src/test/resources',
+					'src/test/java'
+				]
+			}
+		}
+	}
+
+	// enable all compiler warnings; individual projects may customize further
+	ext.xLintArg = '-Xlint:all'
+	[compileJava, compileTestJava]*.options*.compilerArgs = [xLintArg]
+
+	test {
+		// suppress all console output during testing unless running `gradle -i`
+		logging.captureStandardOutput(LogLevel.INFO)
+
+		jacoco {
+			append = false
+			destinationFile = file("$buildDir/jacoco.exec")
+		}
+
+		include '**/*Tests.class'
+		exclude '**/Abstract*.class'
+	}
+
+	task sourcesJar(type: Jar) {
+		classifier = 'sources'
+		from sourceSets.main.allJava
+	}
+
+	task javadocJar(type: Jar) {
+		classifier = 'javadoc'
+		from javadoc
+	}
+
+	task checkTestConfigs << {
+		def configFiles = []
+		sourceSets.test.java.srcDirs.each {
+			fileTree(it).include('**/*.xml').exclude('**/log4j.xml').each { configFile ->
+				def configXml = new XmlParser(false, false).parse(configFile)
+
+				if (configXml.@'xsi:schemaLocation' ==~ /.*spring-[a-z-]*\d\.\d\.xsd.*/) {
+					configFiles << configFile
+				}
+			}
+		}
+		if (configFiles) {
+			throw new InvalidUserDataException('Hardcoded XSD version in the config files:\n' +
+			configFiles.collect {relativePath(it)}.join('\n') +
+			'\nPlease, use versionless schemaLocations for Spring XSDs to avoid issues with builds on different versions of dependencies.')
+		}
+	}
+
+	jar {
+		manifest.attributes["Created-By"] =
+				"${System.getProperty("java.version")} (${System.getProperty("java.specification.vendor")})"
+		manifest.attributes["Implementation-Title"] = subproject.name
+		manifest.attributes["Implementation-Version"] = subproject.version
+
+		from("${rootProject.projectDir}/src/dist") {
+			include "license.txt"
+			include "notice.txt"
+			into "META-INF"
+			expand(copyright: new Date().format("yyyy"), version: project.version)
+		}
+	}
+
+	test.dependsOn checkTestConfigs
+
+	artifacts {
+		archives sourcesJar
+		archives javadocJar
+	}
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        //noinspection SpellCheckingInspection
+        tasks.withType(Javadoc) {
+            // disable the crazy super-strict doclint tool in Java 8
+            //noinspection SpellCheckingInspection
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+project('IoT-GemFireCommons') {
+	bootRepackage {
+		enabled = false
+	}
+
+	dependencies {
+		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
+		compile "org.springframework.boot:spring-boot-autoconfigure"
+		compile "org.hsqldb:hsqldb"
+		testCompile("junit:junit")
+	}
+}
+
+project('IoT-GemFireREST') {
+	bootRepackage {
+		enabled = true
+	}
+
+	dependencies {
+		compile project(":IoT-GemFireCommons")
+		compile "org.springframework.boot:spring-boot-starter-data-rest"
+		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
+		compile "org.springframework.boot:spring-boot-autoconfigure"
+		compile "org.hsqldb:hsqldb"
+		testCompile("junit:junit")
+	}
+}
+
+project('IoT-CarSimulator') {
+    bootRepackage {
+        enabled = true
+    }
+
+    dependencies {
+        compile "org.springframework:spring-jdbc"
+        compile "org.springframework.integration:spring-integration-core"
+        compile "org.springframework.integration:spring-integration-http"
+        compile "org.springframework.batch:spring-batch-core"
+        compile "com.fasterxml.jackson.core:jackson-databind"
+        compile "org.springframework.boot:spring-boot-autoconfigure"
+		testCompile("org.mockito:mockito-core") {
+			exclude group:'org.hamcrest', module:'hamcrest-core'
+		}
+		compile "org.hsqldb:hsqldb"
+		testCompile("junit:junit") {
+			exclude group:'org.hamcrest', module:'hamcrest-core'
+		}
+		testCompile "org.hamcrest:hamcrest-all"
+	}
+}
+
+project('IoT-OBD2Controller') {
+    bootRepackage {
+        enabled = true
+    }
+
+    dependencies {
+        compile "org.springframework.integration:spring-integration-core"
+        compile "org.springframework.integration:spring-integration-ip"
+        compile "org.springframework.boot:spring-boot-autoconfigure"
+        compile"org.springframework:spring-web"
+        testCompile("junit:junit")
+    }
+}
+
+project('IoT-Dashboard') {
+	apply plugin: 'grunt'
+	bootRepackage {
+		enabled = true
+	}
+
+	dependencies {
+		compile "org.springframework.boot:spring-boot-autoconfigure"
+		compile "org.springframework.boot:spring-boot-starter-web"
+		testCompile("junit:junit")
+	}
+
+	node {
+		version = '0.10.34'
+		download = true
+//		npmVersion = '2.1.18'
+	}
+
+	task cleanDist(type: Delete) {
+		description = "Remove the contents of the 'public' directory"
+		delete 'public'
+	}
+
+	task cleanNodeModules(type: Delete) {
+		description = "Remove the 'node_modules' directory"
+		delete 'node_modules'
+	}
+
+	task cleanBowerFiles(type: Delete) {
+		description = "Remove Bower directories"
+		delete '.bower_cache'
+		delete 'bower_components'
+	}
+
+	// Install the bower components for front-end library management
+	task bower(type: Exec){
+		commandLine bowerCommand, 'install'
+	}
+
+	tasks['grunt_build'].dependsOn(['npmSetup', 'npmInstall', 'installGrunt', 'bower']);
+
+	task setupUI(dependsOn: ['grunt_build', 'build']) { description = "Build the Admin UI using Grunt" }
+
+	grunt_build.shouldRunAfter 'installGrunt'
+	installGrunt.shouldRunAfter 'npmInstall'
+
+	task cleanUI(dependsOn: [
+			'clean',
+			'cleanDist',
+			'cleanNodeModules',
+			'cleanBowerFiles'
+	]) { description = "Clean the Dashboard dist, node modules and bower files" }
+
+//	clean {
+//		it.dependsOn tasks['cleanDist']
+//	}
+//
+//	build {
+//		it.dependsOn tasks['grunt_build']
+//	}
+}
+
+project('IoT-GemFireLoader') {
+    bootRepackage {
+        enabled = true
+    }
+
+    dependencies {
+		compile project(":IoT-GemFireCommons")
+		compile("org.springframework.data:spring-data-gemfire")
+		compile("com.gemstone.gemfire:gemfire")
+		compile("org.springframework.boot:spring-boot-starter")
+        testCompile("junit:junit")
+        testCompile("org.springframework:spring-test")
+		testCompile("org.mockito:mockito-core")
+	}
+}
+
+project('IoT-Data-Science') {
+	bootRepackage {
+		enabled = false
+	}
+
+	dependencies {
+		testCompile("junit:junit")
+	}
+}
+
+
+project('IoT-Scripts') {
+}
+
+project('IoT-EnrichmentTransformer') {
+	apply plugin: 'spring-xd-module'
+
+	bootRepackage {
+		enabled = true
+	}
+
+	dependencies {
+        compile("org.springframework.integration:spring-integration-core")
+        compile("com.gemstone.gemfire:gemfire")
+	    compile("org.springframework.data:spring-data-gemfire")
+        compile("org.apache.commons:commons-lang3")
+        testCompile("org.springframework:spring-test")
+        testCompile("junit:junit")
+        testCompile("org.mockito:mockito-core")
+    }
+}
+
+project('IoT-DataFilter') {
+	bootRepackage {
+		enabled = false
+	}
+
+	dependencies {
+		compile('org.codehaus.groovy:groovy-all:2.3.8')
+		testCompile("org.springframework:spring-test")
+		testCompile("junit:junit")
+		testCompile("org.springframework.integration:spring-integration-groovy")
+	}
+}
+
+project('IoT-GemFireTransformer') {
+	apply plugin: 'spring-xd-module'
+
+	bootRepackage {
+		enabled = true
+	}
+
+	dependencies {
+		compile project(":IoT-GemFireCommons")
+		compile("org.springframework.integration:spring-integration-core")
+		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
+		compile "org.springframework.boot:spring-boot-autoconfigure"
+		compile "org.hsqldb:hsqldb"
+		testCompile("junit:junit")
+	}
+}
+
+task wrapper(type: Wrapper) {
+	description = 'Generates gradlew[.bat] scripts'
+	gradleVersion = '1.12'
+}

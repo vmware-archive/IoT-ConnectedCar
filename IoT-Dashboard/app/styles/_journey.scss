@@ -1,0 +1,94 @@
+.journey-metric, .journey-link {
+  position: relative;
+  display: block;
+  border-bottom: 2px solid $light-gray;
+  padding: 20px 20px 20px 60px;
+  text-decoration: none;
+}
+
+.journey-metric-label, .journey-name {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.journey-metric {
+  .journey-metric-value {
+    font-size: 48px;
+    font-weight: 100;
+    color: $teal;
+  }
+
+  &:before {
+    position: absolute;
+    left: 0;
+    width: 60px;
+    text-align: center;
+    font-family: connected_car;
+    color: $darker-gray;
+  }
+}
+
+#predicted-range-metric:before {
+  content: '\e603';
+  font-size: 30px;
+  top: 17px;
+}
+
+#mpg-metric:before {
+  content: '\e602';
+  font-size: 27px;
+  top: 18px;
+}
+
+a.journey-link {
+  color: black;
+
+  &:hover {
+    background-color: $almost-white;
+  }
+
+  &.current-journey {
+    background-color: $off-white;
+  }
+
+  .journey-icon {
+    position: absolute;
+    left: 0;
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    background-image: url('../images/icon_marker.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 30px 40px;
+    padding-top: 6px;
+    color: $off-white;
+    font-weight: bold;
+  }
+
+  .journey-attribute-label, .journey-attribute-value {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .journey-attribute-label {
+    display: inline-block;
+    width: 100px;
+    color: $darker-gray;
+    font-weight: 200;
+  }
+
+  .journey-attribute-value {
+    font-weight: bold;
+  }
+
+  .journey-probability {
+    color: $teal;
+  }
+
+}
+
+
+

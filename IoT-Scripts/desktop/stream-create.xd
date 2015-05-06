@@ -1,0 +1,8 @@
+// Create the initial stream to take HTTP data
+stream create --name httpPostInputSource --definition "http | acmeenrich | file " --deploy
+
+// Transform the enriched stream
+stream create --name jsonTap --definition "tap:stream:httpPostInputSource.acmeenrich > object-to-json | file" --deploy
+
+// Create a tap that reads the transformed json data into gemfire
+stream create --name gemfire --definition "tap:stream:jsonTap > gemfire-json-server --regionName=Connected-Car --keyExpression=payload.getField('guid')" --deploy

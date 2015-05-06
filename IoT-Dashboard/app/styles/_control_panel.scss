@@ -1,0 +1,24 @@
+.control-panel {
+  position: absolute;
+  z-index: 100;
+  top: 75px;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  overflow-y: scroll;
+  border-left: 2px solid $light-gray;
+  background: $white;
+
+  &.ng-hide {
+    visibility: hidden !important;
+    display: block !important;
+  }
+}
+
+.control-panel-title {
+  border-bottom: 2px solid $light-gray;
+  background-color: $lighter-gray;
+  font-size: 22px;
+  line-height: 50px;
+  text-align: center;
+}

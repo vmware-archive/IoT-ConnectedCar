@@ -1,0 +1,16 @@
+.main-map .angular-google-map-container {
+  position: absolute;
+  z-index: 1;
+  top: $main-nav-height;
+  bottom: 0;
+  left: 0;
+  right: 300px;
+}
+
+.map-marker-label {
+  width: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  color: $off-white;
+  text-align: center;
+}

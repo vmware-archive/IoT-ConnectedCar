@@ -1,0 +1,74 @@
+nav.main-nav {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $main-nav-height;
+  background-color: $background-black;
+}
+
+nav select {
+  position: absolute;
+  top: 23px;
+  right: 320px;
+}
+
+.pivotal-logo {
+  width: 193px;
+  height: $main-nav-height;
+  background-image: url('../images/pivotal.png');
+}
+
+ul.panel-links {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li.panel-link {
+  position: relative;
+  display: block;
+  float: left;
+  width: 150px;
+  height: 100%;
+  border-left: 2px solid $background-black-selected;
+  color: $off-white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $background-black-hover;
+  }
+
+  &.current-link {
+    background-color: $background-black-selected;
+  }
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translatey(-50%);
+    width: 100%;
+    text-align: center;
+    font-family: connected_car;
+  }
+
+  &#status-link {
+    &:after {
+      content: "\e600";
+      font-size: 25px;
+    }
+  }
+
+  &#journey-link {
+    &:after {
+      content: "\e601";
+      font-size: 32px;
+    }
+  }
+}

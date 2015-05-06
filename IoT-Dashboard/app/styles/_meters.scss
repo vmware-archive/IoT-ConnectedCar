@@ -1,0 +1,65 @@
+radial-meter, fill-meter {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 50px 0 30px;
+  border-bottom: 2px solid $light-gray;
+
+  svg {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+radial-meter {
+  .radial-meter-background-path {
+    stroke: $light-gray;
+    stroke-linecap: round;
+  }
+
+  .radial-meter-foreground-path {
+    stroke: $orange;
+    stroke-linecap: round;
+  }
+}
+
+fill-meter {
+  .fill-meter-fill {
+    fill: #FBD9C9;
+    stroke: none;
+  }
+  .fill-meter-background {
+    stroke: $light-gray;
+  }
+}
+
+.meter-attributes {
+  position: absolute;
+  top: 105px;
+  width: 100%;
+  text-align: center;
+}
+
+.meter-value {
+  font-size: 50px;
+  color: $teal;
+  .meter-value-suffix {
+    display: inline-block;
+    position: relative;
+    top: -13px;
+    font-size: 30px;
+  }
+}
+
+.meter-label {
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 100px;
+  margin: 0 auto;
+}
+
+.meter-container {
+  background-color: pink;
+}
+

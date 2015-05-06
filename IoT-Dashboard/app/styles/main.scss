@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.alt-text {
+  display: none;
+}
+
+@import "compass/css3/";
+@import "fonts";
+@import "color";
+@import "variables";
+
+@import "control_panel";
+@import "main_nav";
+@import "map";
+@import "journey";
+@import "meters";
