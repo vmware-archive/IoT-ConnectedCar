@@ -32,4 +32,4 @@ IoT-Data-Science/Data
 pyspark-docker
 IoT-Data-Science/PythonModel/metastore_db
 lib
-data
+/data
