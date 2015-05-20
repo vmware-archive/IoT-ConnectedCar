@@ -94,16 +94,10 @@ it's environment.  Specifically:
 1. [Java 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 2. [Spring XD](https://spring.io/projects/spring-xd) release 1.2.0.M1 or higher
    [I used this](http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
-   Notes on Spring XD install/config:
-     * Edit spring-xd/xd/config/servers.yml, setting the following:
-```
-         fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020
-```
-     * Edit spring-xd/xd/config/hadoop.properties:
-```
-         fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020
-```
-3. Hadoop install compatible with Spring XD release (we'll be using PHD 3.0)
+   Edit the following Spring XD files (replace `[NAMENODE_HOSTNAME_OR_IP]` with the appropriate value):
+     * spring-xd/xd/config/servers.yml: `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+     * spring-xd/xd/config/hadoop.properties: `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+3. Hadoop install compatible with Spring XD release (we'll be using Pivotal HD 3.0)
    **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
 4. Spark 1.2 or higher
    * [Install Docs](http://pivotalhd.docs.pivotal.io/docs/install-manually.html#ref-0a9f3ecc-bf89-4537-91ac-e0bf85752c96)
@@ -130,8 +124,8 @@ it's environment.  Specifically:
    * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
 5. GemFire 8 or higher (install from RPM: pivotal-gemfire)
 6. [Miniconda](http://conda.pydata.org/miniconda.html) distribution of Python 2.1.0 or higher
-  * Post-install for Miniconda: update the [pivotal.sh](/IoT-Scripts/pivotal.sh) file to point to it,
-    and copy that file, pivotal.sh, into /etc/profile.d/ (as root)
+  * Post-install for Miniconda: update the [pivotal.sh](/IoT-Scripts/pivotal.sh) file to point to
+    its install directory, and **copy pivotal.sh into /etc/profile.d/ (as root)**
   * Install all the required Python modules (after having sourced that pivotal.sh file)
 ```
 #!/bin/bash
@@ -149,37 +143,39 @@ conda install --channel https://conda.binstar.org/IOOS-RHEL6 brewer2mpl
 conda install --channel https://conda.binstar.org/IOOS-RHEL6 folium
 ```
 7. Node.JS (provides NPM, install as root): https://nodejs.org/download/
-   - NOTE: this package is built from source, so you'll need GNU Autotools, make, gcc-c++
-     (`yum -y install gcc-c++` is the only one I actually had to install)
+   * NOTE: this package is built from source, so you'll need GNU Autotools, make, gcc-c++
+   * I had to run `yum -y install gcc-c++` to get this to build; this will vary
+   * Download, extract, build, install:
 ```
 curl http://nodejs.org/dist/v0.12.3/node-v0.12.3.tar.gz | tar xzvf -
 cd node-v0.12.3/ && ./configure && make && sudo make install && cd -
 ```
-8. Grunt CLI v0.1.13 or higher:
-   (run these as *root*)
+8. Grunt CLI v0.1.13 or higher
+   * Run these as **root**:
 ```
+    yum -y install git
     yum -y install rubygems
     yum -y install ruby-devel
     gem update --system && gem install compass
 ```
    (05/15/2015: based on Yeoman tutorial)
-   (run these as *your user account*)
+   * Run these as **the user which will run the build**, responding to the prompts as appropriate:
 ```
-    sudo yum -y install git
     git clone https://github.com/glenpike/npm-g_nosudo
     ( cd ./npm-g_nosudo/ && ./npm-g-no-sudo.sh )
 ```
-    log out and then back in, or just `. ~/.bashrc` so your environment gets updated
-    `npm install --global yo bower grunt-cli`
-    Verify they got installed correctly: `yo --version && bower --version && grunt --version` (watch for errors)
-    (EXPERIMENTAL BELOW)
-    cd IoT-ConnectedCar/IoT-Dashboard/
-    npm install
-    npm install -g imagemin-gifsicle
-    bower install
+   * Log out and then back in, or just `. ~/.bashrc` so your environment gets updated
+   * `npm install --global yo bower grunt-cli`
+   * Verify they got installed correctly: `yo --version && bower --version && grunt --version` (watch for errors)
+   * FIXME: The next few steps **are not very repeatable**, so they may require some iteration:
 ```
-9. pivotal-rabbitmq-server
-10. pivotal-redis
+   cd IoT-ConnectedCar/IoT-Dashboard/
+   npm install
+   npm install -g imagemin-gifsicle
+   bower install
+```
+9. Install pivotal-rabbitmq-server
+10. Install pivotal-redis
 
 ## Building from source
 There are two main pieces needed to build this project from source:
@@ -191,14 +187,15 @@ There are two main pieces needed to build this project from source:
 The HTML/AngularJS based dashboard was originally created via a Yeoman generator and
 therefore uses it's standard stack to perform builds.  To be able to perform a build of
 the dashboard's static assets (JavaScript, HTML, etc), you'll need
-[Grunt](http://gruntjs.com/).  With Grunt installed, you can build the dashboard via the
-following from the root of the IoT-Dashboard module:
+[Grunt](http://gruntjs.com/).
+With Grunt installed (per step 8, above), you can build the dashboard
+from the root of the IoT-Dashboard module:
 
 ```
 $ grunt clean build
 ```
-Images won't make it into the build (commented out line 363 in Gruntfile.js), so you now
-must do this: `cp -r app/images src/main/resources/public/`
+Images won't make it into the build (we commented out line 363 in Gruntfile.js), so
+**you must do this**: `cp -r app/images src/main/resources/public/`
 
 The output of this process will end up in `IoT-Dashboard/src/main/resources/public` for 
 Spring Boot packaging.
