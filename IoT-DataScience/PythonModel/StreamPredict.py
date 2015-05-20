@@ -55,7 +55,7 @@ journey_cluster_file = config.get("Batch", "journey_cluster_file")
 
 logfile = config.get("Directories", "logfile")
 
-logging.basicConfig(filename=logfile, level=logging.ERROR)
+logging.basicConfig(level=logging.ERROR) # Log to the Spring XD console window
 
 # Load models
 init_class_models = joblib.load(storedmodel_directory + init_class_file)
