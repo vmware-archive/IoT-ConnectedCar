@@ -95,8 +95,10 @@ it's environment.  Specifically:
 2. [Spring XD](https://spring.io/projects/spring-xd) release 1.2.0.M1 or higher
    [I used this](http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
    Notes on Spring XD install/config:
-     * Edit spring-xd/xd/config/servers.yml, setting the following: `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
-     * Edit spring-xd/xd/config/hadoop.properties: `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+     * Edit spring-xd/xd/config/servers.yml, setting the following:
+       `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+     * Edit spring-xd/xd/config/hadoop.properties:
+       `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
 3. Hadoop install compatible with Spring XD release (we'll be using PHD 3.0)
    **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
 4. Spark 1.2 or higher
@@ -106,15 +108,17 @@ it's environment.  Specifically:
    * Ensure you edit /etc/spark/conf/java-opts, so it contains the single line:
      `-Dphd.version=3.0.0.0-249 -Dstack.name=phd -Dstack.version=3.0.0.0-249`
    * Edit /etc/spark/conf/spark-env.sh, ensuring the following two lines are set:
-     `export HADOOP_HOME=/usr/phd/3.0.0.0-219/hadoop`
-     `export HADOOP_CONF_DIR=/usr/phd/3.0.0.0-219/hadoop/conf`
+```
+       export HADOOP_HOME=/usr/phd/3.0.0.0-219/hadoop
+       export HADOOP_CONF_DIR=/usr/phd/3.0.0.0-219/hadoop/conf
+```
    * Edit /etc/spark/conf/spark-defaults.conf, ensuring you have the following lines:
 ```
-spark.yarn.services org.apache.spark.deploy.yarn.history.YarnHistoryService
-spark.history.provider org.apache.spark.deploy.yarn.history.YarnHistoryProvider
-spark.driver.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
-spark.yarn.am.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
-spark.akka.heartbeat.interval 100
+       spark.yarn.services org.apache.spark.deploy.yarn.history.YarnHistoryService
+       spark.history.provider org.apache.spark.deploy.yarn.history.YarnHistoryProvider
+       spark.driver.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
+       spark.yarn.am.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
+       spark.akka.heartbeat.interval 100
 ```
    * Add user `spark` with group `hdfs` to each of the cluster nodes:
      * `useradd spark`
