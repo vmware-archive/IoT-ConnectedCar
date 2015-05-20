@@ -2,8 +2,7 @@
 # Derek Beauregard #
 # Pivotal 2014-2015 #
 
-source /etc/profile.d/pivotal.sh
-
+. /etc/profile.d/pivotal.sh
 
 java -jar $IOT_HOME/IoT-GemFireREST/build/libs/IoT-GemFireREST.jar
 
