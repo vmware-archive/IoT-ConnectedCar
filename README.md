@@ -96,9 +96,13 @@ it's environment.  Specifically:
    [I used this](http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
    Notes on Spring XD install/config:
      * Edit spring-xd/xd/config/servers.yml, setting the following:
-       `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+```
+         fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020
+```
      * Edit spring-xd/xd/config/hadoop.properties:
-       `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+```
+         fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020
+```
 3. Hadoop install compatible with Spring XD release (we'll be using PHD 3.0)
    **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
 4. Spark 1.2 or higher
@@ -125,10 +129,25 @@ it's environment.  Specifically:
      * `usermod -G hdfs spark`
    * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
 5. GemFire 8 or higher (install from RPM: pivotal-gemfire)
-6. [Anaconda](http://continuum.io/downloads) distribution of Python 2.1.0 or higher
-   (try http://conda.pydata.org/miniconda.html)
-   TODO: document here the procedure to install **all** our Python module dependencies, or provide a link to a
-   downloadable archive of all of this.
+6. [Miniconda](http://conda.pydata.org/miniconda.html) distribution of Python 2.1.0 or higher
+  * Post-install for Miniconda: update the [pivotal.sh](/IoT-Scripts/pivotal.sh) file to point to it,
+    and copy that file, pivotal.sh, into /etc/profile.d/ (as root)
+  * Install all the required Python modules (after having sourced that pivotal.sh file)
+```
+#!/bin/bash
+
+for i in IPython brewer2mpl collections copy datetime folium glob json logging \
+  math matplotlib numpy operator pandas pylab random sklearn statsmodels sys \
+  time toolz uuid scipy
+do
+  find /opt/miniconda -name "$i*" | grep $i >/dev/null || conda install $i
+done
+
+# These needed some extra help
+conda install binstar
+conda install --channel https://conda.binstar.org/IOOS-RHEL6 brewer2mpl
+conda install --channel https://conda.binstar.org/IOOS-RHEL6 folium
+```
 7. Node.JS (provides NPM, install as root): https://nodejs.org/download/
    - NOTE: this package is built from source, so you'll need GNU Autotools, make, gcc-c++
      (`yum -y install gcc-c++` is the only one I actually had to install)
