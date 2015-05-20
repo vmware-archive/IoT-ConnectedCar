@@ -93,32 +93,38 @@ it's environment.  Specifically:
 
 1. [Java 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 2. [Spring XD](https://spring.io/projects/spring-xd) release 1.2.0.M1 or higher
-   (http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
-   /opt/pivotal/spring-xd/xd/config/servers.yml: Set the value for fsUri here, to match your config:
-     fsUri: hdfs://namenode:8020
-   /opt/pivotal/spring-xd/xd/config/hadoop.properties: similar to above
-     fs.default.name=hdfs://namenode.localdomain:8020
-3. Hadoop install compatible with Spring XD release (see above)
-   ** NOTE: Run Ambari on port 8888 if running single node VM, to avoid conflicts with IoT app(s)
-4. Spark 1.2 or higher (install from RPM -- we have spark-1.2.1.3 in PHD 3.0)
-   Ref. http://pivotalhd.docs.pivotal.io/docs/install-manually.html#ref-0a9f3ecc-bf89-4537-91ac-e0bf85752c96
-   PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
-   NOTE: for spark, you need to edit /etc/spark/conf/java-opts, so it contains this single line:
-     -Dphd.version=3.0.0.0-249 -Dstack.name=phd -Dstack.version=3.0.0.0-249
-   - Spark will run in YARN-Client mode (seems most appropriate)
-   - Where to install Spark, which set of nodes? (Dan B. says just on the node you launch from)
-   - yum -y install spark spark-python
-   - Ensure that `HADOOP_CONF_DIR` points to the directory which contains the (client side)
-     configuration files for the Hadoop cluster. These configs are used to write to the dfs and connect to
-     the YARN ResourceManager (ref. https://spark.apache.org/docs/1.2.1/running-on-yarn.html).
-     * This is set in the spark-env.sh file configured by the install *
-   - Add user `spark` with group `hdfs` to all nodes (not sure if all are req'd., but we'll try it).
-     useradd spark
-     usermod -G hdfs spark
-
+   [I used this](http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
+   Notes on Spring XD install/config:
+     * Edit spring-xd/xd/config/servers.yml, setting the following: `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+     * Edit spring-xd/xd/config/hadoop.properties: `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
+3. Hadoop install compatible with Spring XD release (we'll be using PHD 3.0)
+   **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
+4. Spark 1.2 or higher
+   * [Install Docs](http://pivotalhd.docs.pivotal.io/docs/install-manually.html#ref-0a9f3ecc-bf89-4537-91ac-e0bf85752c96)
+   * Spark will run in YARN-Client mode, and **it only needs to be installed onto the node from which you'll run it**
+   * `yum -y install spark spark-python` (as root)
+   * Ensure you edit /etc/spark/conf/java-opts, so it contains the single line:
+     `-Dphd.version=3.0.0.0-249 -Dstack.name=phd -Dstack.version=3.0.0.0-249`
+   * Edit /etc/spark/conf/spark-env.sh, ensuring the following two lines are set:
+     `export HADOOP_HOME=/usr/phd/3.0.0.0-219/hadoop`
+     `export HADOOP_CONF_DIR=/usr/phd/3.0.0.0-219/hadoop/conf`
+   * Edit /etc/spark/conf/spark-defaults.conf, ensuring you have the following lines:
+```
+spark.yarn.services org.apache.spark.deploy.yarn.history.YarnHistoryService
+spark.history.provider org.apache.spark.deploy.yarn.history.YarnHistoryProvider
+spark.driver.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
+spark.yarn.am.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
+spark.akka.heartbeat.interval 100
+```
+   * Add user `spark` with group `hdfs` to each of the cluster nodes:
+     * `useradd spark`
+     * `usermod -G hdfs spark`
+   * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
 5. GemFire 8 or higher (install from RPM: pivotal-gemfire)
 6. [Anaconda](http://continuum.io/downloads) distribution of Python 2.1.0 or higher
    (try http://conda.pydata.org/miniconda.html)
+   TODO: document here the procedure to install **all** our Python module dependencies, or provide a link to a
+   downloadable archive of all of this.
 7. Node.JS (provides NPM, install as root): https://nodejs.org/download/
    - NOTE: this package is built from source, so you'll need GNU Autotools, make, gcc-c++
      (`yum -y install gcc-c++` is the only one I actually had to install)
