@@ -205,6 +205,7 @@ based clients) of the Gemfire REST API host.  The placeholder I inserted for now
 	src/main/resources/public/scripts/scripts.js
 ```
 **TODO**: Figure out how to get the grunt build, or maybe the gradle build, to make this replacement.
+[This](https://github.com/outaTiME/grunt-replace) might do it.
 
 The output of this process will end up in `IoT-Dashboard/src/main/resources/public` for 
 Spring Boot packaging.
