@@ -197,6 +197,15 @@ $ grunt clean build
 Images won't make it into the build (we commented out line 363 in Gruntfile.js), so
 **you must do this**: `cp -r app/images src/main/resources/public/`
 
+There is a dependency on injecting the IP number (or, hostname, if it resolves for browser
+based clients) of the Gemfire REST API host.  The placeholder I inserted for now is
+`%GEM_REST_API_HOST_IP%`, into the following two files:
+```
+	config/environments/production.json
+	src/main/resources/public/scripts/scripts.js
+```
+**TODO**: Figure out how to get the grunt build, or maybe the gradle build, to make this replacement.
+
 The output of this process will end up in `IoT-Dashboard/src/main/resources/public` for 
 Spring Boot packaging.
 
