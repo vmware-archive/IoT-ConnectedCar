@@ -188,6 +188,7 @@ The HTML/AngularJS based dashboard was originally created via a Yeoman generator
 therefore uses it's standard stack to perform builds.  To be able to perform a build of
 the dashboard's static assets (JavaScript, HTML, etc), you'll need
 [Grunt](http://gruntjs.com/).
+**Maybe we can dispose of Grunt.js and try something new?** [Gulp.js](http://gulpjs.com/)
 With Grunt installed (per step 8, above), you can build the dashboard
 from the root of the IoT-Dashboard module:
 
