@@ -97,8 +97,9 @@ it's environment.  Specifically:
    Edit the following Spring XD files (replace `[NAMENODE_HOSTNAME_OR_IP]` with the appropriate value):
      * spring-xd/xd/config/servers.yml: `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
      * spring-xd/xd/config/hadoop.properties: `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
-   **Distributed mode**: It looks like running Spring XD on YARN could be good for sharing with Hadoop
-   [Ref.](http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#running-on-YARN)
+   **Distributed mode**: It looks like running
+   [Spring XD on YARN](http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#running-on-YARN)
+   is potentially interesting as we could share resources with Hadoop, depoying on the same nodes (DataNodes).
    Here's a section on Spring XD in
    [distributed mode](http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#running-distributed-mode),
    where the notes on [RabbitMQ in clustered mode](https://www.rabbitmq.com/clustering.html) will be needed
