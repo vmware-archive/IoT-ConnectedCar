@@ -130,6 +130,7 @@ it's environment.  Specifically:
      * `usermod -G hdfs spark`
    * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
 5. GemFire 8 or higher (install from RPM: pivotal-gemfire)
+   [Example of distributed deployment](https://github.com/lshannonPivotal/gemfire-hellogbye-poc)
 6. [Miniconda](http://conda.pydata.org/miniconda.html) distribution of Python 2.1.0 or higher
   * Post-install for Miniconda: update the [pivotal.sh](/IoT-Scripts/pivotal.sh) file to point to
     its install directory, and **copy pivotal.sh into /etc/profile.d/ (as root)**
