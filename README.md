@@ -97,8 +97,12 @@ it's environment.  Specifically:
    Edit the following Spring XD files (replace `[NAMENODE_HOSTNAME_OR_IP]` with the appropriate value):
      * spring-xd/xd/config/servers.yml: `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
      * spring-xd/xd/config/hadoop.properties: `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
-   **Distributed mode**: It looks like running Spring XD on YARN is probably our best bet.  This requires
-   a HD cluster, Zookeeper, and Redis as the transport.
+   **Distributed mode**: It looks like running Spring XD on YARN could be good for sharing with Hadoop
+   [Ref.](http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#running-on-YARN)
+   Here's a section on Spring XD in
+   [distributed mode](http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#running-distributed-mode),
+   where the notes on [RabbitMQ in clustered mode](https://www.rabbitmq.com/clustering.html) will be needed
+   as well.
 3. Hadoop install compatible with Spring XD release (we'll be using Pivotal HD 3.0)
    **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
 4. Spark 1.2 or higher
