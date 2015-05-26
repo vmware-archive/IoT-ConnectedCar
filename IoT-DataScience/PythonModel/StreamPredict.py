@@ -53,8 +53,6 @@ init_class_file = config.get("Batch", "init_class_file")
 online_class_file = config.get("Batch", "online_class_file")
 journey_cluster_file = config.get("Batch", "journey_cluster_file")
 
-logfile = config.get("Directories", "logfile")
-
 logging.basicConfig(level=logging.ERROR) # Log to the Spring XD console window
 
 # Load models
