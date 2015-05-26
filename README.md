@@ -103,7 +103,7 @@ it's environment.  Specifically:
    Here's a section on Spring XD in
    [distributed mode](http://docs.spring.io/spring-xd/docs/current-SNAPSHOT/reference/html/#running-distributed-mode),
    where the notes on [RabbitMQ in clustered mode](https://www.rabbitmq.com/clustering.html) will be needed
-   as well.
+   as well.  See also [course materials](https://github.com/S2EDU/RabbitMQ-ILT).
 3. Hadoop install compatible with Spring XD release (we'll be using Pivotal HD 3.0)
    **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
 4. Spark 1.2 or higher
@@ -179,7 +179,7 @@ cd node-v0.12.3/ && ./configure && make && sudo make install && cd -
 ```
    cd IoT-ConnectedCar/IoT-Dashboard/
    npm install
-   npm install -g imagemin-gifsicle
+   npm install imagemin-gifsicle
    bower install
 ```
 9. Install pivotal-rabbitmq-server
@@ -197,6 +197,15 @@ therefore uses it's standard stack to perform builds.  To be able to perform a b
 the dashboard's static assets (JavaScript, HTML, etc), you'll need
 [Grunt](http://gruntjs.com/).
 **Consider replacing Grunt.js with [(Gulp.js)](http://gulpjs.com/)?**
+
+There is a dependency on injecting the IP number (or, hostname, if it resolves for browser
+based clients) of the Gemfire REST API host.  The placeholder I inserted for now is
+`%GEM_REST_API_HOST_IP%`, into the following two files **Need to edit, for now**:
+```
+	config/environments/production.json
+	src/main/resources/public/scripts/scripts.js
+```
+
 With Grunt installed (per step 8, above), you can build the dashboard
 from the root of the IoT-Dashboard module:
 
@@ -206,13 +215,6 @@ $ grunt clean build
 Images won't make it into the build (we commented out line 363 in Gruntfile.js), so
 **you must do this**: `cp -r app/images src/main/resources/public/`
 
-There is a dependency on injecting the IP number (or, hostname, if it resolves for browser
-based clients) of the Gemfire REST API host.  The placeholder I inserted for now is
-`%GEM_REST_API_HOST_IP%`, into the following two files:
-```
-	config/environments/production.json
-	src/main/resources/public/scripts/scripts.js
-```
 **TODO**: Figure out how to get the grunt build, or maybe the gradle build, to make this replacement.
 [This](https://github.com/outaTiME/grunt-replace) might do it.
 
