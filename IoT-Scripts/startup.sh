@@ -4,7 +4,7 @@
 
 # This corresponds with the Hadoop distribution in use
 # (ref. http://docs.spring.io/spring-xd/docs/1.2.0.M1/reference/html/)
-hd_distro=phd30
+hd_distro=phd30 # "phd30" for PHD 3.0, "phd21" for PHD 2.x
 
 # Setup the gemfire installation 
 export GEMFIRE_IOT_CONF_DIR=$IOT_HOME/IoT-Scripts/conf
