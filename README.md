@@ -94,6 +94,7 @@ it's environment.  Specifically:
 1. [Java 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 2. [Spring XD](https://spring.io/projects/spring-xd) release 1.2.0.M1 or higher
    [I used this](http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
+   [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_spring-xd.tar.gz)
    Edit the following Spring XD files (replace `[NAMENODE_HOSTNAME_OR_IP]` with the appropriate value):
      * spring-xd/xd/config/servers.yml: `fsUri: hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
      * spring-xd/xd/config/hadoop.properties: `fs.default.name=hdfs://[NAMENODE_HOSTNAME_OR_IP]:8020`
@@ -129,9 +130,12 @@ it's environment.  Specifically:
      * `useradd spark`
      * `usermod -G hdfs spark`
    * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
-5. GemFire 8 or higher (install from RPM: pivotal-gemfire)
+5. GemFire 8 or higher
+   [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_gemfire.tar.gz)
    [Example of distributed deployment](https://github.com/lshannonPivotal/gemfire-hellogbye-poc)
 6. [Miniconda](http://conda.pydata.org/miniconda.html) distribution of Python 2.1.0 or higher
+   [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_miniconda.tar.gz), or install it
+   and then perform the following:
   * Post-install for Miniconda: update the [pivotal.sh](/IoT-Scripts/pivotal.sh) file to point to
     its install directory, and **copy pivotal.sh into /etc/profile.d/ (as root)**
   * Install all the required Python modules (after having sourced that pivotal.sh file)
@@ -184,6 +188,8 @@ cd node-v0.12.3/ && ./configure && make && sudo make install && cd -
 ```
 9. Install pivotal-rabbitmq-server
 10. Install pivotal-redis
+11. Install the "data" subdir into /opt/pivotal/
+    [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_data.tar.gz)
 
 ## Building from source
 There are two main pieces needed to build this project from source:
