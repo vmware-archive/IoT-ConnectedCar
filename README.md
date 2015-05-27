@@ -92,6 +92,7 @@ This is intended to illustrate a complete solution and as such has a few depende
 it's environment.  Specifically:
 
 1. [Java 7 or higher](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+   [Pull from S3](https://s3.amazonaws.com/goddard.phd3/jdk-7u67-linux-x64.rpm)
 2. [Spring XD](https://spring.io/projects/spring-xd) release 1.2.0.M1 or higher
    [I used this](http://repo.spring.io/libs-snapshot/org/springframework/xd/spring-xd/1.2.0.M1/spring-xd-1.2.0.M1-dist.zip)
    [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_spring-xd.tar.gz)
@@ -189,7 +190,7 @@ cd node-v0.12.3/ && ./configure && make && sudo make install && cd -
 9. Install pivotal-rabbitmq-server
 10. Install pivotal-redis
 11. Install the "data" subdir into /opt/pivotal/
-    [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_data.tar.gz)
+[Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_data.tar.gz)
 
 ## Building from source
 There are two main pieces needed to build this project from source:
