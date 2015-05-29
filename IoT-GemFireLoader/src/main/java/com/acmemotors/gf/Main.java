@@ -45,7 +45,8 @@ public class Main implements CommandLineRunner {
             @Value("${gf.server.host}") String host) throws Exception {
         PoolFactoryBean factoryBean = new PoolFactoryBean();
         factoryBean.setName("my-pool");
-        factoryBean.setServers(
+        //factoryBean.setServers(
+        factoryBean.setLocators(
                 Collections.singletonList(new InetSocketAddress(host, serverPort)));
         factoryBean.afterPropertiesSet();
         return factoryBean;

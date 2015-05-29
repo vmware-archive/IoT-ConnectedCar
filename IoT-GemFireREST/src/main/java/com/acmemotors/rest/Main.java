@@ -44,11 +44,13 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 public class Main {
 
 	@Bean
-	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
-			@Value("${gf.server.host}") String serverHost) throws Exception {
+	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort, @Value("${gf.server.host}") String serverHost)
+    throws Exception
+  {
 		PoolFactoryBean factoryBean = new PoolFactoryBean();
 		factoryBean.setName("my-pool");
-		factoryBean.setServers(
+		// factoryBean.setServers(
+		factoryBean.setLocators(
 				Collections.singletonList(new InetSocketAddress(serverHost, serverPort)));
 		factoryBean.afterPropertiesSet();
 		return factoryBean;
