@@ -41,41 +41,28 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 @Configuration
 @EnableGemfireRepositories(basePackages = "com.acmemotors.rest")
 @SpringBootApplication
-public class Main {
+public class Main
+{
+  @Bean
+  ClientCache cache() {
+    // "This is where the magic happens, baby."
+	  return new ClientCacheFactory().set("cache-xml-file", "clientCache.xml").create();
+  }
 
-	@Bean
-	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort, @Value("${gf.server.host}") String serverHost)
-    throws Exception
-  {
-		PoolFactoryBean factoryBean = new PoolFactoryBean();
-		factoryBean.setName("my-pool");
-		// factoryBean.setServers(
-		factoryBean.setLocators(
-				Collections.singletonList(new InetSocketAddress(serverHost, serverPort)));
-		factoryBean.afterPropertiesSet();
-		return factoryBean;
-	}
+  @Bean
+  @SuppressWarnings("rawtypes")
+  Region journeyRegion(ClientCache cache) {
+    return cache.getRegion("journeys");
+  }
 
-	@Bean
-	ClientCache cache() {
-		return new ClientCacheFactory().create();
-	}
-
-	@Bean
-	@SuppressWarnings("rawtypes")
-	Region journeyRegion(ClientCache cache) {
-		return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
-				.create("journeys");
-	}
-
-	@Bean
-	@SuppressWarnings("rawtypes")
-	Region carPositionRegion(ClientCache cache) {
-		return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
-				.create("car-position");
-	}
+  @Bean
+  @SuppressWarnings("rawtypes")
+  Region carPositionRegion(ClientCache cache) {
+    return cache.getRegion("car-position");
+  }
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(Main.class, args);
 	}
 }
+
