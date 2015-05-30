@@ -1,11 +1,11 @@
 // Install the "acmeenrich" module (DO THIS ONCE)
-//module upload --type processor --name acmeenrich --file /opt/pivotal/IoT-ConnectedCar/IoT-EnrichmentTransformer/build/libs/IoT-EnrichmentTransformer.jar
+//module upload --type processor --name acmeenrich --file ${IOT_HOME}/IoT-EnrichmentTransformer/build/libs/IoT-EnrichmentTransformer.jar
 
 // Install the "typeconversiontransformer" module (DO THIS ONCE)
-//module upload --type processor --name typeconversiontransformer --file /opt/pivotal/IoT-ConnectedCar/IoT-GemFireTransformer/build/libs/IoT-GemFireTransformer.jar
+//module upload --type processor --name typeconversiontransformer --file ${IOT_HOME}/IoT-GemFireTransformer/build/libs/IoT-GemFireTransformer.jar
 
 // Create the initial stream to take HTTP data and enrich it and store it to a local file
-stream create --name IoT-HTTP --definition "http | filter --script=file:/opt/pivotal/IoT-ConnectedCar/IoT-DataFilter/src/main/resources/DataFilter.groovy | acmeenrich | shell --inputType=application/json --command='python ./StreamPredict.py' --workingDir=/opt/pivotal/IoT-ConnectedCar/IoT-DataScience/PythonModel/ | hdfs" --deploy
+stream create --name IoT-HTTP --definition "http | filter --script=file:${IOT_HOME}/IoT-DataFilter/src/main/resources/DataFilter.groovy | acmeenrich | shell --inputType=application/json --command='python ./StreamPredict.py' --workingDir=${IOT_HOME}/IoT-DataScience/PythonModel/ | hdfs" --deploy
 
 // Create a tap that reads the transformed json data into gemfire
 stream create --name IoT-Gemfire --definition "tap:stream:IoT-HTTP.shell > typeconversiontransformer | gemfire-server --regionName=car-position --keyExpression=payload.vin" --deploy
