@@ -35,49 +35,37 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 
 @EnableGemfireRepositories(basePackages = "com.acmemotors.rest")
 @SpringBootApplication
-public class Main implements CommandLineRunner {
-
-    @Autowired
-    GemFireLoader loader;
-
-    @Bean
-    PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
-            @Value("${gf.server.host}") String host) throws Exception {
-        PoolFactoryBean factoryBean = new PoolFactoryBean();
-        factoryBean.setName("my-pool");
-        //factoryBean.setServers(
-        factoryBean.setLocators(
-                Collections.singletonList(new InetSocketAddress(host, serverPort)));
-        factoryBean.afterPropertiesSet();
-        return factoryBean;
-    }
-
+public class Main implements CommandLineRunner
+{
     @Bean
     ClientCache cache() {
-        return new ClientCacheFactory().create();
+      // "This is where the magic happens, baby."
+	    return new ClientCacheFactory().set("cache-xml-file", "clientCache.xml").create();
     }
 
     @Bean
     @SuppressWarnings("rawtypes")
     Region journeyRegion(ClientCache cache) {
-        return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
-                .create("journeys");
+      return cache.getRegion("journeys");
     }
 
     @Bean
     @SuppressWarnings("rawtypes")
     Region carPositionRegion(ClientCache cache) {
-        return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
-                .create("car-position");
+      return cache.getRegion("car-position");
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+      SpringApplication.run(Main.class, args);
     }
+
+    @Autowired
+    GemFireLoader loader;
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("args[0] = " + args[0]);
-        loader.run(args[0]);
+      System.out.println("args[0] = " + args[0]);
+      loader.run(args[0]);
     }
 }
+
