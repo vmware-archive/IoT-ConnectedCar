@@ -132,8 +132,11 @@ it's environment.  Specifically:
      * `usermod -G hdfs spark`
    * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
 5. GemFire 8 or higher
-   [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_gemfire.tar.gz)
-   [Example of distributed deployment](https://github.com/lshannonPivotal/gemfire-hellogbye-poc)
+   * [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_gemfire.tar.gz)
+   * [Example of distributed deployment](https://github.com/lshannonPivotal/gemfire-hellogbye-poc)
+   * **NOTE:** deploy the Gemfire locator to a host which resolves to "gem-locator" (update your /etc/hosts
+     on all your nodes).  Run this on port 9001.  Set up your Gemfire server processes on this same host and
+     on two others; name them gem-server1 and gem-server2 (again, in /etc/hosts on all nodes).
 6. [Miniconda](http://conda.pydata.org/miniconda.html) distribution of Python 2.1.0 or higher
    [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_miniconda.tar.gz), or install it
    and then perform the following:
