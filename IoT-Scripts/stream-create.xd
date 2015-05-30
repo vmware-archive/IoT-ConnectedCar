@@ -8,4 +8,5 @@
 stream create --name IoT-HTTP --definition "http | filter --script=file:${IOT_HOME}/IoT-DataFilter/src/main/resources/DataFilter.groovy | acmeenrich | shell --inputType=application/json --command='python ./StreamPredict.py' --workingDir=${IOT_HOME}/IoT-DataScience/PythonModel/ | hdfs" --deploy
 
 // Create a tap that reads the transformed json data into gemfire
-stream create --name IoT-Gemfire --definition "tap:stream:IoT-HTTP.shell > typeconversiontransformer | gemfire-server --regionName=car-position --keyExpression=payload.vin" --deploy
+stream create --name IoT-Gemfire --definition "tap:stream:IoT-HTTP.shell > typeconversiontransformer | gemfire-server --regionName=car-position --keyExpression=payload.vin --useLocator=true --host=gem-locator --port=9001" --deploy
+
