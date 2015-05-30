@@ -67,17 +67,14 @@ public class GemFireLoader {
 	public void run(String dataFile) throws IOException {
 		BufferedReader br =
 				new BufferedReader(new InputStreamReader(new FileInputStream(dataFile)));
-		
 		String line = null;
-
-		while((line = br.readLine()) != null) {
+		while((line = br.readLine()) != null)
+    {
 			Journeys curJourneys = mapJourneys(line);
-
 			if(curJourneys != null) {
 				repository.save(curJourneys);
 			}
 		}
-
 		br.close();
 	}
 
@@ -118,8 +115,7 @@ public class GemFireLoader {
 				throw new IllegalArgumentException(
 						"Line was not able to be parsed: " + line);
 			}
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
