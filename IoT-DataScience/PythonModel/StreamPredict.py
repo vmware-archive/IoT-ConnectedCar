@@ -24,6 +24,7 @@ import sys
 import ConfigParser
 import Data
 import numpy as np
+import pandas as pd
 
 from datetime import datetime
 from datetime import timedelta
@@ -37,6 +38,9 @@ if len(sys.argv) > 1:
     configuration_string = sys.argv[1]
 else:
     configuration_string = "Configuration/default.conf"
+
+# Disable warnings
+pd.set_option('mode.chained_assignment', None)
 
 # Set Job Params
 config = ConfigParser.ConfigParser()
