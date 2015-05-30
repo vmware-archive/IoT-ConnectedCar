@@ -5,7 +5,7 @@
 <client-cache>
 	<pool name="client" subscription-enabled="true">
 		<!-- <locator host="%GEMFIRE_LOCATOR_HOST%" port="%GEMFIRE_LOCATOR_PORT%"/> -->
-		<locator host="gem-locator" port="9005"/>
+		<locator host="gem-locator" port="9001"/>
 	</pool>
 	<region name="journeys">
 		<region-attributes refid="PROXY"/>
