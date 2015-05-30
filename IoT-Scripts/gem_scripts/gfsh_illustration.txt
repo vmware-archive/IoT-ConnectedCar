@@ -76,6 +76,19 @@ Result
 
 NEXT_STEP_NAME : END
 
+gfsh>query --query="select * from /car-position.keys"
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 1
+
+Result
+-----------------
+ZA9UF78J7FA190717
+
+NEXT_STEP_NAME : END
+
 gfsh>stop server --name=vert1-110-srv
 Stopping Cache Server running in /home/pivot/gem_scripts/vert1-110-srv on vert1-110.fe.gopivotal.com[55815] as vert1-110-srv...
 Process ID: 375686
