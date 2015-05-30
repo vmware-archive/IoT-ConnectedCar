@@ -1,0 +1,105 @@
+gfsh>connect --locator=vert1-106[9001]
+Connecting to Locator at [host=vert1-106, port=9001] ..
+Connecting to Manager at [host=vert1-106.fe.gopivotal.com, port=1099] ..
+Successfully connected to: [host=vert1-106.fe.gopivotal.com, port=1099]
+
+# This shows the state when only the locator is running:
+gfsh>list members
+    Name      | Id
+------------- | -------------------------------------------------
+vert1-106-loc | vert1-106(vert1-106-loc:369582:locator)<v0>:24395
+
+# This shows the state after a server was started on the host running the locator:
+gfsh>list members
+    Name      | Id
+------------- | -------------------------------------------------
+vert1-106-srv | vert1-106(vert1-106-srv:376665)<v4>:11871
+vert1-106-loc | vert1-106(vert1-106-loc:369582:locator)<v0>:24395
+
+# Here is the state once another server has been started, on a different host:
+gfsh>list members
+    Name      | Id
+------------- | -------------------------------------------------
+vert1-107-srv | vert1-107(vert1-107-srv:380505)<v5>:8463
+vert1-106-srv | vert1-106(vert1-106-srv:376665)<v4>:11871
+vert1-106-loc | vert1-106(vert1-106-loc:369582:locator)<v0>:24395
+
+# Final state: servers are running on a total of three hosts:
+gfsh>list members
+    Name      | Id
+------------- | -------------------------------------------------
+vert1-107-srv | vert1-107(vert1-107-srv:380505)<v5>:8463
+vert1-106-srv | vert1-106(vert1-106-srv:376665)<v4>:11871
+vert1-110-srv | vert1-110(vert1-110-srv:375686)<v6>:15752
+vert1-106-loc | vert1-106(vert1-106-loc:369582:locator)<v0>:24395
+
+gfsh>create region --name=car-position --type=PARTITION_REDUNDANT
+   Member     | Status
+------------- | -------------------------------------------------
+vert1-107-srv | Region "/car-position" created on "vert1-107-srv"
+vert1-110-srv | Region "/car-position" created on "vert1-110-srv"
+vert1-106-srv | Region "/car-position" created on "vert1-106-srv"
+
+gfsh>create region --name=journeys --type=PARTITION_REDUNDANT
+   Member     | Status
+------------- | ---------------------------------------------
+vert1-107-srv | Region "/journeys" created on "vert1-107-srv"
+vert1-106-srv | Region "/journeys" created on "vert1-106-srv"
+vert1-110-srv | Region "/journeys" created on "vert1-110-srv"
+
+gfsh>describe region --name=journeys
+..........................................................
+Name            : journeys
+Data Policy     : partition
+Hosting Members : vert1-110-srv
+                  vert1-106-srv
+                  vert1-107-srv
+
+Non-Default Attributes Shared By Hosting Members
+
+  Type    |       Name       | Value
+--------- | ---------------- | -----
+Region    | size             | 0
+Partition | redundant-copies | 1
+          | local-max-memory | 7342
+
+gfsh>query --query="select count(*) from /car-position"
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 1
+
+Result
+------
+1
+
+NEXT_STEP_NAME : END
+
+gfsh>stop server --name=vert1-110-srv
+Stopping Cache Server running in /home/pivot/gem_scripts/vert1-110-srv on vert1-110.fe.gopivotal.com[55815] as vert1-110-srv...
+Process ID: 375686
+Log File: /home/pivot/gem_scripts/vert1-110-srv/vert1-110-srv.log
+
+gfsh>stop server --name=vert1-107-srv
+Stopping Cache Server running in /home/pivot/gem_scripts/vert1-107-srv on vert1-107.fe.gopivotal.com[49279] as vert1-107-srv...
+Process ID: 380505
+Log File: /home/pivot/gem_scripts/vert1-107-srv/vert1-107-srv.log
+
+gfsh>stop server --name=vert1-106-srv
+Stopping Cache Server running in /home/pivot/gem_scripts/vert1-106-srv on vert1-106.fe.gopivotal.com[44070] as vert1-106-srv...
+Process ID: 376665
+Log File: /home/pivot/gem_scripts/vert1-106-srv/vert1-106-srv.log
+....
+gfsh>list members
+    Name      | Id
+    ------------- | -------------------------------------------------
+    vert1-106-loc | vert1-106(vert1-106-loc:369582:locator)<v0>:24395
+
+    gfsh>stop locator --name=vert1-106-loc
+    Stopping Locator running in /home/pivot/gem_scripts/vert1-106-loc on vert1-106.fe.gopivotal.com[9001] as vert1-106-loc...
+    Process ID: 369582
+    Log File: /home/pivot/gem_scripts/vert1-106-loc/vert1-106-loc.log
+    ...
+    No longer connected to vert1-106.fe.gopivotal.com[1099].
+
