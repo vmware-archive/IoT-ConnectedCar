@@ -76,10 +76,10 @@ to the amount of RAM available on the VM used during the demo.  Tweak parallelis
 memory knobs as your environment supports:
 
 ```
-$ spark-submit --conf spark.default.parallelism=2 --conf spark.storage.memoryFraction=0 --executor-memory 4G --files <PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf --py-files <PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Models.py,<PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Data.py  <PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/BatchTrain.py "<PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf"
+$ spark-submit --conf spark.default.parallelism=2 --conf spark.storage.memoryFraction=0.5 --executor-memory 4G --files $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf --py-files $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Models.py,$IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Data.py $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/BatchTrain.py $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf
 ```
 
-Where &lt;PATH_TO_CONNECTED_CAR_REPO&gt; is the path to this project.
+Where `$IOT_HOME` is the path to this project.
 
 ## Streaming Predictions
 Spring XD provides the orchestration of the python process used to generate the actual
@@ -90,3 +90,4 @@ configuration or orchestration is required.
 * [Anaconda](https://store.continuum.io/cshop/anaconda/)
 * [Python](https://www.python.org/)
 * [Spring XD](https://spring.io/projects/spring-xd)
+
