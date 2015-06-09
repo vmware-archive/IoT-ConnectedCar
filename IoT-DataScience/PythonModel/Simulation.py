@@ -29,11 +29,11 @@ import pandas as pd
 
 from IPython import embed
 
-n_sim = 5
-directory = "/Users/ronert/Dropbox/Pivotal/IoT-ConnectedCar/data/Munich/"
-write_directory = "/Users/ronert/Dropbox/Pivotal/IoT-ConnectedCar/data/Munich_Simulated/"
-origin = "HolidayInn-"
-origin_long = 11.589479
+n_sim = 20
+directory = "/Users/ronert/Dropbox/Pivotal/IoT-ConnectedCar/data/Munich/" # INPUT
+write_directory = "/Users/ronert/Dropbox/Pivotal/IoT-ConnectedCar/data/Munich_Simulated/" # OUTPUT
+origin = "out" # Filename pattern: try "out"
+origin_long = 11.589479 # Set to first line on the drive you will simulate
 origin_lat = 48.129505
 
 filenames = glob.glob(directory + "*.out")
