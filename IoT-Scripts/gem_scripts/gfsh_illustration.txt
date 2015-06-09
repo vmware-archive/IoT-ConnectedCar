@@ -1,4 +1,4 @@
-gfsh>connect --locator=vert1-106[9001]
+gfsh>connect --locator=gem-locator[9001]
 Connecting to Locator at [host=vert1-106, port=9001] ..
 Connecting to Manager at [host=vert1-106.fe.gopivotal.com, port=1099] ..
 Successfully connected to: [host=vert1-106.fe.gopivotal.com, port=1099]

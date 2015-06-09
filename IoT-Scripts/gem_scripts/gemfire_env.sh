@@ -12,6 +12,6 @@ LOCATOR_NAME="${LOCATOR_HOST}-loc"
 SERVER_NAME="${HOSTNAME}-srv"
 LOCATOR_PORT=9001
 CACHE_XML=./cache.xml # TODO: determine how to avoid passing this around cluster
-XMS=8192m # For server processes
-XMX=8192m # For server processes
+XMS=16384m # For server processes
+XMX=16384m # For server processes
 
