@@ -48,6 +48,6 @@ bash $XD_HOME/bin/xd-singlenode --hadoopDistro $hd_distro
 
 set retcode = $?
 read -p "Done. Press [Enter] to close."
-kill $gemfire_pid # Kill backgrounded Gemfire process
+#kill $gemfire_pid # Kill backgrounded Gemfire process
 exit $retcode
 
