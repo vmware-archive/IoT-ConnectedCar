@@ -109,30 +109,26 @@ it's environment.  Specifically:
    where the notes on [RabbitMQ in clustered mode](https://www.rabbitmq.com/clustering.html) will be needed
    as well.  See also [course materials](https://github.com/S2EDU/RabbitMQ-ILT).
 3. Hadoop install compatible with Spring XD release (we'll be using Pivotal HD 3.0)
-   **NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service**
+   NOTE: If running in a single node, run Ambari on port 8888 to avoid conflicts with Gemfire REST service
 4. Spark 1.2 or higher
    * [Install Docs](http://pivotalhd.docs.pivotal.io/docs/install-manually.html#ref-0a9f3ecc-bf89-4537-91ac-e0bf85752c96)
    * Spark will run in YARN-Client mode, and **it only needs to be installed onto the node from which you'll run it**
    * `yum -y install spark spark-python` (as root)
-   * Ensure you edit /etc/spark/conf/java-opts, so it contains the single line:
-     `-Dphd.version=3.0.0.0-249 -Dstack.name=phd -Dstack.version=3.0.0.0-249`
-   * Edit /etc/spark/conf/spark-env.sh, ensuring the following two lines are set:
-```
-       export HADOOP_HOME=/usr/phd/3.0.0.0-219/hadoop
-       export HADOOP_CONF_DIR=/usr/phd/3.0.0.0-219/hadoop/conf
-```
-   * Edit /etc/spark/conf/spark-defaults.conf, ensuring you have the following lines:
-```
-       spark.yarn.services org.apache.spark.deploy.yarn.history.YarnHistoryService
-       spark.history.provider org.apache.spark.deploy.yarn.history.YarnHistoryProvider
-       spark.driver.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
-       spark.yarn.am.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
-       spark.akka.heartbeat.interval 100
-```
-   * Add user `spark` with group `hdfs` to each of the cluster nodes:
-     * `useradd spark`
-     * `usermod -G hdfs spark`
-   * PySpark will be located here: /usr/phd/3.0.0.0-249/spark/python/pyspark
+   * Add spark user to the NameNode: `useradd -g hdfs spark`
+   * Edit /etc/spark/conf/java-opts, so it contains this single line:
+     ```
+      -Dphd.version=3.0.0.0-249 -Dstack.name=phd -Dstack.version=3.0.0.0-249
+     ```
+   * Ensure /etc/spark/conf/spark-env.sh contains the following two lines:
+     ```
+      export HADOOP_HOME=/usr/phd/3.0.0.0-219/hadoop
+      export HADOOP_CONF_DIR=/usr/phd/3.0.0.0-219/hadoop/conf
+     ```
+   * Edit /etc/spark/conf/spark-defaults.conf:
+     ```
+      spark.driver.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
+      spark.yarn.am.extraJavaOptions -Dphd.version=3.0.0.0-249 -Dstack.version=3.0.0.0-249 -Dstack.name=phd
+     ```
 5. GemFire 8 or higher
    * [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_gemfire.tar.gz)
    * [Example of distributed deployment](https://github.com/lshannonPivotal/gemfire-hellogbye-poc)
