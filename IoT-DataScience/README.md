@@ -5,6 +5,11 @@ expected on the journeys.
 ## Dependencies
 The real time predictions are executed within the context of a Spring XD stream.  As such, the code depends on the Spring XD python module stream.py.  You can obtain this file from the Spring XD distribution.  You can read more about this module and using python within the context of Spring XD in the Spring XD documentation here: [http://docs.spring.io/spring-xd/docs/current/reference/html/#creating-a-python-module](http://docs.spring.io/spring-xd/docs/current/reference/html/#creating-a-python-module)
 
+## Background (per Ronert, author of this module)
+* We run k-means clustering to provide labels for the two supervised learning models (random forests) in the following two steps
+* We run random forest as an initial prediction model because the sensor data coming from Herbie is not very predictive of where you are going the moment you turn on your car. Starting location and time of day + day of week are much more predictive in this situation.
+* We have an online prediction model that gradually fades out the initial predictions as more sensor data streams in and becomes predictive of your destination.
+
 ## Configuration
 The data science pieces are written in python and are configured via the default.conf file
 located in the PythonModel/Configuration directory of this module.  The following options 
