@@ -12,7 +12,7 @@ hd_distro=phd30 # "phd30" for PHD 3.0, "phd21" for PHD 2.x
 # Start gemfire (MIKE: added $XD_HOME/../gemfire/bin/ since, without it, CLASSPATH wasn't being set)
 #JAVA_OPTS="-Dgemfire.jmx-manager-start=true -Dgemfire.jmx-manager=true -Dgemfire.jmx-manager-http-port=0"
 JAVA_OPTS="$JAVA_OPTS -Xmx2048m -XX:MaxPermSize=256m"
-#export JAVA_OPTS
+export JAVA_OPTS
 #bash $XD_HOME/../gemfire/bin/gemfire-server $GEMFIRE_IOT_CONF_DIR/iot-demo.xml &
 #gemfire_pid=$!
 #sleep 10;
