@@ -6,6 +6,9 @@
 # This is intended to be run as a module within a Spring XD processing pipeline, where this
 # reads stdin and writes stdout.
 #
+# NOTE: since the DataFilter.groovy filter rejects data with invalid values of the fields this
+# module depends on, insert this module after that and you should be safe.
+#
 # Based on this example:
 # https://github.com/spring-projects/spring-xd/blob/master/src/docs/asciidoc/Creating-a-Python-Module.asciidoc
 #
