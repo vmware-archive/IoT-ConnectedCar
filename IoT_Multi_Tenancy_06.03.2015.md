@@ -7,6 +7,7 @@
   * Multiple DBs
 2. Spring XD:
   * Single instance
+  * Distinct port values for HTTP source
   * Use distinct stream names
   * Deploy custom modules with distinct names
 3. Gemfire
@@ -23,9 +24,8 @@
   * Individual login
   * Distinct app name
 6. Environment
-  * /etc/profile.d/pivotal.sh will need to be abandoned in favor of $HOME/.bashrc
+  * /etc/profile.d/pivotal.sh will need to be supplemented by $HOME/.bashrc (for each student account)
   * Any paths like `$IOT_HOME/IoT-GemFireLoader/build/libs/IoT-GemFireLoader.jar` will
     be ok so long as IOT_HOME is distinct (per above)
   * Any embedded `/opt/pivotal/...` type paths will need to be located and redefined via environment variables
-
 
