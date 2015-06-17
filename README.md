@@ -59,6 +59,9 @@ consistency.  The enriched data is then passed to the shell module that is runni
 python module developed by Pivotal's Data Science team.  That python module looks at the 
 current journey and, using historical data for that particular vehicle's VIN, creates a
 prediction of where it's going and its expected MPG (fuel economy) for the journey.
+**Note: if incoming data is associated with a VIN value for which no model exists, this
+ingest stream will break.  Fixing this is on the TODO list.**
+
 The results of the shell processor are stored in HDFS.
 
 The above stream is then _tapped_ via the following definition:
