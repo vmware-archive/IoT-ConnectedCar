@@ -191,8 +191,6 @@ cd node-v0.12.3/ && ./configure && make && sudo make install && cd -
    npm install imagemin-gifsicle
    bower install
 ```
-9. Install pivotal-rabbitmq-server
-10. Install pivotal-redis
 11. Install the "data" subdir into /opt/pivotal/
 [Pull from S3](https://s3.amazonaws.com/iot.connected.car/opt_pivotal_data.tar.gz)
 
@@ -243,18 +241,4 @@ $ ./gradlew clean build
 from the root of this project.  That will build all modules and package them up
 apropriately for deployment (Spring Boot jars for the most part).
 
-## Contributing to IoT-ConnectedCar
-
-Here are some ways for you to get involved in the community:
-
-* Create [Github](https://github.com/Pivotal-Field-Engineering/IoT-ConnectedCar/issues) 
-tickets for bugs and new features and comment and vote on the ones that you are interested 
-in.
-* Github is for social coding: if you want to write code, we encourage contributions 
-through pull requests from [forks of this repository](http://help.github.com/forking/).  
-If you want to contribute code this way, please familiarize yourself with the process 
-outlined for contributing to Pivotal projects here: 
-[Contributor Guidelines](https://github.com/Pivotal-Field-Engineering/IoT-ConnectedCar/blob/master/CONTRIBUTING.md).
-* Watch for upcoming articles on Pivotal by 
-[subscribing](http://blog.pivotal.io/feed) to spring.io
 
