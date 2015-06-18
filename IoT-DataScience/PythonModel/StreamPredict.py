@@ -118,6 +118,7 @@ def callback(body):
         # create initial prediction:
         counter = len(journey.data.index)
         if counter == 1:
+            # MIKE: Next line -- if this 'vin' doesn't exist, we need a Plan B.
             initial_predictions[vin] = init_class_models[vin].predict(journey)
             prob_dict[vin] = initial_predictions[vin]
             time_dict[vin] = Series(datetime.now())
