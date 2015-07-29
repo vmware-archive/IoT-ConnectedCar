@@ -5,6 +5,6 @@ Type=Application
 Terminal=true
 Icon[en_US]=gnome-panel-launcher
 Name[en_US]=Start Car
-Exec=/opt/pivotal/IoT-ConnectedCar/IoT-Scripts/start_simulator.sh
+Exec=gnome-terminal -t "Start Car (simulator)" -x bash -c /opt/pivotal/IoT-ConnectedCar/IoT-Scripts/start_simulator.sh
 Name=Start Car
 Icon=/opt/pivotal/IoT-ConnectedCar/IoT-Scripts/icons/car.jpg

@@ -70,8 +70,8 @@ subprojects { subproject ->
 	jacoco { toolVersion = "0.7.0.201403182114" }
 
 	compileJava {
-		sourceCompatibility=1.8
-		targetCompatibility=1.8
+		sourceCompatibility=1.7
+		targetCompatibility=1.7
 	}
 
 	eclipse {

@@ -2,7 +2,7 @@ package com.acmemotors.batch.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 /**
  * @author Michael Minella
@@ -58,19 +58,25 @@ public enum Field {
 		return gemfireField;
 	}
 
-	public static String[] herbieFields() {
-		List<String> collect = Arrays.asList(values()).stream()
-				.map(Field::getHerbieField)
-				.collect(Collectors.toList());
+	private static String[] getFields(String type) {
+    List<String> rv = new ArrayList<String>();
+    for (Field f : values())
+    {
+      if ("herbie".equals(type)) {
+        rv.add(f.getHerbieField());
+      } else if ("gemfire".equals(type)) {
+        rv.add(f.getGemfireField());
+      }
+    }
+		return rv.toArray(new String[rv.size()]);
+  }
 
-		return collect.toArray(new String[collect.size()]);
+	public static String[] herbieFields() {
+		return getFields("herbie");
 	}
 
 	public static String[] gemfireFields() {
-		List<String> collect = Arrays.asList(values()).stream()
-				.map(Field::getGemfireField)
-				.collect(Collectors.toList());
-
-		return collect.toArray(new String[collect.size()]);
+		return getFields("gemfire");
 	}
 }
+

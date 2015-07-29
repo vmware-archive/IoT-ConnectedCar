@@ -5,6 +5,11 @@ expected on the journeys.
 ## Dependencies
 The real time predictions are executed within the context of a Spring XD stream.  As such, the code depends on the Spring XD python module stream.py.  You can obtain this file from the Spring XD distribution.  You can read more about this module and using python within the context of Spring XD in the Spring XD documentation here: [http://docs.spring.io/spring-xd/docs/current/reference/html/#creating-a-python-module](http://docs.spring.io/spring-xd/docs/current/reference/html/#creating-a-python-module)
 
+## Background (per Ronert, author of this module)
+* We run k-means clustering to provide labels for the two supervised learning models (random forests) in the following two steps
+* We run random forest as an initial prediction model because the sensor data coming from Herbie is not very predictive of where you are going the moment you turn on your car. Starting location and time of day + day of week are much more predictive in this situation.
+* We have an online prediction model that gradually fades out the initial predictions as more sensor data streams in and becomes predictive of your destination.
+
 ## Configuration
 The data science pieces are written in python and are configured via the default.conf file
 located in the PythonModel/Configuration directory of this module.  The following options 
@@ -76,10 +81,10 @@ to the amount of RAM available on the VM used during the demo.  Tweak parallelis
 memory knobs as your environment supports:
 
 ```
-$ spark-submit --conf spark.default.parallelism=2 --conf spark.storage.memoryFraction=0 --executor-memory 4G --files <PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf --py-files <PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Models.py,<PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Data.py  <PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/BatchTrain.py "<PATH_TO_CONNECTED_CAR_REPO>/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf"
+$ spark-submit --conf spark.default.parallelism=2 --conf spark.storage.memoryFraction=0.5 --executor-memory 4G --files $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf --py-files $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Models.py,$IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Data.py $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/BatchTrain.py $IOT_HOME/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf
 ```
 
-Where &lt;PATH_TO_CONNECTED_CAR_REPO&gt; is the path to this project.
+Where `$IOT_HOME` is the path to this project.
 
 ## Streaming Predictions
 Spring XD provides the orchestration of the python process used to generate the actual
@@ -90,3 +95,4 @@ configuration or orchestration is required.
 * [Anaconda](https://store.continuum.io/cshop/anaconda/)
 * [Python](https://www.python.org/)
 * [Spring XD](https://spring.io/projects/spring-xd)
+

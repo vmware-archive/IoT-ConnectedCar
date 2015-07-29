@@ -24,6 +24,7 @@ import sys
 import ConfigParser
 import Data
 import numpy as np
+import pandas as pd
 
 from datetime import datetime
 from datetime import timedelta
@@ -37,6 +38,9 @@ if len(sys.argv) > 1:
     configuration_string = sys.argv[1]
 else:
     configuration_string = "Configuration/default.conf"
+
+# Disable warnings
+pd.set_option('mode.chained_assignment', None)
 
 # Set Job Params
 config = ConfigParser.ConfigParser()
@@ -53,9 +57,7 @@ init_class_file = config.get("Batch", "init_class_file")
 online_class_file = config.get("Batch", "online_class_file")
 journey_cluster_file = config.get("Batch", "journey_cluster_file")
 
-logfile = config.get("Directories", "logfile")
-
-logging.basicConfig(filename=logfile, level=logging.ERROR)
+logging.basicConfig(level=logging.ERROR) # Log to the Spring XD console window
 
 # Load models
 init_class_models = joblib.load(storedmodel_directory + init_class_file)
@@ -116,6 +118,7 @@ def callback(body):
         # create initial prediction:
         counter = len(journey.data.index)
         if counter == 1:
+            # MIKE: Next line -- if this 'vin' doesn't exist, we need a Plan B.
             initial_predictions[vin] = init_class_models[vin].predict(journey)
             prob_dict[vin] = initial_predictions[vin]
             time_dict[vin] = Series(datetime.now())

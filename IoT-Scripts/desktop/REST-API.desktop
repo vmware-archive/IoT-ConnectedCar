@@ -5,6 +5,6 @@ Type=Application
 Terminal=true
 Icon[en_US]=gnome-panel-launcher
 Name[en_US]=REST-API
-Exec=/opt/pivotal/IoT-ConnectedCar/IoT-Scripts/start_restapi.sh
+Exec=gnome-terminal -t "REST API" -x bash -c /opt/pivotal/IoT-ConnectedCar/IoT-Scripts/start_restapi.sh
 Name=REST-API
 Icon=/usr/share/icons/gnome/scalable/emotes/face-monkey.svg

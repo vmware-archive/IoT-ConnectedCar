@@ -5,6 +5,6 @@ Type=Application
 Terminal=true
 Icon[en_US]=gnome-panel-launcher
 Name[en_US]=Dashboard
-Exec=/opt/pivotal/IoT-ConnectedCar/IoT-Scripts/start_dashboard.sh
+Exec=gnome-terminal -t "Dashboard" -x bash -c /opt/pivotal/IoT-ConnectedCar/IoT-Scripts/start_dashboard.sh
 Name=Dashboard
 Icon=/usr/share/icons/gnome/scalable/apps/gnome-remote-desktop.svg

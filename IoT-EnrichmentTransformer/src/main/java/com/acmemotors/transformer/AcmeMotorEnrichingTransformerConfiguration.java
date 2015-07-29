@@ -69,8 +69,10 @@ public class AcmeMotorEnrichingTransformerConfiguration {
             try {
                 if (payload != null) {
                     map = mapper.readValue(payload, Map.class);
-                    map.put("timestamp", System.currentTimeMillis());
-                    if(map.containsKey("vin")) {
+                    if (!map.containsKey("timestamp")) { // MIKE: Modified Herbie app to provide timestamp (v. 1.2.1)
+                      map.put("timestamp", System.currentTimeMillis());
+                    }
+                    if (map.containsKey("vin")) {
                         map.put("vin", ((String) map.get("vin")).toUpperCase());
                     }
                 }
@@ -86,3 +88,4 @@ public class AcmeMotorEnrichingTransformerConfiguration {
         }
     }
 }
+

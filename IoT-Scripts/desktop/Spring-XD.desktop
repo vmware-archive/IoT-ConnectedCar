@@ -5,6 +5,6 @@ Type=Application
 Terminal=true
 Icon[en_US]=gnome-panel-launcher
 Name[en_US]=Spring-XD
-Exec=/opt/pivotal/IoT-ConnectedCar/IoT-Scripts/startup.sh
+Exec=gnome-terminal -t "Spring XD" -x bash -c /opt/pivotal/IoT-ConnectedCar/IoT-Scripts/startup.sh
 Name=Spring-XD
 Icon=/opt/pivotal/IoT-ConnectedCar/IoT-Scripts/icons/SpringXD.jpg

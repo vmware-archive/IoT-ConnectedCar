@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #
 # Copyright 2014-2015 the original author or authors.
 #
@@ -13,13 +15,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import glob
 from uuid import uuid4
 import json
+import sys
 
+if len(sys.argv) != 3:
+  print "Usage: %s src_dir dest_dir" % sys.argv[0]
+  sys.exit(1)
 
-source_dir = "/Users/ronert/Dropbox/Pivotal/IoT-ConnectedCar/data/Munich_Simulated/"
-target_dir = "/Users/ronert/Dropbox/Pivotal/IoT-ConnectedCar/data/Munich_Hashed/"
+source_dir = sys.argv[1]
+target_dir = sys.argv[2]
 
 filenames = glob.glob(source_dir + "*.out")
 
@@ -34,3 +41,4 @@ for filename in filenames:
     new_filename = target_dir + filename.split('/')[-1]
     jlist = [json.dumps(record) + "\n" for record in trip]
     open(new_filename, "w").writelines(jlist)
+

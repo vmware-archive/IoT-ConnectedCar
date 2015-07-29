@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE client-cache PUBLIC
+"-//GemStone Systems, Inc.//GemFire Declarative Caching 7.0//EN"
+"http://www.gemstone.com/dtd/cache7_0.dtd">
+<client-cache>
+	<pool name="client" subscription-enabled="true">
+		<!-- <locator host="%GEMFIRE_LOCATOR_HOST%" port="%GEMFIRE_LOCATOR_PORT%"/> -->
+		<locator host="gem-locator" port="9001"/>
+	</pool>
+	<region name="journeys">
+		<region-attributes refid="PROXY"/>
+	</region>
+	<region name="car-position">
+		<region-attributes refid="PROXY" />
+	</region>
+</client-cache>

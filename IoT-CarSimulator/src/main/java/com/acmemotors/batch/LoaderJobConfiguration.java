@@ -139,51 +139,52 @@ public class LoaderJobConfiguration {
 	 */
 	@Bean
 	@SuppressWarnings("unchecked")
-	public LineTokenizer jsonLineTokenzier() {
-		return line -> {
-			List<String> tokens = new ArrayList<>();
-
-			try {
-				HashMap<String,Object> result =
+	public LineTokenizer jsonLineTokenzier()
+  {
+    return new LineTokenizer ()
+    {
+      public FieldSet tokenize(String line)
+      {
+			  List<String> tokens = new ArrayList<>();
+			  try {
+				  HashMap<String, Object> result =
 						new ObjectMapper().readValue(line, HashMap.class);
-
-				tokens.add((String) result.get(Field.get(0).getHerbieField()));
-				tokens.add(String.valueOf(result.get(Field.get(1).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(2).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(3).getHerbieField())));
-				tokens.add(result.get(Field.get(4).getHerbieField()).toString());
-				tokens.add(String.valueOf(result.get(Field.get(5).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(6).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(7).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(8).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(9).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(10).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(11).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(12).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(13).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(14).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(15).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(16).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(17).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(18).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(19).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(20).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(21).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(22).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(23).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(24).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(25).getHerbieField())));
-				tokens.add(String.valueOf(result.get(Field.get(26).getHerbieField())));
-
-			} catch (IOException e) {
-				throw new RuntimeException("Unable to parse json: " + line);
-			}
-
-			String[] fields = Field.herbieFields();
-			return new DefaultFieldSet(tokens.toArray(new String[tokens.size() - 1]),
+				  tokens.add((String) result.get(Field.get(0).getHerbieField()));
+				  tokens.add(String.valueOf(result.get(Field.get(1).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(2).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(3).getHerbieField())));
+				  tokens.add(result.get(Field.get(4).getHerbieField()).toString());
+				  tokens.add(String.valueOf(result.get(Field.get(5).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(6).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(7).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(8).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(9).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(10).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(11).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(12).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(13).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(14).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(15).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(16).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(17).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(18).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(19).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(20).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(21).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(22).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(23).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(24).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(25).getHerbieField())));
+				  tokens.add(String.valueOf(result.get(Field.get(26).getHerbieField())));
+			  } catch (IOException e) {
+				  throw new RuntimeException("Unable to parse json: " + line);
+			  }
+			  String[] fields = Field.herbieFields();
+			  return new DefaultFieldSet(tokens.toArray(new String[tokens.size() - 1]),
 					Arrays.copyOfRange(fields, 0, fields.length - 1));
-		};
-	}
+		  }
+	  };
+  }
 
 	@Bean
 	@StepScope
@@ -294,38 +295,41 @@ public class LoaderJobConfiguration {
 
 	@Bean
 	@StepScope
-	public ItemProcessor<Map<String, Object>, String> processor(
-			@Value("#{jobParameters['delay']}")final long delay) {
-		return item -> {
-			DefaultSerializerProvider provider = new DefaultSerializerProvider.Impl();
+	public ItemProcessor<Map<String, Object>, String> processor (@Value("#{jobParameters['delay']}")final long delay)
+  {
+		return new ItemProcessor<Map<String, Object>, String> ()
+    {
+      public String process (Map<String, Object> item) throws Exception
+      {
+			  DefaultSerializerProvider provider = new DefaultSerializerProvider.Impl();
 
-			provider.setNullValueSerializer(new JsonSerializer<Object>() {
-				@Override
-				public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
-					if(value == null) {
-						jgen.writeString("");
-					} else {
-						if(value instanceof String) {
-							jgen.writeString((String) value);
-						} else {
-							if(value instanceof Integer) {
-								jgen.writeNumber((Integer) value);
-							} else {
-								jgen.writeNumber((Double) value);
-							}
-						}
-					}
-				}
-			});
+			  provider.setNullValueSerializer(new JsonSerializer<Object>() {
+				  @Override
+				  public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException
+          {
+					  if(value == null) {
+						  jgen.writeString("");
+					  } else {
+						  if(value instanceof String) {
+							  jgen.writeString((String) value);
+						  } else {
+							  if(value instanceof Integer) {
+								  jgen.writeNumber((Integer) value);
+							  } else {
+								  jgen.writeNumber((Double) value);
+							  }
+						  }
+					  }
+				  }
+			  });
 
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.setSerializerProvider(provider);
+			  ObjectMapper mapper = new ObjectMapper();
+			  mapper.setSerializerProvider(provider);
 
-			String processedItem = mapper.writeValueAsString(item);
-
-			Thread.sleep(delay);
-
-			return processedItem;
+			  String processedItem = mapper.writeValueAsString(item);
+			  Thread.sleep(delay);
+			  return processedItem;
+      }
 		};
 	}
 
@@ -379,3 +383,4 @@ public class LoaderJobConfiguration {
 					   .build();
 	}
 }
+
