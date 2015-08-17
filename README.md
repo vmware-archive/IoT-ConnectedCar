@@ -104,11 +104,20 @@ There are two main pieces needed to build this project from source:
 2. Everything else
 
 ### Building the dashboard
+
 The HTML/AngularJS based dashboard was originally created via a Yeoman generator and 
-therefore uses it's standard stack to perform builds.  To be able to perform a build of 
-the dashboard's static assets (JavaScript, HTML, etc), you'll need 
-[Grunt](http://gruntjs.com/).  With Grunt installed, you can build the dashboard via the 
-following from the root of the IoT-Dashboard module:
+therefore uses it's standard stack to perform builds.  Given
+the rate of change with these tools, we can only assure that the build works on the 
+following versions at the time of the writing of this document:
+
+* node - v0.10.31
+* npm - 1.4.24
+* grunt - v0.4.5
+* bower - 1.4.1
+
+The best place to get the build setup is via the Yeoman website (referenced in the 
+dashboard's documentation).  With the various build tools installed installed, you can 
+build the dashboard via the following from the root of the IoT-Dashboard module:
 
 ```
 $ grunt clean build
