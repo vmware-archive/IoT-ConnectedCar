@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import com.acmemotors.rest.domain.CarPosition;
+import com.acmemotors.transformer.configuration.TypeConversionTransformerConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -317,12 +318,12 @@ public class TypeConversionTransformerTests {
 			"\"vin\": \"WP0AD2A71FL040367\"\n" +
 			"}";
 
-	private TypeConversionTransformerConfiguration.TypeConversionTransformer transformer;
+	private TypeConversionTransformerConfiguration transformer;
 
 	@Before
 	public void setUp() {
 		transformer =
-				new TypeConversionTransformerConfiguration.TypeConversionTransformer();
+				new TypeConversionTransformerConfiguration();
 	}
 
 	@Test

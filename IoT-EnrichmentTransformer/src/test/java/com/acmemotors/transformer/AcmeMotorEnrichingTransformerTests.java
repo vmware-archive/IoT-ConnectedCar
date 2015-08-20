@@ -20,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.Map;
 
+import com.acmemotors.transformer.configuration.AcmeMotorEnrichingTransformerConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,12 +30,12 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class AcmeMotorEnrichingTransformerTests {
 
-	private AcmeMotorEnrichingTransformerConfiguration.AcmeEnrichingTransformer transformer;
+	private AcmeMotorEnrichingTransformerConfiguration transformer;
 
 	@Before
 	public void setUp() {
 		transformer =
-				new AcmeMotorEnrichingTransformerConfiguration.AcmeEnrichingTransformer();
+				new AcmeMotorEnrichingTransformerConfiguration();
 	}
 
 	@Test

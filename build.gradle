@@ -325,17 +325,16 @@ project('IoT-Scripts') {
 }
 
 project('IoT-EnrichmentTransformer') {
-	apply plugin: 'spring-xd-module'
+	apply plugin: 'spring-boot'
 
 	bootRepackage {
 		enabled = true
+		classifier = 'exec'
 	}
 
 	dependencies {
-        compile("org.springframework.integration:spring-integration-core")
-        compile("com.gemstone.gemfire:gemfire")
-	    compile("org.springframework.data:spring-data-gemfire")
-        compile("org.apache.commons:commons-lang3")
+		compile("org.springframework.cloud:spring-cloud-stream:1.0.0.BUILD-SNAPSHOT")
+		compile("org.codehaus.jackson:jackson-mapper-asl")
         testCompile("org.springframework:spring-test")
         testCompile("junit:junit")
         testCompile("org.mockito:mockito-core")
@@ -356,15 +355,16 @@ project('IoT-DataFilter') {
 }
 
 project('IoT-GemFireTransformer') {
-	apply plugin: 'spring-xd-module'
+	apply plugin: 'spring-boot'
 
 	bootRepackage {
 		enabled = true
+		classifier = 'exec'
 	}
 
 	dependencies {
 		compile project(":IoT-GemFireCommons")
-		compile("org.springframework.integration:spring-integration-core")
+		compile("org.springframework.cloud:spring-cloud-stream:1.0.0.BUILD-SNAPSHOT")
 		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
 		compile "org.springframework.boot:spring-boot-autoconfigure"
 		compile "org.hsqldb:hsqldb"
