@@ -333,7 +333,7 @@ project('IoT-EnrichmentTransformer') {
 	}
 
 	dependencies {
-		compile("org.springframework.cloud:spring-cloud-stream:1.0.0.BUILD-SNAPSHOT")
+		compile("org.springframework.cloud.stream.module:spring-cloud-stream-modules:1.0.0.BUILD-SNAPSHOT")
 		compile("org.codehaus.jackson:jackson-mapper-asl")
         testCompile("org.springframework:spring-test")
         testCompile("junit:junit")
@@ -368,6 +368,8 @@ project('IoT-GemFireTransformer') {
 		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
 		compile "org.springframework.boot:spring-boot-autoconfigure"
 		compile "org.hsqldb:hsqldb"
+		compile "org.springframework.boot:spring-boot-starter-integration"
+		compile "org.springframework.boot:spring-boot-starter-redis"
 		testCompile("junit:junit")
 	}
 }

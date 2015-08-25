@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        output: http.data
+        input: transformer.data
