@@ -2,5 +2,5 @@ spring:
   cloud:
     stream:
       bindings:
-        output: http.data
-        input: transformer.data
+        input: http.data
+        output: transformer.data

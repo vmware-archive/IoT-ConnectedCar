@@ -333,7 +333,13 @@ project('IoT-EnrichmentTransformer') {
 	}
 
 	dependencies {
-		compile("org.springframework.cloud.stream.module:spring-cloud-stream-modules:1.0.0.BUILD-SNAPSHOT")
+		compile("org.springframework.cloud.stream.module:spring-cloud-stream-modules:1.0.0.BUILD-SNAPSHOT") {
+			exclude group:'org.springframework.integration', module:'spring-integration-core'
+			exclude group:'org.springframework.integration', module:'spring-integration-redis'
+		}
+		compile("org.springframework.cloud:spring-cloud-cloudfoundry-connector:1.0.0.BUILD-SNAPSHOT")
+		compile("org.springframework.integration:spring-integration-core:4.2.0.BUILD-SNAPSHOT")
+		compile("org.springframework.integration:spring-integration-redis:4.2.0.BUILD-SNAPSHOT")
 		compile("org.codehaus.jackson:jackson-mapper-asl")
         testCompile("org.springframework:spring-test")
         testCompile("junit:junit")
