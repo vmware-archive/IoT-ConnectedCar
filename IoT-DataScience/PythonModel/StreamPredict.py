@@ -18,60 +18,65 @@
 # Ipython StreamPredict.py Configuration/default.conf  TODO: replace with docopt
 
 import json
-import logging
+import os
+import cPickle as pickle
 import sys
 
-import ConfigParser
 import Data
+import logging
 import numpy as np
+import redis
 
 from datetime import datetime
 from datetime import timedelta
 from pandas import Series
 from pandas import concat
-from sklearn.externals import joblib
-from stream import Processor
 from toolz import dicttoolz
 
-if len(sys.argv) > 1:
-    configuration_string = sys.argv[1]
-else:
-    configuration_string = "Configuration/default.conf"
 
-# Set Job Params
-config = ConfigParser.ConfigParser()
-config.read(configuration_string)
+# Set up logging
+logger = logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
-storedmodel_directory = config.get("Directories", "dir_storedmodel")
-units = config.get("Streaming", "units")
-fuel_capacity = config.get("Car", "fuel_capacity_liters")
-mixing_length = float(config.get("Streaming", "mixing_length"))
-smoothing_length = float(config.get("Streaming", "smoothing_length"))
-cutoff = timedelta(minutes=int(config.get("Streaming", "cutoff")))
+# Redis setup
+services = json.loads(os.getenv("VCAP_SERVICES"))
+redis_env = services["p-redis"][0]["credentials"]
+raw_data_queue = os.getenv("raw_data")
+predictions_topic = os.getenv("predictions")
+model_db = os.getenv("model_db")
+redis_env['port'] = int(redis_env['port'])
 
-init_class_file = config.get("Batch", "init_class_file")
-online_class_file = config.get("Batch", "online_class_file")
-journey_cluster_file = config.get("Batch", "journey_cluster_file")
+# Connect to Redis
+try:
+    r = redis.StrictRedis(**redis_env)
+    r.info()
+except redis.ConnectionError as e:
+    logging.exception("Error connecting to Redis: %s", e)
+    r = None
 
-logfile = config.get("Directories", "logfile")
+# Load other environment variables
+units = os.getenv("units")
+fuel_type = os.getenv("fuel_type")
+fuel_capacity = os.getenv("fuel_capacity_liters")
+mixing_length = float(os.getenv("mixing_length"))
+smoothing_length = float(os.getenv("smoothing_length"))
+cutoff = timedelta(minutes=int(os.getenv("cutoff")))
 
-logging.basicConfig(filename=logfile, level=logging.ERROR)
 
 # Load models
-init_class_models = joblib.load(storedmodel_directory + init_class_file)
-online_class_models = joblib.load(storedmodel_directory + online_class_file)
+init_models = pickle.loads(r.get("init_models"))
+online_models = pickle.loads(r.get("online_models"))
 
 # Load information from historical data
-historical_journey_clusters = joblib.load(storedmodel_directory + journey_cluster_file)
+journey_clusters = pickle.loads(r.get("journey_clusters"))
 
 end_locations = dicttoolz.valmap(lambda x: [journey_cluster.averages[["EndLat", "EndLong"]].values.tolist() for
-                                 journey_cluster in x if journey_cluster.clusterID != -1], historical_journey_clusters)
+                                 journey_cluster in x if journey_cluster.clusterID != -1], journey_clusters)
 
 mpg_insts = dicttoolz.valmap(lambda x: [journey_cluster.averages["MPG_from_MAF"] if "MPG_from_MAF" in journey_cluster.averages.keys() else float("NaN") for
-                                        journey_cluster in x if journey_cluster.clusterID != -1], historical_journey_clusters)
+                                        journey_cluster in x if journey_cluster.clusterID != -1], journey_clusters)
 
 cluster_ids = dicttoolz.valmap(lambda x: [str(journey_cluster.clusterID) for
-                                          journey_cluster in x if journey_cluster.clusterID != -1], historical_journey_clusters)
+                                          journey_cluster in x if journey_cluster.clusterID != -1], journey_clusters)
 
 journeys = {}
 initial_predictions = {}
@@ -79,8 +84,9 @@ prob_dict = {}
 time_dict = {}
 
 
-def callback(body):
+def callback(message):
     try:
+        body = message["data"]
         output = json.loads(body)
         vin = output["vin"]
 
@@ -116,12 +122,12 @@ def callback(body):
         # create initial prediction:
         counter = len(journey.data.index)
         if counter == 1:
-            initial_predictions[vin] = init_class_models[vin].predict(journey)
+            initial_predictions[vin] = init_models[vin].predict(journey)
             prob_dict[vin] = initial_predictions[vin]
             time_dict[vin] = Series(datetime.now())
 
         # create online prediction:
-        online_prediction = online_class_models[vin].predict(journey)
+        online_prediction = online_models[vin].predict(journey)
 
         # mix initial and online prediction
         mixing_factor = min(counter/mixing_length, 1)
@@ -169,5 +175,14 @@ def callback(body):
     except Exception as e:
         logging.exception("Got error %s with payload %s and output %s", e, body, output)
 
-process = Processor()
-process.start(callback)
+
+def main():
+    p = r.pubsub(ignore_subscribe_messages=True)
+    p.subscribe(raw_data_queue)
+    for message in p.listen():
+        predictions = callback(message)
+        p.publish(predictions_topic, predictions)
+
+
+if __name__ == "__main__":
+    main()
