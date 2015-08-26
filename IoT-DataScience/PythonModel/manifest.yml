@@ -1,0 +1,22 @@
+---
+applications:
+- name: cc-streampredict
+  memory: 2048M
+  instances: 1
+  buildpack: https://github.com/ihuston/python-conda-buildpack.git
+  path: .
+  command: python StreamPredict.py
+  timeout: 180
+  no-route: true
+  services:
+    - stream-cloud-streams-bus
+  env:
+    raw_data: "queue.transformer.data"
+    predictions: "topic.transformer.data"
+    model_database: "models" # Note: May not need this
+    units: "miles"
+    mixing_length: "90.0"
+    smoothing_length: "10"
+    cutoff: "5"
+    fuel_type: "diesel"
+    fuel_capacity_liters: "55"

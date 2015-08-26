@@ -34,4 +34,4 @@ IoT-Data-Science/PythonModel/metastore_db
 lib
 /data
 .gradletasknamecache
-
+IoT-DataScience/PythonModel/redis_push.py
