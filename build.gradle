@@ -168,15 +168,27 @@ if (JavaVersion.current().isJava8Compatible()) {
 }
 
 project('IoT-GemFireCommons') {
+	apply plugin: 'maven'
+
+	configure(install.repositories.mavenInstaller) {
+		pom.project {
+			groupId 'io.spring'
+			artifactId 'IoT-GemFireCommons'
+			inceptionYear '2014'
+			packaging 'jar'
+			version '0.0.1.BUILD-SNAPSHOT'
+		}
+	}
+
 	bootRepackage {
 		enabled = false
 	}
 
 	dependencies {
-		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
-		compile "org.springframework.boot:spring-boot-autoconfigure"
-		compile "org.hsqldb:hsqldb"
-		testCompile("junit:junit")
+		compile 'org.springframework.boot:spring-boot-starter-data-gemfire'
+		compile 'org.springframework.boot:spring-boot-autoconfigure'
+		compile 'org.hsqldb:hsqldb'
+		testCompile 'junit:junit'
 	}
 }
 
@@ -187,6 +199,8 @@ project('IoT-GemFireREST') {
 
 	dependencies {
 		compile project(":IoT-GemFireCommons")
+		compile 'io.pivotal.spring.cloud:spring-cloud-gemfire-spring-connector:1.0.0.BUILD-SNAPSHOT'
+		compile 'io.pivotal.spring.cloud:spring-cloud-pivotal-cloudfoundry-connector:1.0.0.BUILD-SNAPSHOT'
 		compile "org.springframework.boot:spring-boot-starter-data-rest"
 		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
 		compile "org.springframework.boot:spring-boot-autoconfigure"

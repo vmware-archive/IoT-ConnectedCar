@@ -43,23 +43,23 @@ public class TypeConversionTransformerConfiguration {
 	private static final Logger logger =
 			LoggerFactory.getLogger(TypeConversionTransformerConfiguration.class);
 
-	private final ObjectMapper mapper;
+//	private final ObjectMapper mapper;
 
 	public TypeConversionTransformerConfiguration() {
-		this.mapper = new ObjectMapper();
-		this.mapper.configure(JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, true);
+//		this.mapper = new ObjectMapper();
+//		this.mapper.configure(JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, true);
 	}
 
 	@Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-	public CarPosition transform(String payload) {
+	public CarPosition transform(Map<String, Object> payload) {
 
 		CarPosition carPosition = null;
 
 		try {
 			if (payload != null) {
-				Map<String, Object> map = mapper.readValue(payload,
-						new TypeReference<HashMap<String,Object>>(){});
-				carPosition = new CarPosition(map);
+//				Map<String, Object> map = mapper.readValue(payload,
+//						new TypeReference<HashMap<String,Object>>(){});
+				carPosition = new CarPosition(payload);
 			}
 		} catch (final Exception e) {
 			logger.error("Error converting to a CarPosition object", e);

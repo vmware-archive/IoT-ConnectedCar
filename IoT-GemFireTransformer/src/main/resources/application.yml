@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input: topic:transformer.data
+        output: gemfiretransformer.data

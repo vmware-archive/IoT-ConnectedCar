@@ -17,19 +17,31 @@ package com.acmemotors.rest;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Arrays;
 import java.util.Collections;
 
+import com.acmemotors.rest.configuration.GemfirePoolProperties;
+import com.gemstone.gemfire.cache.DataPolicy;
+import com.gemstone.gemfire.cache.GemFireCache;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.client.ClientCache;
 import com.gemstone.gemfire.cache.client.ClientCacheFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
+import com.gemstone.gemfire.cache.client.Pool;
 
+import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.gemfire.client.ClientCacheFactoryBean;
+import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
 import org.springframework.data.gemfire.client.PoolFactoryBean;
+import org.springframework.data.gemfire.config.GemfireConstants;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 /**
@@ -39,11 +51,83 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
  * @author Michael Minella
  */
 @Configuration
+@EnableConfigurationProperties(GemfirePoolProperties.class)
 @EnableGemfireRepositories(basePackages = "com.acmemotors.rest")
 @SpringBootApplication
 public class Main {
+	@Autowired
+	GemfirePoolProperties config;
 
 	@Bean
+	@Profile("cloud")
+	PoolFactoryBean gemfirePool() {
+		PoolFactoryBean poolFactoryBean = new PoolFactoryBean();
+
+		switch (config.getConnectType()) {
+			case locator:
+				poolFactoryBean.setLocators(Arrays.asList(config.getHostAddresses()));
+				break;
+			case server:
+				poolFactoryBean.setServers(Arrays.asList(config.getHostAddresses()));
+				break;
+			default:
+				throw new IllegalArgumentException("connectType " + config.getConnectType() + " is not supported.");
+		}
+		poolFactoryBean.setSubscriptionEnabled(config.isSubscriptionEnabled());
+		poolFactoryBean.setName(GemfireConstants.DEFAULT_GEMFIRE_POOL_NAME);
+		return poolFactoryBean;
+	}
+
+	@Bean
+	@Profile("cloud")
+	public ClientCacheFactoryBean clientCache(Pool pool) {
+		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
+		clientCacheFactoryBean.setUseBeanFactoryLocator(false);
+		clientCacheFactoryBean.setPool(pool);
+		clientCacheFactoryBean.setPoolName("gemfirePool");
+		return clientCacheFactoryBean;
+	}
+
+	@Bean
+	@Profile("cloud")
+	public ClientRegionFactoryBean journeyRegion(GemFireCache cache) throws Exception {
+		ClientRegionFactoryBean clientRegionFactoryBean = new ClientRegionFactoryBean();
+		clientRegionFactoryBean.setRegionName("journeys");
+		clientRegionFactoryBean.setDataPolicy(DataPolicy.EMPTY);
+		try {
+			clientRegionFactoryBean.setCache(cache);
+		}
+		catch (Exception e) {
+			throw new BeanCreationException(e.getMessage(), e);
+		}
+
+		return clientRegionFactoryBean;
+	}
+
+	@Bean
+	@Profile("cloud")
+	public ClientRegionFactoryBean carPositionRegion(GemFireCache cache) throws Exception {
+		ClientRegionFactoryBean clientRegionFactoryBean = new ClientRegionFactoryBean();
+		clientRegionFactoryBean.setRegionName("car-position");
+		clientRegionFactoryBean.setDataPolicy(DataPolicy.EMPTY);
+		try {
+			clientRegionFactoryBean.setCache(cache);
+		}
+		catch (Exception e) {
+			throw new BeanCreationException(e.getMessage(), e);
+		}
+
+		return clientRegionFactoryBean;
+	}
+
+	@Bean
+	@Profile("!cloud")
+	ClientCache cache() {
+		return new ClientCacheFactory().create();
+	}
+
+	@Bean
+	@Profile("!cloud")
 	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
 			@Value("${gf.server.host}") String serverHost) throws Exception {
 		PoolFactoryBean factoryBean = new PoolFactoryBean();
@@ -55,12 +139,8 @@ public class Main {
 	}
 
 	@Bean
-	ClientCache cache() {
-		return new ClientCacheFactory().create();
-	}
-
-	@Bean
 	@SuppressWarnings("rawtypes")
+	@Profile("!cloud")
 	Region journeyRegion(ClientCache cache) {
 		return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
 				.create("journeys");
@@ -68,6 +148,7 @@ public class Main {
 
 	@Bean
 	@SuppressWarnings("rawtypes")
+	@Profile("!cloud")
 	Region carPositionRegion(ClientCache cache) {
 		return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
 				.create("car-position");

@@ -20,6 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.gemfire.mapping.Region;
 import org.springframework.util.StringUtils;
@@ -82,6 +85,9 @@ import org.springframework.util.StringUtils;
 public class CarPosition implements Serializable {
 
 	private static final long serialVersionUID = 1;
+
+	private static final Logger logger =
+			LoggerFactory.getLogger(CarPosition.class);
 
 	@Id
 	private String vin;
@@ -220,17 +226,22 @@ public class CarPosition implements Serializable {
 
 		this.vin = (String) values.get("vin");
 
-		Map<String, Object> predictions = (Map<String, Object>) values.get("Predictions");
-		this.remainingRange = (Integer) predictions.get("RemainingRange");
+		if(values.containsKey("Predictions")) {
+			Map<String, Object> predictions = (Map<String, Object>) values.get("Predictions");
+			this.remainingRange = (Integer) predictions.get("RemainingRange");
 
-		Map<String, Object> journeyPredictions = (Map<String, Object>) predictions.get("ClusterPredictions");
-		this.predictions = new HashMap<>(journeyPredictions.size());
+			Map<String, Object> journeyPredictions = (Map<String, Object>) predictions.get("ClusterPredictions");
+			this.predictions = new HashMap<>(journeyPredictions.size());
 
-		for (Map.Entry<String, Object> predictionValues : journeyPredictions.entrySet()) {
-			Map<String, Object> prediction = (Map<String, Object>) predictionValues.getValue();
+			for (Map.Entry<String, Object> predictionValues : journeyPredictions.entrySet()) {
+				Map<String, Object> prediction = (Map<String, Object>) predictionValues.getValue();
 
-			PredictedDestination curPrediction = new PredictedDestination((Double) ((List)prediction.get("EndLocation")).get(0), (Double) ((List)prediction.get("EndLocation")).get(1), (Double) prediction.get("MPG_Journey"), (Double) prediction.get("Probability"));
-			this.predictions.put(predictionValues.getKey(), curPrediction);
+				PredictedDestination curPrediction = new PredictedDestination((Double) ((List)prediction.get("EndLocation")).get(0), (Double) ((List)prediction.get("EndLocation")).get(1), (Double) prediction.get("MPG_Journey"), (Double) prediction.get("Probability"));
+				this.predictions.put(predictionValues.getKey(), curPrediction);
+			}
+		}
+		else {
+			logger.warn("No prediction data was received");
 		}
 	}
 
