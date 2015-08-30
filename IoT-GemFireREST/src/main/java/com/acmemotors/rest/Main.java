@@ -21,15 +21,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import com.acmemotors.rest.configuration.GemfirePoolProperties;
-import com.gemstone.gemfire.cache.DataPolicy;
-import com.gemstone.gemfire.cache.GemFireCache;
-import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.client.ClientCache;
 import com.gemstone.gemfire.cache.client.ClientCacheFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
-import com.gemstone.gemfire.cache.client.Pool;
 
-import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -38,7 +33,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.gemfire.client.ClientCacheFactoryBean;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
 import org.springframework.data.gemfire.client.PoolFactoryBean;
 import org.springframework.data.gemfire.config.GemfireConstants;
@@ -57,6 +51,16 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 public class Main {
 	@Autowired
 	GemfirePoolProperties config;
+
+//	@Bean
+//	@Profile("cloud")
+//	public ClientCacheFactoryBean clientCache(Pool pool) {
+//		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
+//		clientCacheFactoryBean.setUseBeanFactoryLocator(false);
+//		clientCacheFactoryBean.setPool(pool);
+//		clientCacheFactoryBean.setPoolName("gemfirePool");
+//		return clientCacheFactoryBean;
+//	}
 
 	@Bean
 	@Profile("cloud")
@@ -79,48 +83,6 @@ public class Main {
 	}
 
 	@Bean
-	@Profile("cloud")
-	public ClientCacheFactoryBean clientCache(Pool pool) {
-		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
-		clientCacheFactoryBean.setUseBeanFactoryLocator(false);
-		clientCacheFactoryBean.setPool(pool);
-		clientCacheFactoryBean.setPoolName("gemfirePool");
-		return clientCacheFactoryBean;
-	}
-
-	@Bean
-	@Profile("cloud")
-	public ClientRegionFactoryBean journeyRegion(GemFireCache cache) throws Exception {
-		ClientRegionFactoryBean clientRegionFactoryBean = new ClientRegionFactoryBean();
-		clientRegionFactoryBean.setRegionName("journeys");
-		clientRegionFactoryBean.setDataPolicy(DataPolicy.EMPTY);
-		try {
-			clientRegionFactoryBean.setCache(cache);
-		}
-		catch (Exception e) {
-			throw new BeanCreationException(e.getMessage(), e);
-		}
-
-		return clientRegionFactoryBean;
-	}
-
-	@Bean
-	@Profile("cloud")
-	public ClientRegionFactoryBean carPositionRegion(GemFireCache cache) throws Exception {
-		ClientRegionFactoryBean clientRegionFactoryBean = new ClientRegionFactoryBean();
-		clientRegionFactoryBean.setRegionName("car-position");
-		clientRegionFactoryBean.setDataPolicy(DataPolicy.EMPTY);
-		try {
-			clientRegionFactoryBean.setCache(cache);
-		}
-		catch (Exception e) {
-			throw new BeanCreationException(e.getMessage(), e);
-		}
-
-		return clientRegionFactoryBean;
-	}
-
-	@Bean
 	@Profile("!cloud")
 	ClientCache cache() {
 		return new ClientCacheFactory().create();
@@ -140,18 +102,30 @@ public class Main {
 
 	@Bean
 	@SuppressWarnings("rawtypes")
-	@Profile("!cloud")
-	Region journeyRegion(ClientCache cache) {
-		return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
-				.create("journeys");
+	ClientRegionFactoryBean journeyRegion(ClientCache cache) {
+
+		ClientRegionFactoryBean exampleRegion = new
+				ClientRegionFactoryBean<>();
+
+		exampleRegion.setName("journeys");
+		exampleRegion.setCache(cache);
+		exampleRegion.setShortcut(ClientRegionShortcut.PROXY);
+
+		return exampleRegion;
 	}
 
 	@Bean
 	@SuppressWarnings("rawtypes")
-	@Profile("!cloud")
-	Region carPositionRegion(ClientCache cache) {
-		return cache.createClientRegionFactory(ClientRegionShortcut.PROXY)
-				.create("car-position");
+	ClientRegionFactoryBean carPositionRegion(ClientCache cache) {
+
+		ClientRegionFactoryBean exampleRegion = new
+				ClientRegionFactoryBean<>();
+
+		exampleRegion.setName("car-position");
+		exampleRegion.setCache(cache);
+		exampleRegion.setShortcut(ClientRegionShortcut.PROXY);
+
+		return exampleRegion;
 	}
 
 	public static void main(String[] args) throws IOException {
