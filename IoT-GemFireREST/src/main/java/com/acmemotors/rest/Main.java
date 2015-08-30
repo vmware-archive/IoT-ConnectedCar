@@ -52,16 +52,6 @@ public class Main {
 	@Autowired
 	GemfirePoolProperties config;
 
-//	@Bean
-//	@Profile("cloud")
-//	public ClientCacheFactoryBean clientCache(Pool pool) {
-//		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
-//		clientCacheFactoryBean.setUseBeanFactoryLocator(false);
-//		clientCacheFactoryBean.setPool(pool);
-//		clientCacheFactoryBean.setPoolName("gemfirePool");
-//		return clientCacheFactoryBean;
-//	}
-
 	@Bean
 	@Profile("cloud")
 	PoolFactoryBean gemfirePool() {
