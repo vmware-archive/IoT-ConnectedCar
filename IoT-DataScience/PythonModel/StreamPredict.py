@@ -42,7 +42,6 @@ services = json.loads(os.getenv("VCAP_SERVICES"))
 redis_env = services["p-redis"][0]["credentials"]
 raw_data_queue = os.getenv("raw_data")
 predictions_topic = os.getenv("predictions")
-model_db = os.getenv("model_db")
 redis_env['port'] = int(redis_env['port'])
 
 # Connect to Redis
@@ -57,6 +56,8 @@ except redis.ConnectionError as e:
 units = os.getenv("units")
 fuel_type = os.getenv("fuel_type")
 fuel_capacity = os.getenv("fuel_capacity_liters")
+engine_displacement = os.getenv("engine_displacement_liters")
+fuel_level = os.getenv("fuel_level_percent")
 mixing_length = float(os.getenv("mixing_length"))
 smoothing_length = float(os.getenv("smoothing_length"))
 cutoff = timedelta(minutes=int(os.getenv("cutoff")))
@@ -84,26 +85,32 @@ prob_dict = {}
 time_dict = {}
 
 
+def impute(output, engine_displacement, fuel_level):
+    # impute maf if missing
+    if output["maf_airflow"] == "":
+        # engine displacement in l
+        ed = engine_displacement
+        # volumetric efficiency
+        ve = 0.9
+        imap = output["rpm"] * output["intake_manifold_pressure"] / (output["intake_air_temp"] + 273.15)
+        # 28.97 = mass of air
+        # 8.314 = gas constant
+        output["maf_airflow"] = (imap/120.) * ve * ed * (28.97/8.314)
+
+        # impute fuel level if missing
+    if output["fuel_level_input"] == "":  # TODO: take last value if it exists
+        output["fuel_level_input"] = fuel_level
+
+    return output
+
+
 def callback(message):
     try:
         body = message["data"]
         output = json.loads(body)
         vin = output["vin"]
 
-        # impute maf if missing
-        if output["maf_airflow"] == "":
-            # engine displacement in l
-            ed = 1.8
-            # volumetric efficiency
-            ve = 0.9
-            imap = output["rpm"] * output["intake_manifold_pressure"] / (output["intake_air_temp"] + 273.15)
-            # 28.97 = mass of air
-            # 8.314 = gas constant
-            output["maf_airflow"] = (imap/120.) * ve * ed * (28.97/8.314)
-
-        # impute fuel level if missing
-        if output["fuel_level_input"] == "":  # TODO: take last value if it exists
-            output["fuel_level_input"] = 50
+        output = impute(output, engine_displacement, fuel_level)
 
         if vin in journeys:
             journey = journeys[vin]
