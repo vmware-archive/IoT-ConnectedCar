@@ -13,10 +13,8 @@ dependencies:
 - pip=7.1.2=py27_0
 - python=2.7.10=0
 - python-dateutil=2.4.2=py27_0
-- python.app=1.2=py27_4
 - pytz=2015.4=py27_0
 - readline=6.2=2
-- redis=2.6.9=0
 - scikit-learn=0.16.1=np19py27_0
 - scipy=0.16.0=np19py27_1
 - setuptools=18.1=py27_0
@@ -34,3 +32,4 @@ dependencies:
   - jsonpickle==0.9.2
   - logging==0.4.9.6
   - requests==2.7.0
+  - redis
