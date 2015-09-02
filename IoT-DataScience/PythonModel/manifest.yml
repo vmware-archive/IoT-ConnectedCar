@@ -1,6 +1,6 @@
 ---
 applications:
-- name: cc_streampredict
+- name: cc-streampredict
   memory: 2048M
   instances: 1
   buildpack: https://github.com/ihuston/python-conda-buildpack.git
@@ -11,13 +11,12 @@ applications:
   services:
     - stream-cloud-streams-bus
   env:
-    raw_data: "raw_data"
-    predictions: "predictions"
-    model_table: "models"
-    dir_rawdata: "hdfs://10.68.52.89:8020/data/Dallas-Drives/simulated_data/*.out"
+    raw_data: "queue.transformer.data"
+    predictions: "topic.transformer.data"
+    model_database: "models" # Note: May not need this
     units: "miles"
     mixing_length: "90.0"
     smoothing_length: "10"
     cutoff: "5"
-    fuel_type: "petrol"
-    fuel_capacity_liters: "106"
+    fuel_type: "diesel"
+    fuel_capacity_liters: "55"
