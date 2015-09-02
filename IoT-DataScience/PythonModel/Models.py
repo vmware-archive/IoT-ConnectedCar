@@ -17,7 +17,6 @@ from collections import Counter
 
 import numpy as np
 import pandas as pd
-from IPython import embed
 from sklearn import cross_validation
 from sklearn import metrics
 from sklearn import neighbors
