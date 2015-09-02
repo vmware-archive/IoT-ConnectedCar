@@ -1,4 +1,4 @@
-name: cc
+name: root
 dependencies:
 - decorator=4.0.2=py27_0
 - ipython=4.0.0=py27_0
