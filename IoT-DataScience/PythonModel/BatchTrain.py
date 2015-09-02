@@ -101,8 +101,8 @@ def main(args=None):
 
     # Build online classification models
     online_class_models = journeys_with_id.mapValues(lambda data: Models.train_online_class_model(online_class_alg,
-												  online_class_feature_names,
-												  data)).collectAsMap()
+                                                                                                  online_class_feature_names,
+                                                                                                  data)).collectAsMap()
     r.set("online_models", pickle.dumps(online_class_models))
     output.close()
 
