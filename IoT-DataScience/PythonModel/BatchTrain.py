@@ -49,7 +49,7 @@ def main(args=None):
 
     # Set up Redis
     redis_host = config.get("Redis", "host")
-    redis_port = config.get("Redis", "port")
+    redis_port = int(config.get("Redis", "port"))
     redis_password = config.get("Redis", "password")
     # Connect to Redis
     r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password)
@@ -101,8 +101,8 @@ def main(args=None):
 
     # Build online classification models
     online_class_models = journeys_with_id.mapValues(lambda data: Models.train_online_class_model(online_class_alg,
-												  online_class_feature_names,
-												  data)).collectAsMap()
+                                                                                                  online_class_feature_names,
+                                                                                                  data)).collectAsMap()
     r.set("online_models", pickle.dumps(online_class_models))
     output.close()
 
