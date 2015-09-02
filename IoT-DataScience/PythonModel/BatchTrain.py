@@ -50,7 +50,6 @@ def main(args=None):
     # Set up Redis
     redis_host = config.get("Redis", "host")
     redis_port = config.get("Redis", "port")
-    # redis_db = config.get("Redis", "db") # TODO: need this?
     redis_password = config.get("Redis", "password")
     # Connect to Redis
     r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password)
