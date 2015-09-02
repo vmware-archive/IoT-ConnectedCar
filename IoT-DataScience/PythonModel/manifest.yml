@@ -11,12 +11,13 @@ applications:
   services:
     - stream-cloud-streams-bus
   env:
-    raw_data: "queue.transformer.data"
-    predictions: "topic.transformer.data"
-    model_database: "models" # Note: May not need this
-    units: "miles"
-    mixing_length: "90.0"
-    smoothing_length: "10"
-    cutoff: "5"
-    fuel_type: "diesel"
+    raw_data: "queue.transformer.data" # redis queue for raw data
+    predictions: "topic.transformer.data" # redis topic to send predictions to
+    units: "miles" # miles or km
+    mixing_length: "90.0" # how long in seconds should the initial model’s predictions be faded in
+    smoothing_length: "10" # over how many seconds should the predictions be averaged
+    cutoff: "5" # after how many minutes of not receiving new data should a new journey start?
+    fuel_type: "diesel" # diesel or petrol
     fuel_capacity_liters: "55"
+    engine_displacement_liters: "1.8" # used to impute mass air flow if missing
+    fuel_level_percent: "52" # used to impute the fuel level if missing
