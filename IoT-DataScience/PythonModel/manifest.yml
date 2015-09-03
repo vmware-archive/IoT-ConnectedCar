@@ -12,7 +12,7 @@ applications:
     - stream-cloud-streams-bus
   env:
     raw_data: "queue.transformer.data" # redis queue for raw data
-    predictions: "topic.transformer.data" # redis topic to send predictions to
+    predictions: "topic.python.data" # redis topic to send predictions to
     units: "miles" # miles or km
     mixing_length: "90.0" # how long in seconds should the initial model’s predictions be faded in
     smoothing_length: "10" # over how many seconds should the predictions be averaged
