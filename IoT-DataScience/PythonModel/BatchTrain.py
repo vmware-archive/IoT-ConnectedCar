@@ -91,7 +91,7 @@ def main(args=None):
     for cluster in cluster_json:
         output.write(cluster + "\n")
     journey_clusters.unpersist()
-    r.set("clusters_json", output.getvalue())
+    r.set("clusters_json", output.getvalue().rstrip("\n"))
     output.close()
 
     # Build initial classification models
@@ -108,7 +108,7 @@ def main(args=None):
 
     sc.stop()
 
-    r.set("models_last_trained", datetime.datetime.utcnow())
+    r.set("models_last_trained", datetime.datetime.utcnow().strftime("%y-%m-%d %H:%M:%S"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
