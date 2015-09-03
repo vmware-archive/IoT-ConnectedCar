@@ -320,8 +320,7 @@ class Journey:
         self.transform_data()
 
     # Read in data and assign variables
-    def load_streaming_data(self, input):
-        input_json = json.loads(input)
+    def load_streaming_data(self, input_json):
         for k in input_json:
             if input_json[k] == "":
                 input_json[k] = np.nan
