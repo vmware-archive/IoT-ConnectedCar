@@ -19,6 +19,7 @@
 # ipython BatchTrain.py Configuration/default.conf
 
 import ConfigParser
+import datetime
 import json
 import cStringIO
 import cPickle as pickle
@@ -87,9 +88,8 @@ def main(args=None):
     r.set("journey_clusters", pickle.dumps(journey_clusters_local))
     cluster_json = journey_clusters.map(Data.extract_journey_json).collect()
     output = cStringIO.StringIO()
-    with open(output, "w") as f:
-        for cluster in cluster_json:
-            f.write(cluster + "\n")
+    for cluster in cluster_json:
+        output.write(cluster + "\n")
     journey_clusters.unpersist()
     r.set("clusters_json", output.getvalue())
     output.close()
@@ -107,6 +107,8 @@ def main(args=None):
     output.close()
 
     sc.stop()
+
+    r.set("models_last_trained", datetime.datetime.utcnow())
 
 if __name__ == "__main__":
     main(sys.argv[1:])
