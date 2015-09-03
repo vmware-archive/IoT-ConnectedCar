@@ -35,7 +35,7 @@ from toolz import dicttoolz
 
 
 # Set up logging
-logger = logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logger = logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 # Redis setup
 services = json.loads(os.getenv("VCAP_SERVICES"))
@@ -104,91 +104,105 @@ def impute(output, engine_displacement, fuel_level):
     return output
 
 
+def start_new_journey_if(output, vin, journeys):
+    if vin in journeys:
+        journey = journeys[vin]
+        journey.load_streaming_data(output)
+        time_dict[vin] = concat([time_dict[vin], Series(datetime.now())])
+        if (journey.data["Time_GPS"].iloc[-1] - journey.data["Time_GPS"].iloc[-2]) > cutoff \
+           or (time_dict[vin].iloc[-1] - time_dict[vin].iloc[-2]) > cutoff:
+            journey = Data.Journey()
+            journey.load_streaming_data(output)
+            journeys[vin] = journey
+    else:
+        journey = Data.Journey()
+        journey.load_streaming_data(output)
+        journeys[vin] = journey
+        time_dict[vin] = Series(datetime.now())
+
+    return journey
+
+
+def make_predictions(journey, vin):
+    # create initial prediction:
+    counter = len(journey.data.index)
+    if counter == 1:
+        initial_predictions[vin] = init_models[vin].predict(journey)
+        prob_dict[vin] = initial_predictions[vin]
+        time_dict[vin] = Series(datetime.now())
+
+    # create online prediction:
+    online_prediction = online_models[vin].predict(journey)
+
+    # mix initial and online prediction
+    mixing_factor = min(counter/mixing_length, 1)
+    probabilities = (1 - mixing_factor) * initial_predictions[vin] + mixing_factor * online_prediction
+
+    if counter > 1:
+        prob_dict[vin] = np.vstack((prob_dict[vin], probabilities))
+
+    if counter > smoothing_length:
+        smoothed_probabilities = np.mean(prob_dict[vin][(counter - smoothing_length + 1): (counter + 1), :], axis=0, keepdims=True)
+    else:
+        smoothed_probabilities = probabilities
+
+    # calculate remaining range
+    mpg = np.nansum(smoothed_probabilities * mpg_insts[vin])
+    remaining_fuel_gallons = ((np.array(journey.data.FuelRemaining.tail(1), dtype="float64")/100 * float(fuel_capacity)) * 0.264172052)[0]
+
+    if (units == "miles"):
+        remaining_range = int(remaining_fuel_gallons * mpg)
+    else:
+        remaining_range = (remaining_fuel_gallons * mpg) * 1.609344
+
+    # create cluster information
+    container = zip(cluster_ids[vin], smoothed_probabilities[0], end_locations[vin], mpg_insts[vin])
+    cluster_predictions = dict()
+    for jid, prob, endloc, mpg in container:
+        cluster_predictions[jid] = {"Probability": round(prob, 3), "EndLocation": endloc, "MPG_Journey": round(mpg, 5)}
+
+    # put together final dict
+    predictions = dict()
+    predictions["ClusterPredictions"] = cluster_predictions
+    predictions["RemainingRange"] = remaining_range
+
+    return predictions
+
+
 def callback(message):
     try:
-        body = message["data"]
-        output = json.loads(body)
+        output = json.loads(message)
         vin = output["vin"]
 
         output = impute(output, engine_displacement, fuel_level)
 
-        if vin in journeys:
-            journey = journeys[vin]
-            journey.load_streaming_data(body)
-            time_dict[vin] = concat([time_dict[vin], Series(datetime.now())])
-            if (journey.data["Time_GPS"].iloc[-1] - journey.data["Time_GPS"].iloc[-2]) > cutoff \
-               or (time_dict[vin].iloc[-1] - time_dict[vin].iloc[-2]) > cutoff:
-                journey = Data.Journey()
-                journey.load_streaming_data(body)
-                journeys[vin] = journey
-        else:
-            journey = Data.Journey()
-            journey.load_streaming_data(body)
-            journeys[vin] = journey
+        journey = start_new_journey_if(output, vin, journeys)
 
-        # create initial prediction:
-        counter = len(journey.data.index)
-        if counter == 1:
-            initial_predictions[vin] = init_models[vin].predict(journey)
-            prob_dict[vin] = initial_predictions[vin]
-            time_dict[vin] = Series(datetime.now())
+        if vin in init_models:
+            predictions = make_predictions(journey, vin)
+            output["Predictions"] = predictions
 
-        # create online prediction:
-        online_prediction = online_models[vin].predict(journey)
-
-        # mix initial and online prediction
-        mixing_factor = min(counter/mixing_length, 1)
-        probabilities = (1 - mixing_factor) * initial_predictions[vin] + mixing_factor * online_prediction
-
-        if counter > 1:
-            prob_dict[vin] = np.vstack((prob_dict[vin], probabilities))
-
-        if counter > smoothing_length:
-            smoothed_probabilities = np.mean(prob_dict[vin][(counter - smoothing_length + 1): (counter + 1), :], axis=0, keepdims=True)
-        else:
-            smoothed_probabilities = probabilities
-
-        # calculate remaining range
-        mpg = np.nansum(smoothed_probabilities * mpg_insts[vin])
-        remaining_fuel_gallons = ((np.array(journey.data.FuelRemaining.tail(1), dtype="float64")/100 * float(fuel_capacity)) * 0.264172052)[0]
-
-        if (units == "miles"):
-            remaining_range = int(remaining_fuel_gallons * mpg)
-        else:
-            remaining_range = (remaining_fuel_gallons * mpg) * 1.609344
-
-        # create cluster information
-        container = zip(cluster_ids[vin], smoothed_probabilities[0], end_locations[vin], mpg_insts[vin])
-        cluster_predictions = dict()
-        for jid, prob, endloc, mpg in container:
-            cluster_predictions[jid] = {"Probability": round(prob, 3), "EndLocation": endloc, "MPG_Journey": round(mpg, 5)}
-
-        # put together final dict
-        predictions = dict()
-        predictions["ClusterPredictions"] = cluster_predictions
-        predictions["RemainingRange"] = remaining_range
-
-        output["Predictions"] = predictions
         output["mpg_instantaneous"] = journey.data.MPG_from_MAF.tail(1).values[0]
+
         if (units == "miles"):
             output["vehicle_speed"] = int(output["vehicle_speed"] * 0.621371)
 
         return json.dumps(output, ensure_ascii=False, encoding="utf-8")
 
     except ValueError as e:
-        logging.exception("Got error %s with payload %s and output %s ", e, body, output)
+        logging.exception("Got error %s with payload %s", e, message)
     except TypeError as e:
-        logging.exception("Got error %s with payload %s and output %s", e, body, output)
+        logging.exception("Got error %s with payload %s", e, message)
     except Exception as e:
-        logging.exception("Got error %s with payload %s and output %s", e, body, output)
+        logging.exception("Got error %s with payload %s", e, message)
 
 
 def main():
-    p = r.pubsub(ignore_subscribe_messages=True)
-    p.subscribe(raw_data_queue)
-    for message in p.listen():
-        predictions = callback(message)
-        p.publish(predictions_topic, predictions)
+    while True:
+        message = r.rpop(raw_data_queue)
+        if message:
+            predictions = callback(message[80:])
+            r.lpush(predictions_topic, predictions)
 
 
 if __name__ == "__main__":
