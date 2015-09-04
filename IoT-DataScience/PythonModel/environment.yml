@@ -16,7 +16,7 @@ dependencies:
 - pytz=2015.4=py27_0
 - readline=6.2=2
 - scikit-learn=0.16.1=np19py27_0
-- scipy=0.15.1=np19py27_0
+- scipy=0.16.0=np19py27_1
 - setuptools=18.1=py27_0
 - simplegeneric=0.8.1=py27_0
 - six=1.9.0=py27_0
@@ -26,6 +26,8 @@ dependencies:
 - traitlets=4.0.0=py27_0
 - wheel=0.24.0=py27_0
 - zlib=1.2.8=0
+- libgfortran
+- openblas
 - pip:
   - configparser==3.3.0.post2
   - ipython-genutils==0.1.0
