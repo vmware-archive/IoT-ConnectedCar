@@ -383,7 +383,6 @@ class JourneyCluster:
 
 def extract_journey_json(tup):
     vin, clusters = tup
-    result = OrderedDict()
     clusters_dict = OrderedDict()
     for cluster in clusters:
         cluster_dict = OrderedDict()
@@ -392,6 +391,4 @@ def extract_journey_json(tup):
         cluster_dict["long"] = cluster.averages["EndLong"]
         cluster_dict["address"] = ""
         clusters_dict[str(cluster.clusterID)] = cluster_dict
-    result["vin"] = str(vin)
-    result["clusters"] = clusters_dict
-    return json.dumps(result)
+    return (vin, clusters_dict)
