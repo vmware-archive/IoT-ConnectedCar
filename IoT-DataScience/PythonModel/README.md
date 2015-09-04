@@ -7,176 +7,86 @@ The Data Science part of the Connected Car Demo predicts which journey you are l
 The code runs in 2 steps:
 
 1. *Batch Training:* Train the models on all available data in batch to condense all important information into the model objects.
-2. *Stream Prediction:* Point a RabbitMQ JSON stream to the stream prediction function to get updated online predictions of journey and fuel consumption.
+2. *Stream Prediction:* Point a Redis stream to the stream prediction function to get updated online predictions of journey and fuel consumption.
+
+The batch training runs on top of Spark using the pyspark API and the streaming prediction runs as a microservice within Cloud Foundry.
 
 ---
 
 ### How do I run this stuff?
 
-1. Edit the default configuration file (or create your own) so the [Directories] point to your working environment
-2. cd to inside the PythonModel directory
-3. Call the python Scripts files.
+1. Edit the default configuration file (or create your own)
+2. Edit the manifest.yml file
+3. Run the batch training (see below)
+4. `cd` into PythonModel and run `cf push`
 
+#### *Batch Training* is done by BatchTrain.py running on  Spark
 
-The python scripts can be called like so:
+*Requirements*
 
-#### *Batch Training* is done by BatchTrain.py
+Spark 1.3+, Hadoop and YARN.
+
+Anaconda Python should be installed on all of the cluster nodes and in the user's
+`$PATH`. Alternatively, you can set Spark to use Anaconda in `spark-env.sh`:
+
+```
+SPARK_YARN_USER_ENV=/opt/anaconda/bin/python
+PYSPARK_PYTHON=/opt/anaconda/bin/python
+```
+
+Run `conda env update -f environment.yml` on all of the nodes to install the Python requirements.
+
+*Configuration*
+
+Edit `Configuration/default.conf`. You need to point it to the location of your data on HDFS and pass it your Redis credentials to store the models.
+
 
 *Usage*:
-`python BatchTrain.py [path to configuration file]`
+`spark-submit --files <path to configuration file> --py-files <path to Models.Py, path to Data.py> <path to BatchTrain.py> "<path to configuration file>"`
 
 *Example*:
-`python BatchTrain.py Configuration/default.conf`
+`spark-submit --driver-memory 4G --executor-memory 4G --num-executors 2 --executor-cores 1 --files /home/pyspark/PythonModel/Configuration/default.conf --py-files /home/pyspark/PythonModel/Models.py,/home/pyspark/PythonModel/Data.py /home/pyspark/PythonModel/BatchTrain.py "/home/pyspark/PythonModel/Configuration/default.conf"`
 
 
-#### *Stream Prediction* is done by StreamPredict.py
-
-In order for stream prediction to work, you have to point a RabbitMQ JSON stream at it. You can use the example in ../StreamMockup, which is being run like this (note this requires a running RabbitMQ server):
-
-`python StreamMockup/rabbitmq.py Data/Historical/trackLog-2014-Mai-23_22-02-57.csv localhost receive`
+#### *Stream Prediction* is done by StreamPredict.py on Cloud Foundry
 
 The stream predict function emits the predictions to another RabbitMQ queue you can specificy in the configuration.
 
-When this is streaming data via RabbitMQ, you can call the stream prediction function like this:
-
 *Usage*:
-`python StreamPredict.py [path to configuration file]`
-
-*Example*:
-`python StreamPredict.py Configuration/default.conf`
-
----
-
-### Configuration
-
-Configuration/default.conf
-Default configuration which contains the following parameters for running which can be modified for the current environment
-
-Directories:
-- dir_rawdata: Path to the raw files
-- dir_storedmodel: Path to the location of the stored model (output of training and input of prediction)
-- source: JSON or CSV
-
-Batch:
-cluster_class_file: Cluster model name
-init_class_file: Init model name
-online_class_file: Online model name
-journey_cluster_file: Clustering model name
-
-Streaming:
-- host: The RabbitMQ host
-- receiver_queue: The queue that streams raw json data into StreamPredict.py
-- emitter_queue: The queue that StreamPredict.py sends the predictions to
-- units: Units to emit (miles or km)
-- mixing_length: Length of time steps to blend initial model with online model
-
-Car:
-- fuel_type: petrol or diesel
-- fuel_capacity_liters: fuel tank capacity in liters
-
-
-*DEPRECATED:*
-- dir_newdata: Path to incoming streaming data
-- dir_predictions: Path to where the output of the prediction script will be written
-- file_newdata: Name of incoming streaming data file
-- file_predictions: Name of output prediction file
-- ModelName: Name of model (when written to dir_storedmodel)
-- ModelType: Type of model (linear regression, constant, etc…)
+1. Edit `manifest.yml`.
+2. `cd IoT-DataScience/PythonModel`
+3. `cf push`
 
 ---
 
 ### Code Structure
 
-#### Data.BatchData
-Class to handle data loading from a directory. Contains all journeys collected from that directory.
+#### Data.py
+
+Defines the various data structures and data munging functions used
+
+#### Models.py
+
+Specifies the machine learning models used
 
 
-#### Data.Journey
-Class to represent a single journey. Holds the raw data as well as some other characteristics of a single journey, such as:
+#### BatchTraining.py
 
-- JourneyID
-- Day
-- Month
-- StartTime
-- EndTime
-- JourneyTime
-- StartLoc
-- EndLoc
-- JourneyDist
-- AltitudeDiff
-- AvSpeed
-- MaxSpeed
-- TimeStopped
-- TimeMoving
-- AvAccel
-- MaxAccel
-- FuelConsumption
-- AvFuelRate
-- MaxFuelRate
-- KmPerL
+Runs the machine learning models on top of Spark
 
+#### Various Helper Scripts
 
-#### Models.Model
-This is the generic base class for any model. The functionality is to
-
-- Write the trained model to a specified location
-- Load a model from a specified location
-- Generate the feature set
-
-
-#### Models.Clustering
-
-This inherits from the base model and is an interface to all implemented clustering models. Clusters journeys and assigns a cluster ID to every journey.
-
-
-#### Models.InitClass
-
-This inherits from the base model and is an interface to all initial classification models. Gives an initial prediction as to where this journey is going.
-
-
-#### Models.OnlineClass
-
-This inherits from the base model and is an interface to all online classification models. Gives updated predictions during driving as to where the current journey is going.
+Within the `PythonModel` directory you can find various other helper
+scripts you can use to impute broken/missing data in the journeys you
+recorded.
 
 ---
 
-### Todo
-- Error handling for the read in
-  - missing columns? currently just checked by hand there are none but it will crash if one appears
-- Need to feed in the engine capacity somehow (have a look in Torque profile)
-- The streaming part does not predict anything at the moment.
-- Online Classification not implemented yet.
-- does one journey really correspond to one file?
-- There's some hardcoded parameters in the code at the moment. Need to move these out of the code.
-- actually send a stream back of the online prediction.
+### TODOs
+- Move some of the hardcoded options into the config file
+- Automate data imputation and simulation (when too few trips were
+  recorded, e.g. in a demo situation)
+- Run an API on top of Cloud Foundry that can kick of the model
+  training and monitor its progress
 
----
-
-### Included Python libraries
-
-- sklearn
-- pandas
-- pika
-- numpy
-- patsy
-
-*Pro Tip:* Just use the Anaconda distribution.
-
-### Getting started
-Run batch training `ipython BatchTrain.py`
-Start `rabbitmq-server`
-Start rabbitmq listener (the receiver of the predictions) `ipython StreamMockup/rabbitmq_consumer.py localhost emit`
-Start the streaming prediction `ipython Model/StreamPredict.py`
-Start streaming data into the stream predict function `ipython StreamMockup/rabbitmq.py Data/Alex/trackLog-2014-Mai-23_22-02-57.csv localhost receive csv`
-
-
-### Spark
-In spark-env.sh set:
-
-SPARK_YARN_USER_ENV=/opt/anaconda/bin/python
-PYSPARK_PYTHON=/opt/anaconda/bin/python
-
-Run:
-
-/usr/local/spark/bin/spark-submit --executor-memory 4G --files /IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf --py-files /IoT-ConnectedCar/IoT-Data-Science/PythonModel/Models.py,/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Data.py  /IoT-ConnectedCar/IoT-Data-Science/PythonModel/BatchTrain.py "/IoT-ConnectedCar/IoT-Data-Science/PythonModel/Configuration/default.conf"
 
