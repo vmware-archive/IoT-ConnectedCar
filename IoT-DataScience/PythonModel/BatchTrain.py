@@ -37,7 +37,6 @@ sc = SparkContext(conf=conf)
 
 
 def main(args=None):
-    # Setting up configuration TODO: use docopt
     if(args):
         configuration_string = args[0]
     else:

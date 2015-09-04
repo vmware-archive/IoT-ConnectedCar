@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Usage:
-# Ipython StreamPredict.py Configuration/default.conf  TODO: replace with docopt
-
 import json
 import os
 import cPickle as pickle
