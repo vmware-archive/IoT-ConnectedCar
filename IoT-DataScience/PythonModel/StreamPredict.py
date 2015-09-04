@@ -59,7 +59,6 @@ mixing_length = float(os.getenv("mixing_length"))
 smoothing_length = float(os.getenv("smoothing_length"))
 cutoff = timedelta(minutes=int(os.getenv("cutoff")))
 
-
 # Load models
 init_models = pickle.loads(r.get("init_models"))
 online_models = pickle.loads(r.get("online_models"))
@@ -198,9 +197,9 @@ def main():
     while True:
         message = r.rpop(raw_data_queue)
         if message:
-            header, body = message.split(";", 1)
+            header, body = message[:80], message[80:]
             predictions = callback(body)
-            r.publish(predictions_topic, header + predictions)
+            r.publish(predictions_topic, header + json.dumps(predictions, encoding="utf-8"))
 
 
 if __name__ == "__main__":
