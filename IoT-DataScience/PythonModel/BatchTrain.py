@@ -21,7 +21,6 @@
 import ConfigParser
 import datetime
 import json
-import cStringIO
 import cPickle as pickle
 import sys
 
@@ -86,25 +85,21 @@ def main(args=None):
     journey_clusters = journeys_with_id.mapValues(lambda journeys: Data.create_journey_clusters(journeys)).persist()
     journey_clusters_local = journey_clusters.collectAsMap()
     r.set("journey_clusters", pickle.dumps(journey_clusters_local))
-    cluster_json = journey_clusters.map(Data.extract_journey_json).collect()
-    output = cStringIO.StringIO()
-    for cluster in cluster_json:
-        output.write(cluster + "\n")
+
+    cluster_json = journey_clusters.map(Data.extract_journey_json).collectAsMap()
+    for vin, clusters in cluster_json.iteritems():
+        r.set(vin, json.dumps(clusters))
     journey_clusters.unpersist()
-    r.set("clusters_json", output.getvalue().rstrip("\n"))
-    output.close()
 
     # Build initial classification models
     init_class_models = journeys_with_id.mapValues(lambda data: Models.train_init_class_model(init_class_alg, init_class_feature_names, data)).collectAsMap()
     r.set("init_models", pickle.dumps(init_class_models))
-    output.close()
 
     # Build online classification models
     online_class_models = journeys_with_id.mapValues(lambda data: Models.train_online_class_model(online_class_alg,
                                                                                                   online_class_feature_names,
                                                                                                   data)).collectAsMap()
     r.set("online_models", pickle.dumps(online_class_models))
-    output.close()
 
     sc.stop()
 
