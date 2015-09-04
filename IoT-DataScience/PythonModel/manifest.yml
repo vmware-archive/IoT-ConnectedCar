@@ -1,7 +1,7 @@
 ---
 applications:
 - name: cc-streampredict
-  memory: 2048M
+  memory: 4096M
   instances: 1
   buildpack: https://github.com/ihuston/python-conda-buildpack.git
   path: .
