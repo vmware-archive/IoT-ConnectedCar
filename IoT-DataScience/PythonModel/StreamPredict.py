@@ -201,8 +201,9 @@ def main():
     while True:
         message = r.rpop(raw_data_queue)
         if message:
-            predictions = callback(message[80:])
-            r.lpush(predictions_topic, predictions)
+            header, body = message.split(";", 1)
+            predictions = callback(body)
+            r.lpush(predictions_topic, header + predictions)
 
 
 if __name__ == "__main__":
