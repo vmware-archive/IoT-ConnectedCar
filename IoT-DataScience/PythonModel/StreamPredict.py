@@ -200,7 +200,7 @@ def main():
         if message:
             header, body = message.split(";", 1)
             predictions = callback(body)
-            r.lpush(predictions_topic, header + predictions)
+            r.publish(predictions_topic, header + predictions)
 
 
 if __name__ == "__main__":
