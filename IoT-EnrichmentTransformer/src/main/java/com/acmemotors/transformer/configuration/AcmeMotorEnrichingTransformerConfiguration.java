@@ -15,6 +15,7 @@
  */
 package com.acmemotors.transformer.configuration;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +23,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.cloud.stream.annotation.EnableModule;
-import org.springframework.cloud.stream.annotation.Processor;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.integration.annotation.Transformer;
 
 /**
@@ -33,7 +34,7 @@ import org.springframework.integration.annotation.Transformer;
  * @author Michael Minella
  * 
  */
-@EnableModule(Processor.class)
+@EnableBinding(Processor.class)
 public class AcmeMotorEnrichingTransformerConfiguration {
     private static final Logger logger =
             LoggerFactory.getLogger(AcmeMotorEnrichingTransformerConfiguration.class);
@@ -41,7 +42,7 @@ public class AcmeMotorEnrichingTransformerConfiguration {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-    public Map transform(String payload) {
+    public String transform(String payload) throws IOException {
 
         Map<String, Object> map = new HashMap<>();
         try {
@@ -60,6 +61,8 @@ public class AcmeMotorEnrichingTransformerConfiguration {
             }
         }
 
-        return map;
+        logger.info("value transformed");
+
+        return mapper.writeValueAsString(map);
     }
 }

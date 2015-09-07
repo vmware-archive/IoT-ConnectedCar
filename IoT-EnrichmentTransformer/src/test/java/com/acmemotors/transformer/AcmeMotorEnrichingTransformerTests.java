@@ -18,9 +18,11 @@ package com.acmemotors.transformer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
 import java.util.Map;
 
 import com.acmemotors.transformer.configuration.AcmeMotorEnrichingTransformerConfiguration;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,17 +41,22 @@ public class AcmeMotorEnrichingTransformerTests {
 	}
 
 	@Test
-	public void testNoVin() {
-		Map<String, Object> payload = (Map<String, Object>) transformer.transform("{}");
+	public void testNoVin() throws IOException {
+		String json = transformer.transform("{}");
+
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> payload = mapper.readValue(json, Map.class);
 
 		assertEquals(1, payload.size());
 		assertNotNull("timestamp", payload.get("timestamp"));
 	}
 
 	@Test
-	public void testWithVin() {
-		Map<String, Object> payload =
-				(Map<String, Object>) transformer.transform("{\"vin\":\"my vin\"}");
+	public void testWithVin() throws IOException {
+		String json = transformer.transform("{\"vin\":\"my vin\"}");
+
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> payload = mapper.readValue(json, Map.class);
 
 		assertEquals(2, payload.size());
 		assertNotNull("timestamp", payload.get("timestamp"));

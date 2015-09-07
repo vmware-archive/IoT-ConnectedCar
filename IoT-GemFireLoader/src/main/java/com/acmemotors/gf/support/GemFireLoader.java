@@ -24,13 +24,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.acmemotors.rest.JourneysRepository;
 import com.acmemotors.rest.domain.JourneyDestination;
 import com.acmemotors.rest.domain.Journeys;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -43,8 +41,8 @@ import org.springframework.util.StringUtils;
 @Component
 public class GemFireLoader {
 
-	@Autowired
-	private JourneysRepository repository;
+//	@Autowired
+//	private JourneysRepository repository;
 	private ObjectMapper mapper = new ObjectMapper();
 
 	/**
@@ -52,9 +50,9 @@ public class GemFireLoader {
 	 *
 	 * @param repository Spring Data Repository used for persistence
 	 */
-	public void setRepository(JourneysRepository repository) {
-		this.repository = repository;
-	}
+//	public void setRepository(JourneysRepository repository) {
+//		this.repository = repository;
+//	}
 
 	/**
 	 * Reads the input file, creates {@link JourneyDestination} instances for each record
@@ -74,7 +72,7 @@ public class GemFireLoader {
 			Journeys curJourneys = mapJourneys(line);
 
 			if(curJourneys != null) {
-				repository.save(curJourneys);
+//				repository.save(curJourneys);
 			}
 		}
 

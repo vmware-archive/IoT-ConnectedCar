@@ -85,4 +85,10 @@ public class GemfirePoolProperties {
 	public void setSubscriptionEnabled(boolean subscriptionEnabled) {
 		this.subscriptionEnabled = subscriptionEnabled;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("connectionType: %s hostAddress: %s isSubscriptionEnabled %s",
+				connectType, hostAddresses[0].toString(), subscriptionEnabled);
+	}
 }

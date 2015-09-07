@@ -25,8 +25,8 @@ import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.cloud.stream.annotation.EnableModule;
-import org.springframework.cloud.stream.annotation.Processor;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.integration.annotation.Transformer;
 
 /**
@@ -37,29 +37,29 @@ import org.springframework.integration.annotation.Transformer;
  *
  * @author Michael Minella
  */
-@EnableModule(Processor.class)
+@EnableBinding(Processor.class)
 public class TypeConversionTransformerConfiguration {
 
 	private static final Logger logger =
 			LoggerFactory.getLogger(TypeConversionTransformerConfiguration.class);
 
-//	private final ObjectMapper mapper;
+	private final ObjectMapper mapper;
 
 	public TypeConversionTransformerConfiguration() {
-//		this.mapper = new ObjectMapper();
-//		this.mapper.configure(JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, true);
+		this.mapper = new ObjectMapper();
+		this.mapper.configure(JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, true);
 	}
 
 	@Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-	public CarPosition transform(Map<String, Object> payload) {
+	public CarPosition transform(String payload) {
 
 		CarPosition carPosition = null;
 
 		try {
 			if (payload != null) {
-//				Map<String, Object> map = mapper.readValue(payload,
-//						new TypeReference<HashMap<String,Object>>(){});
-				carPosition = new CarPosition(payload);
+				Map<String, Object> map = mapper.readValue(payload,
+						new TypeReference<HashMap<String, Object>>(){});
+				carPosition = new CarPosition(map);
 			}
 		} catch (final Exception e) {
 			logger.error("Error converting to a CarPosition object", e);
@@ -68,6 +68,8 @@ public class TypeConversionTransformerConfiguration {
 				logger.debug("Error payload=[" + payload + "]");
 			}
 		}
+
+		logger.info("Payload has been transformed into a " + carPosition.getClass());
 
 		return carPosition;
 	}

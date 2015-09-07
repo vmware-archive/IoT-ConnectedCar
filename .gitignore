@@ -33,3 +33,5 @@ pyspark-docker
 IoT-Data-Science/PythonModel/metastore_db
 lib
 /data
+.gradletasknamecache
+

@@ -3,4 +3,4 @@ spring:
     stream:
       bindings:
         input: filter.data
-        output: topic:transformer.data
+        output: transformer.data

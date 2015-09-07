@@ -16,27 +16,9 @@
 package com.acmemotors.rest;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.util.Arrays;
-import java.util.Collections;
 
-import com.acmemotors.rest.configuration.GemfirePoolProperties;
-import com.gemstone.gemfire.cache.client.ClientCache;
-import com.gemstone.gemfire.cache.client.ClientCacheFactory;
-import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
-import org.springframework.data.gemfire.client.PoolFactoryBean;
-import org.springframework.data.gemfire.config.GemfireConstants;
-import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 /**
  * Spring Boot bootstrap class to configure the Spring Data Repositories in
@@ -44,79 +26,8 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
  *
  * @author Michael Minella
  */
-@Configuration
-@EnableConfigurationProperties(GemfirePoolProperties.class)
-@EnableGemfireRepositories(basePackages = "com.acmemotors.rest")
 @SpringBootApplication
 public class Main {
-	@Autowired
-	GemfirePoolProperties config;
-
-	@Bean
-	@Profile("cloud")
-	PoolFactoryBean gemfirePool() {
-		PoolFactoryBean poolFactoryBean = new PoolFactoryBean();
-
-		switch (config.getConnectType()) {
-			case locator:
-				poolFactoryBean.setLocators(Arrays.asList(config.getHostAddresses()));
-				break;
-			case server:
-				poolFactoryBean.setServers(Arrays.asList(config.getHostAddresses()));
-				break;
-			default:
-				throw new IllegalArgumentException("connectType " + config.getConnectType() + " is not supported.");
-		}
-		poolFactoryBean.setSubscriptionEnabled(config.isSubscriptionEnabled());
-		poolFactoryBean.setName(GemfireConstants.DEFAULT_GEMFIRE_POOL_NAME);
-		return poolFactoryBean;
-	}
-
-	@Bean
-	@Profile("!cloud")
-	ClientCache cache() {
-		return new ClientCacheFactory().create();
-	}
-
-	@Bean
-	@Profile("!cloud")
-	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
-			@Value("${gf.server.host}") String serverHost) throws Exception {
-		PoolFactoryBean factoryBean = new PoolFactoryBean();
-		factoryBean.setName("my-pool");
-		factoryBean.setServers(
-				Collections.singletonList(new InetSocketAddress(serverHost, serverPort)));
-		factoryBean.afterPropertiesSet();
-		return factoryBean;
-	}
-
-	@Bean
-	@SuppressWarnings("rawtypes")
-	ClientRegionFactoryBean journeyRegion(ClientCache cache) {
-
-		ClientRegionFactoryBean exampleRegion = new
-				ClientRegionFactoryBean<>();
-
-		exampleRegion.setName("journeys");
-		exampleRegion.setCache(cache);
-		exampleRegion.setShortcut(ClientRegionShortcut.PROXY);
-
-		return exampleRegion;
-	}
-
-	@Bean
-	@SuppressWarnings("rawtypes")
-	ClientRegionFactoryBean carPositionRegion(ClientCache cache) {
-
-		ClientRegionFactoryBean exampleRegion = new
-				ClientRegionFactoryBean<>();
-
-		exampleRegion.setName("car-position");
-		exampleRegion.setCache(cache);
-		exampleRegion.setShortcut(ClientRegionShortcut.PROXY);
-
-		return exampleRegion;
-	}
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(Main.class, args);

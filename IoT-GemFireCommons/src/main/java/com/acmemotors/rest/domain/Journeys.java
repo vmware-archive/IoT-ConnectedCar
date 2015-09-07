@@ -18,25 +18,21 @@ package com.acmemotors.rest.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.gemfire.mapping.Region;
-
 /**
  * A domain object that represents the journeys for a given VIN.
  *
  * @author Michael Minella
  */
-@Region("journeys")
+//@Region("journeys")
 public class Journeys implements Serializable {
 
 	private static final long serialVersionUID = 1;
 
-	@Id
+//	@Id
 	private String vin;
 	private List<JourneyDestination> destinations;
 
-	@PersistenceConstructor
+//	@PersistenceConstructor
 	public Journeys(String vin, List<JourneyDestination> destinations) {
 		this.vin = vin;
 		this.destinations = destinations;
