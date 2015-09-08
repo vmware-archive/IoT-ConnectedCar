@@ -46,6 +46,9 @@ allprojects {
 		maven { url 'http://repo.spring.io/libs-milestone' }
 		maven { url 'http://repo.spring.io/plugins-release' }
 		maven { url "https://repo.spring.io/libs-snapshot" }
+		maven { url "https://repo.spring.io/libs-release" }
+		maven { url "http://repo.springsource.org/simple/ext-release-local" }
+		maven { url "http://dist.gemstone.com/maven/release" }
 	}
 
 	ext {
@@ -199,8 +202,8 @@ project('IoT-GemFireREST') {
 
 	dependencies {
 		compile project(":IoT-GemFireCommons")
-		compile 'io.pivotal.spring.cloud:spring-cloud-gemfire-spring-connector:1.0.0.BUILD-SNAPSHOT'
-		compile 'io.pivotal.spring.cloud:spring-cloud-pivotal-cloudfoundry-connector:1.0.0.BUILD-SNAPSHOT'
+		compile 'io.pivotal.spring.cloud:spring-cloud-gemfire-spring-connector:1.0.0.RELEASE'
+		compile 'io.pivotal.spring.cloud:spring-cloud-gemfire-cloudfoundry-connector:1.0.0.RELEASE'
 		compile "org.springframework.boot:spring-boot-starter-data-rest"
 		compile "org.springframework.boot:spring-boot-starter-data-gemfire"
 		compile "org.springframework.boot:spring-boot-starter-web"

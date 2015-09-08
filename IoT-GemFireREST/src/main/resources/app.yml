@@ -1,0 +1,6 @@
+---
+applications:
+- name: cc-gemfire-rest
+  path: build/libs/IoT-GemfireREST.jar
+  services:
+  - iot-gemfire-1

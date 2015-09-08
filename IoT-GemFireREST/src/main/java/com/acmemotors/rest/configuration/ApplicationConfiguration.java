@@ -15,32 +15,24 @@
  */
 package com.acmemotors.rest.configuration;
 
-import java.net.InetSocketAddress;
-import java.util.Collections;
-
 import com.gemstone.gemfire.cache.client.ClientCache;
-import com.gemstone.gemfire.cache.client.ClientCacheFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
-import org.springframework.data.gemfire.client.PoolFactoryBean;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 /**
  * @author Michael Minella
  */
 @Configuration
-@EnableConfigurationProperties(GemfirePoolProperties.class)
+//@EnableConfigurationProperties(GemfirePoolProperties.class)
 @EnableGemfireRepositories(basePackages = "com.acmemotors.rest")
 public class ApplicationConfiguration {
 //	@Autowired
 //	GemfirePoolProperties config;
-
+//
 //	@Bean
 //	@Profile("cloud")
 //	PoolFactoryBean gemfirePool() {
@@ -64,23 +56,23 @@ public class ApplicationConfiguration {
 //		return poolFactoryBean;
 //	}
 
-	@Bean
-	@Profile("!cloud")
-	ClientCache cache() {
-		return new ClientCacheFactory().create();
-	}
-
-	@Bean
-	@Profile("!cloud")
-	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
-			@Value("${gf.server.host}") String serverHost) throws Exception {
-		PoolFactoryBean factoryBean = new PoolFactoryBean();
-		factoryBean.setName("my-pool");
-		factoryBean.setServers(
-				Collections.singletonList(new InetSocketAddress(serverHost, serverPort)));
-		factoryBean.afterPropertiesSet();
-		return factoryBean;
-	}
+//	@Bean
+//	@Profile("!cloud")
+//	ClientCache cache() {
+//		return new ClientCacheFactory().create();
+//	}
+//
+//	@Bean
+//	@Profile("!cloud")
+//	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
+//			@Value("${gf.server.host}") String serverHost) throws Exception {
+//		PoolFactoryBean factoryBean = new PoolFactoryBean();
+//		factoryBean.setName("my-pool");
+//		factoryBean.setServers(
+//				Collections.singletonList(new InetSocketAddress(serverHost, serverPort)));
+//		factoryBean.afterPropertiesSet();
+//		return factoryBean;
+//	}
 //
 //	@Bean
 //	@SuppressWarnings("rawtypes")
