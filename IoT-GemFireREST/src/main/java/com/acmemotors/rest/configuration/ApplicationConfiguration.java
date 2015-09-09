@@ -18,6 +18,7 @@ package com.acmemotors.rest.configuration;
 import com.gemstone.gemfire.cache.client.ClientCache;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
@@ -88,6 +89,7 @@ public class ApplicationConfiguration {
 //		return exampleRegion;
 //	}
 
+	@Autowired
 	@Bean
 	@SuppressWarnings("rawtypes")
 	public ClientRegionFactoryBean carPositionRegion(ClientCache cache) {

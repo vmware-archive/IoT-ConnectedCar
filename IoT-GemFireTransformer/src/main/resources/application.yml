@@ -2,5 +2,5 @@ spring:
   cloud:
     stream:
       bindings:
-        input: topic:transformer.data
+        input: topic:python.data
         output: gemfiretransformer.data

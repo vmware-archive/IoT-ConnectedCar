@@ -16,6 +16,7 @@
 package com.acmemotors.rest.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -172,14 +173,32 @@ public class CarPosition implements Serializable {
 		this.engineLoad = toDouble(values.get("engine_load"));
 		this.fuelLevelInput = toInteger(values.get("fuel_level_input"));
 
-		List<Integer> fuelSystemStatus = (List) values.get("fuel_system_status");
-		if(fuelSystemStatus != null) {
-			Integer [] fuelSystemValues = new Integer[fuelSystemStatus.size()];
-			for (int i = 0; i < fuelSystemStatus.size(); i++) {
-				fuelSystemValues[i] = fuelSystemStatus.get(i);
-			}
+		Object fuel_system_status = values.get("fuel_system_status");
+		if(fuel_system_status != null) {
+			if(fuel_system_status instanceof List) {
+				List<Integer> fuelSystemStatus = (List) fuel_system_status;
+				Integer [] fuelSystemValues = new Integer[fuelSystemStatus.size()];
+				for (int i = 0; i < fuelSystemStatus.size(); i++) {
+					fuelSystemValues[i] = fuelSystemStatus.get(i);
+				}
 
-			this.fuelSystemStatus = fuelSystemValues;
+				this.fuelSystemStatus = fuelSystemValues;
+			}
+			else if(fuel_system_status instanceof String) {
+				List<Integer> fuelSystemStatus = new ArrayList<>();
+
+				String statusText = (String) fuel_system_status;
+
+				String cleaned = statusText.substring(1, statusText.length() - 1);
+
+				String [] statuses = cleaned.split(",");
+
+				for (String status : statuses) {
+					fuelSystemStatus.add(Integer.valueOf(status.trim()));
+				}
+
+				this.fuelSystemStatus = fuelSystemStatus.toArray(new Integer[fuelSystemStatus.size()]);
+			}
 		}
 		else {
 			this.fuelSystemStatus = new Integer[0];

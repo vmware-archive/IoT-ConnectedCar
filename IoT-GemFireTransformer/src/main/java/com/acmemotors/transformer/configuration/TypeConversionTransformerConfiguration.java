@@ -57,16 +57,24 @@ public class TypeConversionTransformerConfiguration {
 
 		try {
 			if (payload != null) {
-				Map<String, Object> map = mapper.readValue(payload,
+				String cleaned = payload.replaceAll("\\\\", "");
+				cleaned = cleaned.replaceFirst("\"", "");
+				cleaned = cleaned.substring(0, cleaned.length() - 1);
+
+				Map<String, Object> map = mapper.readValue(cleaned,
 						new TypeReference<HashMap<String, Object>>(){});
 				carPosition = new CarPosition(map);
 			}
 		} catch (final Exception e) {
 			logger.error("Error converting to a CarPosition object", e);
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("Error payload=[" + payload + "]");
-			}
+			logger.error("Error payload=[" + payload + "]");
+
+			String cleaned = payload.replaceAll("\\\\", "");
+			cleaned = cleaned.replaceFirst("\"", "");
+			cleaned = cleaned.substring(0, cleaned.length() - 1);
+
+			logger.error("cleaned: " + cleaned);
 		}
 
 		logger.info("Payload has been transformed into a " + carPosition.getClass());

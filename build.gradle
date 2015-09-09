@@ -202,6 +202,8 @@ project('IoT-GemFireREST') {
 
 	dependencies {
 		compile project(":IoT-GemFireCommons")
+		compile("com.gemstone.gemfire:gemfire:8.1.0")
+		compile("org.springframework.data:spring-data-gemfire:1.6.1.RELEASE")
 		compile 'io.pivotal.spring.cloud:spring-cloud-gemfire-spring-connector:1.0.0.RELEASE'
 		compile 'io.pivotal.spring.cloud:spring-cloud-gemfire-cloudfoundry-connector:1.0.0.RELEASE'
 		compile "org.springframework.boot:spring-boot-starter-data-rest"

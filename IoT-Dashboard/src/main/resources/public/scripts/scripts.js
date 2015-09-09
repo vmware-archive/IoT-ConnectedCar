@@ -163,7 +163,7 @@ angular.module('iotDashboard')
     function hitConnectedCarEndpoint() {
         if (!(vin in journeys)) {
             console.log("3");
-            $http({method: 'GET', url: configuration.baseUrl + '/journeyses/' + vin}).
+            $http({method: 'GET', url: configuration.baseUrl + '/journeys/' + vin}).
                 success(function (data) {
                     var curJourneys = [];
                     var journeyId = 0;
@@ -248,7 +248,7 @@ angular.module('iotDashboard')
     }
 
     function startPolling() {
-        $http({method: 'GET', url: configuration.baseUrl + '/journeyses/' + vin}).
+        $http({method: 'GET', url: configuration.baseUrl + '/journeys/' + vin}).
             success(function (data) {
                 var curJourneys = [];
                 var journeyId = 0;
