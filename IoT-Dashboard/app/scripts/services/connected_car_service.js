@@ -29,7 +29,7 @@ angular.module('iotDashboard')
                 success(function (data) {
                     var curJourneys = [];
                     var journeyId = 0;
-                    _.each(data["destinations"], function (journeyData) {
+                    _.each(data, function (journeyData) {
                         var journeyName = journeyData.name;
 
                         if(journeyName.length == 0) {
@@ -39,13 +39,13 @@ angular.module('iotDashboard')
                         var journey = {
                             name: journeyName,
                             id: journeyId,
-                            latitude: journeyData.latitude,
-                            longitude: journeyData.longitude,
+                            latitude: journeyData.lat,
+                            longitude: journeyData.long,
                             probability: 0
                         };
 
                         var geocoder = new google.maps.Geocoder();
-                        var latlng = new google.maps.LatLng(journeyData.latitude, journeyData.longitude);
+                        var latlng = new google.maps.LatLng(journeyData.lat, journeyData.long);
 
                         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
@@ -114,7 +114,8 @@ angular.module('iotDashboard')
             success(function (data) {
                 var curJourneys = [];
                 var journeyId = 0;
-                _.each(data["destinations"], function (journeyData) {
+                console.log(data);
+                _.each(data, function (journeyData) {
                     var journeyName = journeyData.name;
 
                     console.log("journeyName = " + journeyName + " length = " + journeyName.length);
@@ -125,13 +126,13 @@ angular.module('iotDashboard')
                     var journey = {
                         name: journeyName,
                         id: journeyId,
-                        latitude: journeyData.latitude,
-                        longitude: journeyData.longitude,
+                        latitude: journeyData.lat,
+                        longitude: journeyData.long,
                         probability: 0
                     };
 
                     var geocoder = new google.maps.Geocoder();
-                    var latlng = new google.maps.LatLng(journeyData.latitude, journeyData.longitude);
+                    var latlng = new google.maps.LatLng(journeyData.lat, journeyData.long);
 
                     geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {

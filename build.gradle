@@ -315,22 +315,6 @@ project('IoT-Dashboard') {
 //	}
 }
 
-project('IoT-GemFireLoader') {
-    bootRepackage {
-        enabled = true
-    }
-
-    dependencies {
-		compile project(":IoT-GemFireCommons")
-		compile("org.springframework.data:spring-data-gemfire")
-		compile("com.gemstone.gemfire:gemfire")
-		compile("org.springframework.boot:spring-boot-starter")
-        testCompile("junit:junit")
-        testCompile("org.springframework:spring-test")
-		testCompile("org.mockito:mockito-core")
-	}
-}
-
 project('IoT-Data-Science') {
 	bootRepackage {
 		enabled = false

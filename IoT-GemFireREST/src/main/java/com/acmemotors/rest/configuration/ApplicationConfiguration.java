@@ -28,66 +28,8 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
  * @author Michael Minella
  */
 @Configuration
-//@EnableConfigurationProperties(GemfirePoolProperties.class)
 @EnableGemfireRepositories(basePackages = "com.acmemotors.rest")
 public class ApplicationConfiguration {
-//	@Autowired
-//	GemfirePoolProperties config;
-//
-//	@Bean
-//	@Profile("cloud")
-//	PoolFactoryBean gemfirePool() {
-//		System.out.println("Configuring based on the following");
-//		System.out.println(config.toString());
-//
-//		PoolFactoryBean poolFactoryBean = new PoolFactoryBean();
-//
-//		switch (config.getConnectType()) {
-//			case locator:
-//				poolFactoryBean.setLocators(Arrays.asList(config.getHostAddresses()));
-//				break;
-//			case server:
-//				poolFactoryBean.setServers(Arrays.asList(config.getHostAddresses()));
-//				break;
-//			default:
-//				throw new IllegalArgumentException("connectType " + config.getConnectType() + " is not supported.");
-//		}
-//		poolFactoryBean.setSubscriptionEnabled(config.isSubscriptionEnabled());
-//		poolFactoryBean.setName(GemfireConstants.DEFAULT_GEMFIRE_POOL_NAME);
-//		return poolFactoryBean;
-//	}
-
-//	@Bean
-//	@Profile("!cloud")
-//	ClientCache cache() {
-//		return new ClientCacheFactory().create();
-//	}
-//
-//	@Bean
-//	@Profile("!cloud")
-//	PoolFactoryBean poolFactoryBean(@Value("${gf.server.port}") int serverPort,
-//			@Value("${gf.server.host}") String serverHost) throws Exception {
-//		PoolFactoryBean factoryBean = new PoolFactoryBean();
-//		factoryBean.setName("my-pool");
-//		factoryBean.setServers(
-//				Collections.singletonList(new InetSocketAddress(serverHost, serverPort)));
-//		factoryBean.afterPropertiesSet();
-//		return factoryBean;
-//	}
-//
-//	@Bean
-//	@SuppressWarnings("rawtypes")
-//	ClientRegionFactoryBean journeyRegion(ClientCache cache) {
-//
-//		ClientRegionFactoryBean exampleRegion = new
-//				ClientRegionFactoryBean<>();
-//
-//		exampleRegion.setName("journeys");
-//		exampleRegion.setCache(cache);
-//		exampleRegion.setShortcut(ClientRegionShortcut.PROXY);
-//
-//		return exampleRegion;
-//	}
 
 	@Autowired
 	@Bean
