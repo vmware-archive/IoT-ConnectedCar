@@ -19,14 +19,17 @@
 # ipython BatchTrain.py Configuration/default.conf
 
 import ConfigParser
-import sys
+import datetime
 import json
-from operator import add
+import cPickle as pickle
+import sys
 
-import Models
 import Data
+import Models
+import redis
+
+from operator import add
 from pyspark import SparkContext, SparkConf
-from sklearn.externals import joblib
 
 
 conf = SparkConf().setAppName("BatchTraining")
@@ -34,7 +37,6 @@ sc = SparkContext(conf=conf)
 
 
 def main(args=None):
-    # Setting up configuration TODO: use docopt
     if(args):
         configuration_string = args[0]
     else:
@@ -43,24 +45,26 @@ def main(args=None):
     config = ConfigParser.ConfigParser()
     config.read(configuration_string)
     rawdata_directory = config.get("Directories", "dir_rawdata")
-    storedmodel_directory = config.get("Directories", "dir_storedmodel")
-    cluster_json_directory = config.get("Directories", "dir_clusters")
+
+    # Set up Redis
+    redis_host = config.get("Redis", "host")
+    redis_port = int(config.get("Redis", "port"))
+    redis_password = config.get("Redis", "password")
+    # Connect to Redis
+    r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password)
 
     # Parameters TODO: set these in config file
     # Clustering
     cluster_feature_names = ["StartLat", "StartLong", "EndLat", "EndLong"]  # Which features to cluster over
     clustering_alg = "KMeans"                                    # Which Clustering Algorithm to use
-    cluster_model_file = config.get("Batch", "cluster_class_file")
     cluster_params = {"max_clusters": 10, "n_init": 10}           # Parameters for KMeans
 
     # Initial Classification
     init_class_alg = "RandomForest"
-    init_class_model_file = config.get("Batch", "init_class_file")
     init_class_feature_names = ["StartLat", "StartLong"]  # Which features to cluster over
 
     # Online Classification
     online_class_alg = "RandomForest"
-    online_class_model_file = config.get("Batch", "online_class_file")
     online_class_feature_names = ["Latitude", "Longitude", "StartLat", "StartLong"]
 
     # Read in batch data
@@ -79,22 +83,26 @@ def main(args=None):
     journeys_with_id.persist()
     journey_clusters = journeys_with_id.mapValues(lambda journeys: Data.create_journey_clusters(journeys)).persist()
     journey_clusters_local = journey_clusters.collectAsMap()
-    joblib.dump(journey_clusters_local, storedmodel_directory + cluster_model_file + "_JourneyClusters")
-    cluster_json = journey_clusters.map(Data.extract_journey_json).collect()
-    with open(cluster_json_directory + "clusters.json", "w") as f:
-        for cluster in cluster_json:
-            f.write(cluster + "\n")
+    r.set("journey_clusters", pickle.dumps(journey_clusters_local))
+
+    cluster_json = journey_clusters.map(Data.extract_journey_json).collectAsMap()
+    for vin, clusters in cluster_json.iteritems():
+        r.set(vin, json.dumps(clusters))
     journey_clusters.unpersist()
 
     # Build initial classification models
     init_class_models = journeys_with_id.mapValues(lambda data: Models.train_init_class_model(init_class_alg, init_class_feature_names, data)).collectAsMap()
-    joblib.dump(init_class_models, storedmodel_directory + init_class_model_file)
+    r.set("init_models", pickle.dumps(init_class_models))
 
     # Build online classification models
-    online_class_models = journeys_with_id.mapValues(lambda data: Models.train_online_class_model(online_class_alg, online_class_feature_names, data)).collectAsMap()
-    joblib.dump(online_class_models, storedmodel_directory + online_class_model_file)
+    online_class_models = journeys_with_id.mapValues(lambda data: Models.train_online_class_model(online_class_alg,
+                                                                                                  online_class_feature_names,
+                                                                                                  data)).collectAsMap()
+    r.set("online_models", pickle.dumps(online_class_models))
 
     sc.stop()
+
+    r.set("models_last_trained", datetime.datetime.utcnow().strftime("%y-%m-%d %H:%M:%S"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])

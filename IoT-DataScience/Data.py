@@ -23,7 +23,6 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
-from IPython import embed
 from pandas import parser
 
 
@@ -321,8 +320,7 @@ class Journey:
         self.transform_data()
 
     # Read in data and assign variables
-    def load_streaming_data(self, input):
-        input_json = json.loads(input)
+    def load_streaming_data(self, input_json):
         for k in input_json:
             if input_json[k] == "":
                 input_json[k] = np.nan
@@ -385,7 +383,6 @@ class JourneyCluster:
 
 def extract_journey_json(tup):
     vin, clusters = tup
-    result = OrderedDict()
     clusters_dict = OrderedDict()
     for cluster in clusters:
         cluster_dict = OrderedDict()
@@ -394,6 +391,4 @@ def extract_journey_json(tup):
         cluster_dict["long"] = cluster.averages["EndLong"]
         cluster_dict["address"] = ""
         clusters_dict[str(cluster.clusterID)] = cluster_dict
-    result["vin"] = str(vin)
-    result["clusters"] = clusters_dict
-    return json.dumps(result)
+    return (vin, clusters_dict)

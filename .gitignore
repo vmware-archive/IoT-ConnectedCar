@@ -33,3 +33,4 @@ pyspark-docker
 IoT-Data-Science/PythonModel/metastore_db
 lib
 /data
+IoT-DataScience/PythonModel/redis_push.py
