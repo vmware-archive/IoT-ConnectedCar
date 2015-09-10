@@ -53,7 +53,7 @@ except redis.ConnectionError as e:
 units = os.getenv("units")
 fuel_type = os.getenv("fuel_type")
 fuel_capacity = os.getenv("fuel_capacity_liters")
-engine_displacement = os.getenv("engine_displacement_liters")
+engine_displacement = float(os.getenv("engine_displacement_liters"))
 fuel_level = os.getenv("fuel_level_percent")
 mixing_length = float(os.getenv("mixing_length"))
 smoothing_length = float(os.getenv("smoothing_length"))
