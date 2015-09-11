@@ -1,0 +1,19 @@
+---
+timeout: 180
+instances: 1
+memory: 1G
+applications:
+- name: cc-transformer
+  path: IoT-EnrichmentTransformer/build/libs/IoT-EnrichmentTransformer-exec.jar
+  services: [ stream-cloud-streams-bus ]
+- name: cc-dashboard
+  path: IoT-Dashboard/build/libs/IoT-Dashboard.jar
+- name: cc-gemfire-rest
+  path: IoT-GemFireREST/build/libs/IoT-GemFireREST.jar
+  services: [ stream-cloud-streams-bus, iot-gemfire-1 ]
+#- name: cc-streampredict
+#  path:
+#  services: [ stream-cloud-streams-bus ]
+- name: cc-type-transformer
+  path: IoT-GemFireTransformer/build/libs/IoT-GemFireTransformer-exec.jar
+  services: [ stream-cloud-streams-bus ]
