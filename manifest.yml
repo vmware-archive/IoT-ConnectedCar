@@ -11,9 +11,27 @@ applications:
 - name: cc-gemfire-rest
   path: IoT-GemFireREST/build/libs/IoT-GemFireREST.jar
   services: [ stream-cloud-streams-bus, iot-gemfire-1 ]
-#- name: cc-streampredict
-#  path:
-#  services: [ stream-cloud-streams-bus ]
+- name: cc-streampredict
+  memory: 4096M
+  instances: 1
+  buildpack: https://github.com/ihuston/python-conda-buildpack.git
+  path: IoT-DataScience
+  command: python StreamPredict.py
+  timeout: 180
+  no-route: true
+  services:
+    - stream-cloud-streams-bus
+  env:
+    raw_data: "queue.transformer.data" # redis queue for raw data
+    predictions: "topic.python.data" # redis topic to send predictions to
+    units: "miles" # miles or km
+    mixing_length: "90.0" # how long in seconds should the initial model’s predictions be faded in
+    smoothing_length: "10" # over how many seconds should the predictions be averaged
+    cutoff: "5" # after how many minutes of not receiving new data should a new journey start?
+    fuel_type: "diesel" # diesel or petrol
+    fuel_capacity_liters: "60"
+    engine_displacement_liters: "3.7" # used to impute mass air flow if missing
+    fuel_level_percent: "52" # used to impute the fuel level if missing
 - name: cc-type-transformer
   path: IoT-GemFireTransformer/build/libs/IoT-GemFireTransformer-exec.jar
   services: [ stream-cloud-streams-bus ]
