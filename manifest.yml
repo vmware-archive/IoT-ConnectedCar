@@ -3,15 +3,15 @@ timeout: 180
 instances: 1
 memory: 1G
 applications:
-- name: cc-transformer
+- name: iot-transformer
   path: IoT-EnrichmentTransformer/build/libs/IoT-EnrichmentTransformer-exec.jar
-  services: [ stream-cloud-streams-bus ]
-- name: cc-dashboard
+  services: [ scdf-bus ]
+- name: iot-dashboard
   path: IoT-Dashboard/build/libs/IoT-Dashboard.jar
-- name: cc-gemfire-rest
+- name: iot-gemfire-rest
   path: IoT-GemFireREST/build/libs/IoT-GemFireREST.jar
-  services: [ stream-cloud-streams-bus, iot-gemfire-1 ]
-- name: cc-streampredict
+  services: [ scdf-bus, j1-gemfire-1 ]
+- name: iot-streampredict
   memory: 4096M
   instances: 1
   buildpack: https://github.com/ihuston/python-conda-buildpack.git
@@ -20,7 +20,7 @@ applications:
   timeout: 180
   no-route: true
   services:
-    - stream-cloud-streams-bus
+    - scdf-bus
   env:
     raw_data: "queue.transformer.data" # redis queue for raw data
     predictions: "topic.python.data" # redis topic to send predictions to
@@ -32,6 +32,6 @@ applications:
     fuel_capacity_liters: "60"
     engine_displacement_liters: "3.7" # used to impute mass air flow if missing
     fuel_level_percent: "52" # used to impute the fuel level if missing
-- name: cc-type-transformer
+- name: iot-type-transformer
   path: IoT-GemFireTransformer/build/libs/IoT-GemFireTransformer-exec.jar
-  services: [ stream-cloud-streams-bus ]
+  services: [ scdf-bus ]

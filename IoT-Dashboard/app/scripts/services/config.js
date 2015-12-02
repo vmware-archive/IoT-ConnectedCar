@@ -2,5 +2,5 @@
 
 angular.module('services.config', [])
   .constant('configuration', {
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'http://iot-gemfire-rest.corpdemo.fe.pivotal.io'
   });

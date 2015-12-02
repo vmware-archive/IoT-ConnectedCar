@@ -129,7 +129,12 @@ public class CarPosition implements Serializable {
 		if(value instanceof Integer) {
 			return (Integer) value;
 		} else if(value instanceof String && StringUtils.hasText((String) value)) {
-			return Integer.parseInt((String) value);
+			if(((String) value).trim().equalsIgnoreCase("NaN")) {
+				return 0;
+			}
+			else {
+				return Integer.parseInt((String) value);
+			}
 		} else {
 			return null;
 		}
@@ -185,6 +190,7 @@ public class CarPosition implements Serializable {
 				this.fuelSystemStatus = fuelSystemValues;
 			}
 			else if(fuel_system_status instanceof String) {
+				System.out.println("fuel_system_status = " + fuel_system_status);
 				List<Integer> fuelSystemStatus = new ArrayList<>();
 
 				String statusText = (String) fuel_system_status;
@@ -211,7 +217,7 @@ public class CarPosition implements Serializable {
 		this.longitude = toDouble(values.get("longitude"));
 		this.mafAirflow = toDouble(values.get("maf_airflow"));
 		this.mpgInstantaneous = toDouble(values.get("mpg_instantaneous"));
-		this.obdStandards = Integer.parseInt((String) values.get("obd_standards"));
+		this.obdStandards = toInteger(values.get("obd_standards"));
 		this.relativeThrottlePos = toDouble(values.get("relative_throttle_pos"));
 		this.rpm = toDouble(values.get("rpm"));
 		this.shortTermFuel = toDouble(values.get("short_term_fuel"));

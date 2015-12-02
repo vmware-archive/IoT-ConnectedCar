@@ -18,7 +18,7 @@ angular
 
 angular.module('services.config', [])
   .constant('configuration', {
-    baseUrl: 'http://cc-gemfire-rest.corpdemo.fe.pivotal.io'
+    baseUrl: 'http://iot-gemfire-rest.corpdemo.fe.pivotal.io'
   });
 
 'use strict';
@@ -170,7 +170,7 @@ angular.module('iotDashboard')
                     _.each(data, function (journeyData) {
                         var journeyName = journeyData.name;
 
-                        if(journeyName.length == 0) {
+                        if(!journeyName || journeyName.length == 0) {
                             journeyName = journeyId;
                         }
 
@@ -181,6 +181,8 @@ angular.module('iotDashboard')
                             longitude: journeyData.long,
                             probability: 0
                         };
+
+                        console.log("journey = " + journey);
 
                         var geocoder = new google.maps.Geocoder();
                         var latlng = new google.maps.LatLng(journeyData.lat, journeyData.long);
@@ -256,8 +258,7 @@ angular.module('iotDashboard')
                 _.each(data, function (journeyData) {
                     var journeyName = journeyData.name;
 
-                    console.log("journeyName = " + journeyName + " length = " + journeyName.length);
-                    if(journeyName.length == 0) {
+                    if(!journeyName || journeyName.length == 0) {
                         journeyName = journeyId;
                     }
 
@@ -268,6 +269,8 @@ angular.module('iotDashboard')
                         longitude: journeyData.long,
                         probability: 0
                     };
+
+                    console.log("journey = " + journey);
 
                     var geocoder = new google.maps.Geocoder();
                     var latlng = new google.maps.LatLng(journeyData.lat, journeyData.long);
