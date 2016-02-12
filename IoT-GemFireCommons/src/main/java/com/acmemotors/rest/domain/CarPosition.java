@@ -152,7 +152,7 @@ public class CarPosition implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public CarPosition(Map<String, Object> values) {
-		this.journeyId = (String) values.get("journey_id");
+		this.journeyId = String.valueOf(values.get("journey_id"));
 		this.absoluteThrottlePosB = toDouble(values.get("absolute_throttle_pos_b"));
 		this.acceleration = toDouble(values.get("acceleration"));
 		this.acceleratorThrottlePosD = toDouble(values.get("accelerator_throttle_pos_d"));
@@ -186,7 +186,7 @@ public class CarPosition implements Serializable {
 		this.longitude = toDouble(values.get("longitude"));
 		this.mafAirflow = toDouble(values.get("maf_airflow"));
 		this.mpgInstantaneous = toDouble(values.get("mpg_instantaneous"));
-		this.obdStandards = Integer.parseInt((String) values.get("obd_standards"));
+		this.obdStandards = Integer.parseInt(String.valueOf(values.get("obd_standards")));
 		this.relativeThrottlePos = toDouble(values.get("relative_throttle_pos"));
 		this.rpm = toDouble(values.get("rpm"));
 		this.shortTermFuel = toDouble(values.get("short_term_fuel"));
@@ -214,7 +214,7 @@ public class CarPosition implements Serializable {
 				this.vehicleSpeed = (Double) vehicleSpeed;
 			}
 			else {
-				this.vehicleSpeed = Double.parseDouble((String) vehicleSpeed);
+				this.vehicleSpeed = Double.parseDouble(String.valueOf(vehicleSpeed));
 			}
 		}
 
