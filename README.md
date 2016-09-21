@@ -7,7 +7,7 @@ provide vast operational efficiencies in virtually every industry. At Pivotal's
 SpringOne2GX conference 2014, a team from Pivotal demonstrated how components of Pivotal's 
 open source portfolio can be combined to increase speed to market of IoT solutions.
 
-Pivotal has developed a sample application to illustrate it's open source IoT platform 
+Pivotal has developed a sample application to illustrate its open source IoT platform 
 via the use case of a connected car.  In this demo, data from a moving vehicle is streamed
 real time to a server running Spring XD.  Spring XD ingests the data and makes predictions
 about where the vehicle is going and how far it can go.  An HTML/AngularJS based dashboard
