@@ -5,7 +5,7 @@
 function printOptions {
 	echo "You are currently at home, the Renaissance Hotel."
 	echo "Where do you want to go?"
-	echo "1) Work - Omni Hotel"
+	echo "1) Home - Prom"
 	echo "2) Flying Saucer Resturant"
 	echo "3) Babe's Chicken Dinner House"
 	echo "4) Sandy Lake Amusement Park"
@@ -35,16 +35,16 @@ function selectInputFile {
 	
 	case $selection in
 		1)
-		inputfile="/opt/pivotal/data/Dallas-Drives/Ren-Omni-75.out"
+		inputfile="/opt/pivotal/IoT-ConnectedCar/data/Chicago_Drives/Home-Prom.out"
 		;;
 		2)
-		inputfile="/opt/pivotal/data/Dallas-Drives/Ren-Fly-BeltlineRoute.out"
+		inputfile="/opt/pivotal/IoT-ConnectedCar/data/Dallas-Drives/Ren-Fly-BeltlineRoute.out"
 		;;
 		3)
-		inputfile="/opt/pivotal/data/Dallas-Drives/Ren-Babes-JupiterCampbellRoute.out"
+		inputfile="/opt/pivotal/IoT-ConnectedCar/data/Dallas-Drives/Ren-Babes-JupiterCampbellRoute.out"
 		;;
 		4)
-		inputfile="/opt/pivotal/data/Dallas-Drives/Ren-Sandy-GBTollwayRoute.out"
+		inputfile="/opt/pivotal/IoT-ConnectedCar/data/Dallas-Drives/Ren-Sandy-GBTollwayRoute.out"
 		;;
 	esac
 	
